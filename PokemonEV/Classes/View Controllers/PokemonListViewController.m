@@ -13,6 +13,7 @@
 @implementation PokemonListViewController
 
 @synthesize fetchedSearchResults;
+@synthesize showEVYield;
 
 #pragma mark -
 #pragma mark Initialization
@@ -106,25 +107,28 @@
 	cell.textLabel.text = species.name;
 	cell.detailTextLabel.text = species.formName;
 	
-	CGFloat xOffset = 180;
-	CGFloat yOffset = 1;
-	CGFloat evViewSpacing = 4;
-	NSDictionary *effortDict = [species effortDictionary];
-	for (NSNumber *statIDNumber in [effortDict allKeys])
-	{
-		NSNumber *evNumber = [effortDict objectForKey:statIDNumber];
-		EVYieldView *evView = [[EVYieldView alloc] initWithStat:[statIDNumber intValue] value:[evNumber intValue]];
-		
-		CGRect evFrame = evView.frame;
-		evFrame.origin = CGPointMake(xOffset, yOffset);
-		evView.frame = evFrame;
-		
-		xOffset += evFrame.size.width + evViewSpacing;
-		
-		[cell.contentView addSubview:evView];
-		[evView release];
+  if (showEVYield)
+  {
+    CGFloat xOffset = 180;
+    CGFloat yOffset = 1;
+    CGFloat evViewSpacing = 4;
+    NSDictionary *effortDict = [species effortDictionary];
+    for (NSNumber *statIDNumber in [effortDict allKeys])
+    {
+      NSNumber *evNumber = [effortDict objectForKey:statIDNumber];
+      EVYieldView *evView = [[EVYieldView alloc] initWithStat:[statIDNumber intValue] value:[evNumber intValue]];
+      
+      CGRect evFrame = evView.frame;
+      evFrame.origin = CGPointMake(xOffset, yOffset);
+      evView.frame = evFrame;
+      
+      xOffset += evFrame.size.width + evViewSpacing;
+      
+      [cell.contentView addSubview:evView];
+      [evView release];
+    }
 	}
-	
+  
 	return cell;
 }
 

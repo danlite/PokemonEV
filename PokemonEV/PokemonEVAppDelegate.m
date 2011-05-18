@@ -28,9 +28,10 @@
 	
 	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:[self managedObjectContext]];
 	[self.window addSubview:listVC.view];
-
-    [self.window makeKeyAndVisible];
-    return YES;
+  listVC.showEVYield = NO;
+  
+  [self.window makeKeyAndVisible];
+  return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
