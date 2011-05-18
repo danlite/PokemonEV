@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		374D13E513839712004022E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E413839712004022E3 /* UIKit.framework */; };
+		374D13E713839712004022E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E613839712004022E3 /* Foundation.framework */; };
+		374D13E913839712004022E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E813839712004022E3 /* CoreGraphics.framework */; };
+		374D13EB13839712004022E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13EA13839712004022E3 /* CoreData.framework */; };
+		374D13F113839712004022E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 374D13EF13839712004022E3 /* InfoPlist.strings */; };
+		374D13F413839712004022E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D13F313839712004022E3 /* main.m */; };
+		374D13F713839712004022E3 /* PokemonEVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D13F613839712004022E3 /* PokemonEVAppDelegate.m */; };
+		374D13FA13839712004022E3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374D13F813839712004022E3 /* MainWindow.xib */; };
+		374D13FD13839712004022E3 /* PokemonEV.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 374D13FB13839712004022E3 /* PokemonEV.xcdatamodeld */; };
+		374D140413839713004022E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E413839712004022E3 /* UIKit.framework */; };
+		374D140513839713004022E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E613839712004022E3 /* Foundation.framework */; };
+		374D140613839713004022E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E813839712004022E3 /* CoreGraphics.framework */; };
+		374D140713839713004022E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13EA13839712004022E3 /* CoreData.framework */; };
+		374D140F13839713004022E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 374D140D13839713004022E3 /* InfoPlist.strings */; };
+		374D141213839713004022E3 /* PokemonEVTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 374D141113839713004022E3 /* PokemonEVTests.h */; };
+		374D141413839713004022E3 /* PokemonEVTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D141313839713004022E3 /* PokemonEVTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		374D140813839713004022E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 374D13D713839712004022E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 374D13DF13839712004022E3;
+			remoteInfo = PokemonEV;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		374D13E013839712004022E3 /* PokemonEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonEV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		374D13E413839712004022E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		374D13E613839712004022E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		374D13E813839712004022E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		374D13EA13839712004022E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		374D13EE13839712004022E3 /* PokemonEV-Info.plist */ = {isa = PBXFileReference; path = "PokemonEV-Info.plist"; sourceTree = "<group>"; };
+		374D13F013839712004022E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		374D13F213839712004022E3 /* PokemonEV-Prefix.pch */ = {isa = PBXFileReference; path = "PokemonEV-Prefix.pch"; sourceTree = "<group>"; };
+		374D13F313839712004022E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		374D13F513839712004022E3 /* PokemonEVAppDelegate.h */ = {isa = PBXFileReference; path = PokemonEVAppDelegate.h; sourceTree = "<group>"; };
+		374D13F613839712004022E3 /* PokemonEVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokemonEVAppDelegate.m; sourceTree = "<group>"; };
+		374D13F913839712004022E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		374D13FC13839712004022E3 /* PokemonEV.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonEV.xcdatamodel; sourceTree = "<group>"; };
+		374D140313839713004022E3 /* PokemonEVTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonEVTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		374D140C13839713004022E3 /* PokemonEVTests-Info.plist */ = {isa = PBXFileReference; path = "PokemonEVTests-Info.plist"; sourceTree = "<group>"; };
+		374D140E13839713004022E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		374D141013839713004022E3 /* PokemonEVTests-Prefix.pch */ = {isa = PBXFileReference; path = "PokemonEVTests-Prefix.pch"; sourceTree = "<group>"; };
+		374D141113839713004022E3 /* PokemonEVTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokemonEVTests.h; sourceTree = "<group>"; };
+		374D141313839713004022E3 /* PokemonEVTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokemonEVTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		374D13DD13839712004022E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374D13E513839712004022E3 /* UIKit.framework in Frameworks */,
+				374D13E713839712004022E3 /* Foundation.framework in Frameworks */,
+				374D13E913839712004022E3 /* CoreGraphics.framework in Frameworks */,
+				374D13EB13839712004022E3 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		374D13FF13839713004022E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374D140413839713004022E3 /* UIKit.framework in Frameworks */,
+				374D140513839713004022E3 /* Foundation.framework in Frameworks */,
+				374D140613839713004022E3 /* CoreGraphics.framework in Frameworks */,
+				374D140713839713004022E3 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		374D13D513839712004022E3 = {
+			isa = PBXGroup;
+			children = (
+				374D13EC13839712004022E3 /* PokemonEV */,
+				374D140A13839713004022E3 /* PokemonEVTests */,
+				374D13E313839712004022E3 /* Frameworks */,
+				374D13E113839712004022E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		374D13E113839712004022E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				374D13E013839712004022E3 /* PokemonEV.app */,
+				374D140313839713004022E3 /* PokemonEVTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		374D13E313839712004022E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				374D13E413839712004022E3 /* UIKit.framework */,
+				374D13E613839712004022E3 /* Foundation.framework */,
+				374D13E813839712004022E3 /* CoreGraphics.framework */,
+				374D13EA13839712004022E3 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		374D13EC13839712004022E3 /* PokemonEV */ = {
+			isa = PBXGroup;
+			children = (
+				374D13F513839712004022E3 /* PokemonEVAppDelegate.h */,
+				374D13F613839712004022E3 /* PokemonEVAppDelegate.m */,
+				374D13F813839712004022E3 /* MainWindow.xib */,
+				374D13FB13839712004022E3 /* PokemonEV.xcdatamodeld */,
+				374D13ED13839712004022E3 /* Supporting Files */,
+			);
+			path = PokemonEV;
+			sourceTree = "<group>";
+		};
+		374D13ED13839712004022E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				374D13EE13839712004022E3 /* PokemonEV-Info.plist */,
+				374D13EF13839712004022E3 /* InfoPlist.strings */,
+				374D13F213839712004022E3 /* PokemonEV-Prefix.pch */,
+				374D13F313839712004022E3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		374D140A13839713004022E3 /* PokemonEVTests */ = {
+			isa = PBXGroup;
+			children = (
+				374D141113839713004022E3 /* PokemonEVTests.h */,
+				374D141313839713004022E3 /* PokemonEVTests.m */,
+				374D140B13839713004022E3 /* Supporting Files */,
+			);
+			path = PokemonEVTests;
+			sourceTree = "<group>";
+		};
+		374D140B13839713004022E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				374D140C13839713004022E3 /* PokemonEVTests-Info.plist */,
+				374D140D13839713004022E3 /* InfoPlist.strings */,
+				374D141013839713004022E3 /* PokemonEVTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		374D13DF13839712004022E3 /* PokemonEV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 374D141713839713004022E3 /* Build configuration list for PBXNativeTarget "PokemonEV" */;
+			buildPhases = (
+				374D13DC13839712004022E3 /* Sources */,
+				374D13DD13839712004022E3 /* Frameworks */,
+				374D13DE13839712004022E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PokemonEV;
+			productName = PokemonEV;
+			productReference = 374D13E013839712004022E3 /* PokemonEV.app */;
+			productType = "com.apple.product-type.application";
+		};
+		374D140213839713004022E3 /* PokemonEVTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 374D141A13839713004022E3 /* Build configuration list for PBXNativeTarget "PokemonEVTests" */;
+			buildPhases = (
+				374D13FE13839713004022E3 /* Sources */,
+				374D13FF13839713004022E3 /* Frameworks */,
+				374D140013839713004022E3 /* Resources */,
+				374D140113839713004022E3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				374D140913839713004022E3 /* PBXTargetDependency */,
+			);
+			name = PokemonEVTests;
+			productName = PokemonEVTests;
+			productReference = 374D140313839713004022E3 /* PokemonEVTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		374D13D713839712004022E3 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 374D13DA13839712004022E3 /* Build configuration list for PBXProject "PokemonEV" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 374D13D513839712004022E3;
+			productRefGroup = 374D13E113839712004022E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				374D13DF13839712004022E3 /* PokemonEV */,
+				374D140213839713004022E3 /* PokemonEVTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		374D13DE13839712004022E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374D13F113839712004022E3 /* InfoPlist.strings in Resources */,
+				374D13FA13839712004022E3 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		374D140013839713004022E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374D140F13839713004022E3 /* InfoPlist.strings in Resources */,
+				374D141213839713004022E3 /* PokemonEVTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		374D140113839713004022E3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		374D13DC13839712004022E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374D13F413839712004022E3 /* main.m in Sources */,
+				374D13F713839712004022E3 /* PokemonEVAppDelegate.m in Sources */,
+				374D13FD13839712004022E3 /* PokemonEV.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		374D13FE13839713004022E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374D141413839713004022E3 /* PokemonEVTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		374D140913839713004022E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 374D13DF13839712004022E3 /* PokemonEV */;
+			targetProxy = 374D140813839713004022E3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		374D13EF13839712004022E3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				374D13F013839712004022E3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		374D13F813839712004022E3 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				374D13F913839712004022E3 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		374D140D13839713004022E3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				374D140E13839713004022E3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		374D141513839713004022E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		374D141613839713004022E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		374D141813839713004022E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PokemonEV/PokemonEV-Prefix.pch";
+				INFOPLIST_FILE = "PokemonEV/PokemonEV-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		374D141913839713004022E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PokemonEV/PokemonEV-Prefix.pch";
+				INFOPLIST_FILE = "PokemonEV/PokemonEV-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		374D141B13839713004022E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PokemonEV.app/PokemonEV";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PokemonEVTests/PokemonEVTests-Prefix.pch";
+				INFOPLIST_FILE = "PokemonEVTests/PokemonEVTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		374D141C13839713004022E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PokemonEV.app/PokemonEV";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PokemonEVTests/PokemonEVTests-Prefix.pch";
+				INFOPLIST_FILE = "PokemonEVTests/PokemonEVTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		374D13DA13839712004022E3 /* Build configuration list for PBXProject "PokemonEV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				374D141513839713004022E3 /* Debug */,
+				374D141613839713004022E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		374D141713839713004022E3 /* Build configuration list for PBXNativeTarget "PokemonEV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				374D141813839713004022E3 /* Debug */,
+				374D141913839713004022E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		374D141A13839713004022E3 /* Build configuration list for PBXNativeTarget "PokemonEVTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				374D141B13839713004022E3 /* Debug */,
+				374D141C13839713004022E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		374D13FB13839712004022E3 /* PokemonEV.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				374D13FC13839712004022E3 /* PokemonEV.xcdatamodel */,
+			);
+			currentVersion = 374D13FC13839712004022E3 /* PokemonEV.xcdatamodel */;
+			path = PokemonEV.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 374D13D713839712004022E3 /* Project object */;
+}
