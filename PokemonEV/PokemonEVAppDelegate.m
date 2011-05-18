@@ -7,6 +7,8 @@
 //
 
 #import "PokemonEVAppDelegate.h"
+#import "PokemonDataImport.h"
+#import "PokemonListViewController.h"
 
 @implementation PokemonEVAppDelegate
 
@@ -21,7 +23,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+	BOOL importedData = [PokemonDataImport importPokemonData:[self managedObjectContext]];
+	DLog(@"Imported data: %@", importedData ? @"YES" : @"NO");
+	
+	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:[self managedObjectContext]];
+	[self.window addSubview:listVC.view];
+
     [self.window makeKeyAndVisible];
     return YES;
 }

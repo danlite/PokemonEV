@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>HP</string>
+	</array>
+	<array>
+		<string>Atk</string>
+		<string>Attack</string>
+	</array>
+	<array>
+		<string>Def</string>
+		<string>Defense</string>
+	</array>
+	<array>
+		<string>SpA</string>
+		<string>SpAtk</string>
+		<string>Sp. Atk</string>
+		<string>Sp. Attack</string>
+		<string>Special Attack</string>
+	</array>
+	<array>
+		<string>SpD</string>
+		<string>SpDef</string>
+		<string>Sp. Def</string>
+		<string>Sp. Defense</string>
+		<string>Special Defense</string>
+	</array>
+	<array>
+		<string>Spe</string>
+		<string>Speed</string>
+	</array>
+</array>
+</plist>
