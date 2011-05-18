@@ -1,0 +1,1 @@
+mogenerator -m PokemonEV.xcdatamodeld/PokemonEV.xcdatamodel/ -M Classes/Models/Machine/ -H Classes/Models/Human/
