@@ -4,12 +4,8 @@
 #import <CoreData/CoreData.h>
 
 
-
-
-
-
-
-
+@class Pokemon;
+@class EVSpread;
 
 
 
@@ -29,59 +25,9 @@
 
 
 
-@property (nonatomic, retain) NSString *formName;
+@property (nonatomic, retain) NSString *uppercaseNameInitial;
 
-//- (BOOL)validateFormName:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *spDefenseEffort;
-
-@property short spDefenseEffortValue;
-- (short)spDefenseEffortValue;
-- (void)setSpDefenseEffortValue:(short)value_;
-
-//- (BOOL)validateSpDefenseEffort:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *formOrder;
-
-@property short formOrderValue;
-- (short)formOrderValue;
-- (void)setFormOrderValue:(short)value_;
-
-//- (BOOL)validateFormOrder:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *attackEffort;
-
-@property short attackEffortValue;
-- (short)attackEffortValue;
-- (void)setAttackEffortValue:(short)value_;
-
-//- (BOOL)validateAttackEffort:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *defenseEffort;
-
-@property short defenseEffortValue;
-- (short)defenseEffortValue;
-- (void)setDefenseEffortValue:(short)value_;
-
-//- (BOOL)validateDefenseEffort:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *speedEffort;
-
-@property short speedEffortValue;
-- (short)speedEffortValue;
-- (void)setSpeedEffortValue:(short)value_;
-
-//- (BOOL)validateSpeedEffort:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateUppercaseNameInitial:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -91,35 +37,9 @@
 
 
 
-@property (nonatomic, retain) NSNumber *hpEffort;
-
-@property short hpEffortValue;
-- (short)hpEffortValue;
-- (void)setHpEffortValue:(short)value_;
-
-//- (BOOL)validateHpEffort:(id*)value_ error:(NSError**)error_;
-
-
-
 @property (nonatomic, retain) NSString *iconFilename;
 
 //- (BOOL)validateIconFilename:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *spAttackEffort;
-
-@property short spAttackEffortValue;
-- (short)spAttackEffortValue;
-- (void)setSpAttackEffortValue:(short)value_;
-
-//- (BOOL)validateSpAttackEffort:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSString *uppercaseNameInitial;
-
-//- (BOOL)validateUppercaseNameInitial:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -133,6 +53,32 @@
 
 
 
+@property (nonatomic, retain) NSString *formName;
+
+//- (BOOL)validateFormName:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *formOrder;
+
+@property short formOrderValue;
+- (short)formOrderValue;
+- (void)setFormOrderValue:(short)value_;
+
+//- (BOOL)validateFormOrder:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) Pokemon* pokemon;
+//- (BOOL)validatePokemon:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) EVSpread* yield;
+//- (BOOL)validateYield:(id*)value_ error:(NSError**)error_;
+
+
 
 @end
 
@@ -142,15 +88,27 @@
 
 @interface _PokemonSpecies (CoreDataGeneratedPrimitiveAccessors)
 
+- (NSString*)primitiveUppercaseNameInitial;
+- (void)setPrimitiveUppercaseNameInitial:(NSString*)value;
+
+
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
+
+
+- (NSString*)primitiveIconFilename;
+- (void)setPrimitiveIconFilename:(NSString*)value;
+
+
+- (NSNumber*)primitiveDexNumber;
+- (void)setPrimitiveDexNumber:(NSNumber*)value;
+
+- (short)primitiveDexNumberValue;
+- (void)setPrimitiveDexNumberValue:(short)value_;
+
+
 - (NSString*)primitiveFormName;
 - (void)setPrimitiveFormName:(NSString*)value;
-
-
-- (NSNumber*)primitiveSpDefenseEffort;
-- (void)setPrimitiveSpDefenseEffort:(NSNumber*)value;
-
-- (short)primitiveSpDefenseEffortValue;
-- (void)setPrimitiveSpDefenseEffortValue:(short)value_;
 
 
 - (NSNumber*)primitiveFormOrder;
@@ -160,59 +118,15 @@
 - (void)setPrimitiveFormOrderValue:(short)value_;
 
 
-- (NSNumber*)primitiveAttackEffort;
-- (void)setPrimitiveAttackEffort:(NSNumber*)value;
-
-- (short)primitiveAttackEffortValue;
-- (void)setPrimitiveAttackEffortValue:(short)value_;
 
 
-- (NSNumber*)primitiveDefenseEffort;
-- (void)setPrimitiveDefenseEffort:(NSNumber*)value;
-
-- (short)primitiveDefenseEffortValue;
-- (void)setPrimitiveDefenseEffortValue:(short)value_;
+- (Pokemon*)primitivePokemon;
+- (void)setPrimitivePokemon:(Pokemon*)value;
 
 
-- (NSNumber*)primitiveSpeedEffort;
-- (void)setPrimitiveSpeedEffort:(NSNumber*)value;
 
-- (short)primitiveSpeedEffortValue;
-- (void)setPrimitiveSpeedEffortValue:(short)value_;
-
-
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
-
-
-- (NSNumber*)primitiveHpEffort;
-- (void)setPrimitiveHpEffort:(NSNumber*)value;
-
-- (short)primitiveHpEffortValue;
-- (void)setPrimitiveHpEffortValue:(short)value_;
-
-
-- (NSString*)primitiveIconFilename;
-- (void)setPrimitiveIconFilename:(NSString*)value;
-
-
-- (NSNumber*)primitiveSpAttackEffort;
-- (void)setPrimitiveSpAttackEffort:(NSNumber*)value;
-
-- (short)primitiveSpAttackEffortValue;
-- (void)setPrimitiveSpAttackEffortValue:(short)value_;
-
-
-- (NSString*)primitiveUppercaseNameInitial;
-- (void)setPrimitiveUppercaseNameInitial:(NSString*)value;
-
-
-- (NSNumber*)primitiveDexNumber;
-- (void)setPrimitiveDexNumber:(NSNumber*)value;
-
-- (short)primitiveDexNumberValue;
-- (void)setPrimitiveDexNumberValue:(short)value_;
-
+- (EVSpread*)primitiveYield;
+- (void)setPrimitiveYield:(EVSpread*)value;
 
 
 @end

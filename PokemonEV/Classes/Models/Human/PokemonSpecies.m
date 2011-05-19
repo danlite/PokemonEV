@@ -1,4 +1,5 @@
 #import "PokemonSpecies.h"
+#import "EVSpread.h"
 
 @implementation PokemonSpecies
 
@@ -7,17 +8,17 @@
 	switch (statID)
 	{
 		case PokemonStatHP:
-			return self.hpEffortValue;
+			return self.yield.hpValue;
 		case PokemonStatAttack:
-			return self.attackEffortValue;
+			return self.yield.attackValue;
 		case PokemonStatDefense:
-			return self.defenseEffortValue;
+			return self.yield.defenseValue;
 		case PokemonStatSpAttack:
-			return self.spAttackEffortValue;
+			return self.yield.spAttackValue;
 		case PokemonStatSpDefense:
-			return self.spDefenseEffortValue;
+			return self.yield.spDefenseValue;
 		case PokemonStatSpeed:
-			return self.speedEffortValue;
+			return self.yield.speedValue;
 	}
 	
 	return 0;

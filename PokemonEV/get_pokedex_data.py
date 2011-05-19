@@ -55,13 +55,15 @@ for f,d in q.all():
       continue
   
   image_original = '../../external/veekun/pokedex-media/pokemon/icons/' + image_filename
-  copy(image_original, './Images/pokemon_icons/')
+  new_filename = 'pokemon-icon-' + image_filename
+  copy(image_original, './Images/pokemon_icons/' + new_filename)
   
   pokemon_dict = {
     'dexNumber': d,
     'formOrder': f.order,
-    'iconFilename': image_filename,
+    'iconFilename': new_filename,
     'name': pokemon_name,
+		'yield': {}
   }
   
   if form_name:
@@ -69,7 +71,7 @@ for f,d in q.all():
   
   for stat in pokemon_stats:
     prefix = stat_prefixes[stat.stat_id]
-    pokemon_dict[prefix + 'Effort'] = stat.effort
+    pokemon_dict['yield'][prefix] = stat.effort
     
   pokemon_list.append(pokemon_dict)
 

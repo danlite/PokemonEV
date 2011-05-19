@@ -99,7 +99,7 @@
 	
 	if (filterByStat && showEVYield)
 	{
-		NSString *filterKey = [NSString stringWithFormat:@"%@Effort", [PokemonStats methodPrefixForStat:[selectedStatFilter intValue]]];
+		NSString *filterKey = [NSString stringWithFormat:@"yield.%@", [PokemonStats methodPrefixForStat:[selectedStatFilter intValue]]];
 		[fetchRequest setSortDescriptors:[NSArray arrayWithObjects:
 																			[NSSortDescriptor sortDescriptorWithKey:filterKey ascending:NO],
 																			[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],
@@ -115,6 +115,7 @@
 																			[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],
 																			[NSSortDescriptor sortDescriptorWithKey:@"formOrder" ascending:YES],
 																			nil]];
+		[fetchRequest setRelationshipKeyPathsForPrefetching:[NSArray arrayWithObject:@"yield"]];
 		
 		sectionNameKeyPath = @"uppercaseNameInitial";
 	}
@@ -303,8 +304,8 @@
 	{
 		if ([[[fetchedSearchResults sections] objectAtIndex:0] numberOfObjects] == 1)
 		{
-			PokemonSpecies *pokemon = [fetchedSearchResults objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-			DLog(@"%@", [pokemon fullName]);
+//			PokemonSpecies *pokemon = [fetchedSearchResults objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//			DLog(@"%@", [pokemon fullName]);
 		}
 	}
 }

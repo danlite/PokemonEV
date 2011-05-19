@@ -8,6 +8,7 @@
 
 #import "PokemonDataImport.h"
 #import "PokemonSpecies.h"
+#import "EVSpread.h"
 
 @implementation PokemonDataImport
 
@@ -23,6 +24,22 @@
 		PokemonSpecies *pokemon = [PokemonSpecies insertInManagedObjectContext:managedObjectContext];
 		for (NSString *key in [pokemonData allKeys])
 		{
+			// Handle specific keys
+			if ([key isEqualToString:@"yield"])
+			{
+				NSDictionary *evDict = [pokemonData objectForKey:key];
+				EVSpread *spread = [EVSpread insertInManagedObjectContext:managedObjectContext];
+				pokemon.yield = spread;
+				
+				for (NSString *statName in [evDict allKeys])
+				{
+					[spread setValue:[evDict objectForKey:statName] forKey:statName];
+				}
+				
+				continue;
+			}
+			
+			// Otherwise set the value for the key on the managed object
 			[pokemon setValue:[pokemonData objectForKey:key] forKey:key];
 		}
 	}
