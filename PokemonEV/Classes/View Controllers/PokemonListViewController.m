@@ -47,7 +47,8 @@
 	
 	self.navigationController.toolbarHidden = !showEVYield;
   
-  self.title = @"Pokémon";
+	self.title = @"Select a Pokémon";
+	self.navigationItem.prompt = showEVYield ? @"Record the EV gain from battling a Pokémon" : @"Begin EV training a new Pokémon";
 	
 	NSMutableArray *toolbarItems = [NSMutableArray arrayWithObject:FlexibleSpace];
 	NSMutableArray *buttons = [NSMutableArray array];
