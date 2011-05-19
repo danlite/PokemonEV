@@ -15,8 +15,15 @@
 #endif
 
 #import <Three20/Three20.h>
-
 #import "NSManagedObjectContext+Convenience.h"
+
+#pragma mark - Defaults
+
+#define SelectedStatFilter @"EV_SelectedStatFilter"
+
+#pragma mark - Convenience
+
+#define FlexibleSpace [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]
 
 #pragma mark -
 #pragma mark Logging

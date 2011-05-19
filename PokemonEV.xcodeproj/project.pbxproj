@@ -702,6 +702,8 @@
 		374D19E213839AE4004022E3 /* 97.png in Resources */ = {isa = PBXBuildFile; fileRef = 374D175113839AE4004022E3 /* 97.png */; };
 		374D19E313839AE4004022E3 /* 98.png in Resources */ = {isa = PBXBuildFile; fileRef = 374D175213839AE4004022E3 /* 98.png */; };
 		374D19E413839AE4004022E3 /* 99.png in Resources */ = {isa = PBXBuildFile; fileRef = 374D175313839AE4004022E3 /* 99.png */; };
+		37ECABDA138450A400C04B45 /* PokemonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37ECABD9138450A400C04B45 /* PokemonListViewController.xib */; };
+		37ECABDD1384783E00C04B45 /* StatFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECABDC1384783E00C04B45 /* StatFilterButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1571,6 +1573,9 @@
 		374D175113839AE4004022E3 /* 97.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 97.png; sourceTree = "<group>"; };
 		374D175213839AE4004022E3 /* 98.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 98.png; sourceTree = "<group>"; };
 		374D175313839AE4004022E3 /* 99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 99.png; sourceTree = "<group>"; };
+		37ECABD9138450A400C04B45 /* PokemonListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PokemonListViewController.xib; sourceTree = "<group>"; };
+		37ECABDB1384783E00C04B45 /* StatFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatFilterButton.h; sourceTree = "<group>"; };
+		37ECABDC1384783E00C04B45 /* StatFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatFilterButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1834,6 +1839,7 @@
 			children = (
 				374D14AA13839893004022E3 /* PokemonListViewController.h */,
 				374D14AB13839893004022E3 /* PokemonListViewController.m */,
+				37ECABD9138450A400C04B45 /* PokemonListViewController.xib */,
 				374D14AC13839893004022E3 /* TrackerViewController.h */,
 				374D14AD13839893004022E3 /* TrackerViewController.m */,
 			);
@@ -1845,6 +1851,8 @@
 			children = (
 				374D14AF13839893004022E3 /* EVYieldView.h */,
 				374D14B013839893004022E3 /* EVYieldView.m */,
+				37ECABDB1384783E00C04B45 /* StatFilterButton.h */,
+				37ECABDC1384783E00C04B45 /* StatFilterButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2572,6 +2580,9 @@
 /* Begin PBXProject section */
 		374D13D713839712004022E3 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Daniel Lichty";
+			};
 			buildConfigurationList = 374D13DA13839712004022E3 /* Build configuration list for PBXProject "PokemonEV" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -3388,6 +3399,7 @@
 				374D19E213839AE4004022E3 /* 97.png in Resources */,
 				374D19E313839AE4004022E3 /* 98.png in Resources */,
 				374D19E413839AE4004022E3 /* 99.png in Resources */,
+				37ECABDA138450A400C04B45 /* PokemonListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3437,6 +3449,7 @@
 				374D14BA13839893004022E3 /* PokemonListViewController.m in Sources */,
 				374D14BB13839893004022E3 /* TrackerViewController.m in Sources */,
 				374D14BC13839893004022E3 /* EVYieldView.m in Sources */,
+				37ECABDD1384783E00C04B45 /* StatFilterButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

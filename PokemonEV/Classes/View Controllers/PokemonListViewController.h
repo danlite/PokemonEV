@@ -12,15 +12,19 @@
 @interface PokemonListViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
 {
   BOOL showEVYield;
+	BOOL filterByStat;
   
 	NSManagedObjectContext *managedObjectContext;
 	NSFetchedResultsController *fetchedResults;
 	NSFetchedResultsController *fetchedSearchResults;
+	
+	NSArray *statFilterButtons;
+	NSNumber *selectedStatFilter;
 }
 
 @property (nonatomic) BOOL showEVYield;
-
 @property (nonatomic, retain) NSFetchedResultsController *fetchedSearchResults;
+@property (nonatomic, retain) NSArray *statFilterButtons;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
 

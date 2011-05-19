@@ -13,17 +13,17 @@
 
 - (id)initWithStat:(PokemonStatID)stat value:(NSInteger)value
 {
-	if (self = [super initWithFrame:CGRectMake(0, 0, 32, 40)])
+	if ((self = [super initWithFrame:CGRectMake(0, 0, 32, 40)]))
 	{
 		statID = stat;
 		effortValue = value;
 	}
 	
 	self.style =
-		[TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:5] next:
+		[TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
 		 [TTSolidFillStyle styleWithColor:[PokemonStats colourForStat:statID] next:
 			[TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0, 0.5) blur:4 offset:CGSizeMake(0, 1) next:
-			 [TTSolidBorderStyle styleWithColor:[UIColor darkGrayColor] width:1 next:nil]]]];
+			 [TTSolidBorderStyle styleWithColor:[UIColor colorWithWhite:0.333 alpha:0.5] width:1 next:nil]]]];
 	
 	self.opaque = NO;
 	self.backgroundColor = [UIColor clearColor];

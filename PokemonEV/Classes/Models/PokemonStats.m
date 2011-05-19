@@ -27,6 +27,27 @@ static NSArray *statArray;
 	return statArray;
 }
 
++ (NSString *)methodPrefixForStat:(PokemonStatID)statID
+{
+	switch (statID)
+	{
+		case PokemonStatHP:
+			return @"hp";
+		case PokemonStatAttack:
+			return @"attack";
+		case PokemonStatDefense:
+			return @"defense";
+		case PokemonStatSpAttack:
+			return @"spAttack";
+		case PokemonStatSpDefense:
+			return @"spDefense";
+		case PokemonStatSpeed:
+			return @"speed";
+	}
+	
+	return @"";
+}
+
 + (NSString *)nameForStat:(PokemonStatID)statID length:(NSInteger)length
 {
 	if (statID < 0 || statID > [[self statArray] count])

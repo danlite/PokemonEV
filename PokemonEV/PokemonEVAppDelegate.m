@@ -25,10 +25,13 @@
 {
 	BOOL importedData = [PokemonDataImport importPokemonData:[self managedObjectContext]];
 	DLog(@"Imported data: %@", importedData ? @"YES" : @"NO");
-	
+  
 	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:[self managedObjectContext]];
-	[self.window addSubview:listVC.view];
+  
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
+  [self.window addSubview:navController.view];
   listVC.showEVYield = NO;
+  [listVC release];
   
   [self.window makeKeyAndVisible];
   return YES;

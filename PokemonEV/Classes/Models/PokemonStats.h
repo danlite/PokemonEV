@@ -23,6 +23,7 @@ typedef enum PokemonStatID
 
 @interface PokemonStats : NSObject
 
++ (NSString *)methodPrefixForStat:(PokemonStatID)statID;
 + (NSString *)nameForStat:(PokemonStatID)statID length:(NSInteger)length;
 + (NSString *)nameForStat:(PokemonStatID)statID;
 + (UIColor *)colourForStat:(PokemonStatID)statID;
