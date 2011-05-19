@@ -289,7 +289,8 @@
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
 {
-	[self.navigationController setToolbarHidden:NO animated:YES];
+	if (showEVYield)
+		[self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 #pragma mark -
