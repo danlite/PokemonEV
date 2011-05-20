@@ -9,6 +9,7 @@
 #import "PokemonDataImport.h"
 #import "PokemonSpecies.h"
 #import "EVSpread.h"
+#import "HeldItem.h"
 
 @implementation PokemonDataImport
 
@@ -41,6 +42,16 @@
 			
 			// Otherwise set the value for the key on the managed object
 			[pokemon setValue:[pokemonData objectForKey:key] forKey:key];
+		}
+	}
+	
+	NSArray *itemData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"items" ofType:@"plist"]];
+	for (NSDictionary *itemDict in itemData)
+	{
+		HeldItem *item = [HeldItem insertInManagedObjectContext:managedObjectContext];
+		for (NSString *key in [itemDict allKeys])
+		{
+			[item setValue:[itemDict objectForKey:key] forKey:key];
 		}
 	}
 	

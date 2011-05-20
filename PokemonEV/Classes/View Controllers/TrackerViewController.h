@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PokemonListDelegate.h"
 
+@class Pokemon;
 
-@interface TrackerViewController : UITableViewController {
-
+@interface TrackerViewController : UITableViewController <PokemonListDelegate>
+{
+	NSManagedObjectContext *managedObjectContext;
+	
+	Pokemon *pokemon;
 }
+
+@property (nonatomic, retain) Pokemon *pokemon;
+
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
+- (id)initWithPokemon:(Pokemon *)pkmn;
 
 @end

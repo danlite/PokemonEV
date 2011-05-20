@@ -29,7 +29,7 @@
 
 
 
-@dynamic name;
+@dynamic identifier;
 
 
 
@@ -57,6 +57,13 @@
 - (void)setPrimitiveTrainingStatValue:(short)value_ {
 	[self setPrimitiveTrainingStat:[NSNumber numberWithShort:value_]];
 }
+
+
+
+
+
+@dynamic name;
+
 
 
 

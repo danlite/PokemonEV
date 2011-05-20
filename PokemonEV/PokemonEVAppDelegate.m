@@ -8,7 +8,8 @@
 
 #import "PokemonEVAppDelegate.h"
 #import "PokemonDataImport.h"
-#import "PokemonListViewController.h"
+#import "TrackerViewController.h"
+#import "EVStyleSheet.h"
 
 @implementation PokemonEVAppDelegate
 
@@ -23,15 +24,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	EVStyleSheet *styles = [[EVStyleSheet alloc] init];
+	[TTStyleSheet setGlobalStyleSheet:styles];
+	
 	BOOL importedData = [PokemonDataImport importPokemonData:[self managedObjectContext]];
 	DLog(@"Imported data: %@", importedData ? @"YES" : @"NO");
   
-	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:[self managedObjectContext]];
-  
-  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
+  TrackerViewController *trackerVC = [[TrackerViewController alloc] initWithManagedObjectContext:[self managedObjectContext]];
+	
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:trackerVC];
+	navController.toolbarHidden = NO;
   [self.window addSubview:navController.view];
-  listVC.showEVYield = NO;
-  [listVC release];
+  [trackerVC release];
   
   [self.window makeKeyAndVisible];
   return YES;

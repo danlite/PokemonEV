@@ -9,6 +9,7 @@
 
 
 
+
 @interface HeldItemID : NSManagedObjectID {}
 @end
 
@@ -20,9 +21,9 @@
 
 
 
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *identifier;
 
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateIdentifier:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -33,6 +34,12 @@
 - (void)setTrainingStatValue:(short)value_;
 
 //- (BOOL)validateTrainingStat:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *name;
+
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -50,8 +57,8 @@
 
 @interface _HeldItem (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (NSString*)primitiveIdentifier;
+- (void)setPrimitiveIdentifier:(NSString*)value;
 
 
 - (NSNumber*)primitiveTrainingStat;
@@ -59,6 +66,10 @@
 
 - (short)primitiveTrainingStatValue;
 - (void)setPrimitiveTrainingStatValue:(short)value_;
+
+
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
 
 
 

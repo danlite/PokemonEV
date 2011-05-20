@@ -22,6 +22,7 @@
 @synthesize fetchedSearchResults;
 @synthesize showEVYield;
 @synthesize statFilterButtons;
+@synthesize delegate;
 
 #pragma mark -
 #pragma mark Initialization
@@ -257,6 +258,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	PokemonSpecies *species = (tableView == self.searchDisplayController.searchResultsTableView) ?
+	[fetchedSearchResults objectAtIndexPath:indexPath] :
+	[fetchedResults objectAtIndexPath:indexPath];
+	
+	[[self delegate] pokemonList:self chosePokemon:species];
 }
 
 #pragma mark -

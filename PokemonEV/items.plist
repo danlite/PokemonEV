@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>identifier</key>
+		<string>macho-brace</string>
+		<key>name</key>
+		<string>Macho Brace</string>
+		<key>trainingStat</key>
+		<integer>-1</integer>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>power-weight</string>
+		<key>name</key>
+		<string>Power Weight</string>
+		<key>trainingStat</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>power-bracer</string>
+		<key>name</key>
+		<string>Power Bracer</string>
+		<key>trainingStat</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>power-belt</string>
+		<key>name</key>
+		<string>Power Belt</string>
+		<key>trainingStat</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>power-lens</string>
+		<key>name</key>
+		<string>Power Lens</string>
+		<key>trainingStat</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>power-band</string>
+		<key>name</key>
+		<string>Power Band</string>
+		<key>trainingStat</key>
+		<integer>4</integer>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>power-anklet</string>
+		<key>name</key>
+		<string>Power Anklet</string>
+		<key>trainingStat</key>
+		<integer>5</integer>
+	</dict>
+</array>
+</plist>

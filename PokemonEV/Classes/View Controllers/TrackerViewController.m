@@ -1,4 +1,4 @@
-    //
+//
 //  TrackerViewController.m
 //  PokemonEV
 //
@@ -7,59 +7,237 @@
 //
 
 #import "TrackerViewController.h"
+#import "PokemonListViewController.h"
+#import "Pokemon.h"
+#import "PokemonSpecies.h"
+#import "PokemonStats.h"
+#import "EVCountView.h"
+#import "HeldItem.h"
 
+@interface TrackerViewController()
+
+- (void)presentPokemonListWithEVs:(BOOL)showEVYield;
+- (void)refreshView;
+
+@end
 
 @implementation TrackerViewController
 
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
+@synthesize pokemon;
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc. that aren't in use.
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)context
+{
+	if ((self = [super initWithStyle:UITableViewStyleGrouped]))
+	{
+		managedObjectContext = [context retain];
+	}
+	
+	return self;
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (id)initWithPokemon:(Pokemon *)pkmn
+{
+	if ((self = [self initWithManagedObjectContext:[pkmn managedObjectContext]]))
+	{
+		self.pokemon = pkmn;
+	}
+	
+	return self;
+}
+
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+	if (pokemon == nil)
+	{
+		[self presentPokemonListWithEVs:NO];
+	}
+	
+	HeldItem *item = [[managedObjectContext fetchAllObjectsForEntityName:[HeldItem entityName] withPredicate:nil] objectAtIndex:2];
+	
+	TTButton *heldItemButton = [[[TTButton alloc] initWithFrame:CGRectMake(0, 0, 130, 33)] autorelease];
+	[heldItemButton setStylesWithSelector:@"imageTitleToolbarButton:"];
+	[heldItemButton setImage:[NSString stringWithFormat:@"bundle://%@.png", item.identifier] forState:UIControlStateNormal];
+	[heldItemButton setTitle:item.name forState:UIControlStateNormal];
+	
+	UIBarButtonItem *heldItemButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heldItemButton] autorelease];
+	self.toolbarItems = [NSArray arrayWithObject:heldItemButtonItem];
+}
+
+- (void)refreshView
+{
+	if (pokemon)
+	{
+		UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		titleButton.frame = CGRectMake(0, 0, 160, 40);
+		titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 8, 8);
+		
+		titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+		titleButton.titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+		titleButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+		titleButton.titleLabel.textColor = [UIColor whiteColor];
+		titleButton.titleLabel.highlightedTextColor = [UIColor darkGrayColor];
+		titleButton.reversesTitleShadowWhenHighlighted = YES;
+		
+		[titleButton setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
+		[titleButton setTitle:pokemon.species.name forState:UIControlStateNormal];
+		self.navigationItem.titleView = titleButton;
+	}
+	else
+	{
+		self.navigationItem.titleView = nil;
+	}
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	switch (section)
+	{
+		case 0:
+			return 1;
+		case 1:
+			return 1;
+	}
+	
+	return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (indexPath.section == 0)
+	{
+		UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		
+		TTGridLayout *grid = [[TTGridLayout alloc] init];
+		grid.columnCount = 3;
+		grid.spacing = 0;
+		grid.padding = 0;
+		
+		TTView *evTable = [[TTView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
+		evTable.layout = grid;
+		evTable.backgroundColor = [UIColor clearColor];
+		
+		for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
+		{
+			EVCountView *cell = [[EVCountView alloc] initWithStat:i];
+			[evTable addSubview:cell];
+			[cell release];
+		}
+		
+		[cell.contentView addSubview:evTable];
+		
+		return cell;
+	}
+	
+	if (indexPath.section == 1)
+	{
+		if (indexPath.row == 0)
+		{
+			UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+			cell.textLabel.text = @"Battled new Pokémon";
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			
+			return cell;
+		}
+	}
+	
+	return nil;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (indexPath.section == 1 && indexPath.row == 0)
+	{
+		[self presentPokemonListWithEVs:YES];
+	}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (indexPath.section == 0)
+		return 80;
+	
+	return 44;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (indexPath.section == 0)
+		cell.backgroundView = nil;
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+}
+
+#pragma mark - Pokemon list
+
+- (void)presentPokemonListWithEVs:(BOOL)showEVYield
+{
+	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:managedObjectContext];
+	listVC.delegate = self;
+	listVC.showEVYield = showEVYield;
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
+	navController.toolbarHidden = NO;
+	
+	[self.navigationController presentModalViewController:navController animated:YES];
+	
+	[navController release];
+	[listVC release];
+}
+
+- (void)pokemonList:(PokemonListViewController *)listVC chosePokemon:(PokemonSpecies *)species
+{
+	[self.navigationController dismissModalViewControllerAnimated:YES];
+	
+	if (listVC.showEVYield)
+	{
+		
+	}
+	else
+	{
+		Pokemon *newPokemon = [Pokemon insertInManagedObjectContext:managedObjectContext];
+		newPokemon.species = species;
+		
+		self.pokemon = newPokemon;
+		
+		[self refreshView];
+	}
+}
+
+#pragma mark - Memory management
+
+- (void)didReceiveMemoryWarning
+{
+	// Releases the view if it doesn't have a superview.
+	[super didReceiveMemoryWarning];
+
+	// Release any cached data, images, etc. that aren't in use.
+}
+
+- (void)viewDidUnload
+{
+	[super viewDidUnload];
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc
 {
-    [super dealloc];
+	[super dealloc];
 }
 
 
