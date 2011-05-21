@@ -13,6 +13,7 @@
 #import "PokemonStats.h"
 #import "EVCountView.h"
 #import "HeldItem.h"
+#import "HeldItemListViewController.h"
 
 @interface TrackerViewController()
 
@@ -53,16 +54,8 @@
 	{
 		[self presentPokemonListWithEVs:NO];
 	}
-	
-	HeldItem *item = [[managedObjectContext fetchAllObjectsForEntityName:[HeldItem entityName] withPredicate:nil] objectAtIndex:2];
-	
-	TTButton *heldItemButton = [[[TTButton alloc] initWithFrame:CGRectMake(0, 0, 130, 33)] autorelease];
-	[heldItemButton setStylesWithSelector:@"imageTitleToolbarButton:"];
-	[heldItemButton setImage:[NSString stringWithFormat:@"bundle://%@.png", item.identifier] forState:UIControlStateNormal];
-	[heldItemButton setTitle:item.name forState:UIControlStateNormal];
-	
-	UIBarButtonItem *heldItemButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heldItemButton] autorelease];
-	self.toolbarItems = [NSArray arrayWithObject:heldItemButtonItem];
+  
+  [self refreshView];
 }
 
 - (void)refreshView
@@ -83,11 +76,42 @@
 		[titleButton setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
 		[titleButton setTitle:pokemon.species.name forState:UIControlStateNormal];
 		self.navigationItem.titleView = titleButton;
+    
+    HeldItem *item = pokemon.heldItem;
+    
+    TTButton *heldItemButton = [[[TTButton alloc] initWithFrame:CGRectMake(0, 0, 130, 33)] autorelease];
+    [heldItemButton setStylesWithSelector:@"imageTitleToolbarButton:"];
+    [heldItemButton addTarget:self action:@selector(heldItemButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    if (item)
+    {
+      [heldItemButton setImage:[NSString stringWithFormat:@"bundle://%@.png", item.identifier] forState:UIControlStateNormal];
+      [heldItemButton setTitle:item.name forState:UIControlStateNormal];
+    }
+    else
+    {
+      [heldItemButton setTitle:@"No held item" forState:UIControlStateNormal];
+    }
+    
+    UIBarButtonItem *heldItemButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heldItemButton] autorelease];
+    self.toolbarItems = [NSArray arrayWithObject:heldItemButtonItem];
 	}
 	else
 	{
 		self.navigationItem.titleView = nil;
 	}
+}
+
+#pragma mark - Control handlers
+
+- (void)heldItemButtonTapped
+{
+  HeldItemListViewController *listVC = [[HeldItemListViewController alloc] initWithManagedObjectContext:managedObjectContext];
+  listVC.delegate = self;
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
+  [self.navigationController presentModalViewController:navController animated:YES];
+  [navController release];
+  [listVC release];
 }
 
 #pragma mark - Table view data source
@@ -181,6 +205,24 @@
 {
 }
 
+#pragma mark - Held item list
+
+- (void)heldItemList:(HeldItemListViewController *)listVC choseItem:(HeldItem *)item
+{
+	[self.navigationController dismissModalViewControllerAnimated:YES];
+  
+  self.pokemon.heldItem = item;
+  
+  NSError *error;
+  if (![managedObjectContext save:&error])
+  {
+    DLog(@"Unable to set held item: %@", error);
+    [managedObjectContext rollback];
+  }
+  
+  [self refreshView];
+}
+
 #pragma mark - Pokemon list
 
 - (void)presentPokemonListWithEVs:(BOOL)showEVYield
@@ -212,6 +254,13 @@
 		newPokemon.species = species;
 		
 		self.pokemon = newPokemon;
+    
+    NSError *error;
+    if (![managedObjectContext save:&error])
+    {
+      DLog(@"Unable to create new Pokemon: %@", error);
+      [managedObjectContext rollback];
+    }
 		
 		[self refreshView];
 	}
@@ -237,6 +286,8 @@
 
 - (void)dealloc
 {
+  [managedObjectContext release];
+  [pokemon release];
 	[super dealloc];
 }
 

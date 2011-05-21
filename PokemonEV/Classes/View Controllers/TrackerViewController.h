@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PokemonListDelegate.h"
+#import "HeldItemListDelegate.h"
 
 @class Pokemon;
 
-@interface TrackerViewController : UITableViewController <PokemonListDelegate>
+@interface TrackerViewController : UITableViewController <PokemonListDelegate, HeldItemListDelegate>
 {
 	NSManagedObjectContext *managedObjectContext;
 	

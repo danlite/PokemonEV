@@ -1,0 +1,25 @@
+//
+//  HeldItemListViewController.h
+//  PokemonEV
+//
+//  Created by Dan Lichty on 11-05-20.
+//  Copyright 2011 Daniel Lichty. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "HeldItemListDelegate.h"
+
+@interface HeldItemListViewController : UITableViewController
+{
+  id<HeldItemListDelegate> delegate;
+  
+  NSManagedObjectContext *managedObjectContext;
+  
+  NSArray *allItems;
+}
+
+@property (nonatomic, assign) id<HeldItemListDelegate> delegate;
+
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
+
+@end

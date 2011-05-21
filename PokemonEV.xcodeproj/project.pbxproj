@@ -718,6 +718,7 @@
 		3795EC1D138633E90065C0C8 /* power-bracer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC16138633E90065C0C8 /* power-bracer.png */; };
 		3795EC1E138633E90065C0C8 /* power-lens.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC17138633E90065C0C8 /* power-lens.png */; };
 		3795EC1F138633E90065C0C8 /* power-weight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC18138633E90065C0C8 /* power-weight.png */; };
+		37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF4C13872F6400114493 /* HeldItemListViewController.m */; };
 		37ECABDA138450A400C04B45 /* PokemonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37ECABD9138450A400C04B45 /* PokemonListViewController.xib */; };
 		37ECABDD1384783E00C04B45 /* StatFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECABDC1384783E00C04B45 /* StatFilterButton.m */; };
 /* End PBXBuildFile section */
@@ -1614,6 +1615,9 @@
 		3795EC16138633E90065C0C8 /* power-bracer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-bracer.png"; sourceTree = "<group>"; };
 		3795EC17138633E90065C0C8 /* power-lens.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-lens.png"; sourceTree = "<group>"; };
 		3795EC18138633E90065C0C8 /* power-weight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-weight.png"; sourceTree = "<group>"; };
+		37CDAF4B13872F6400114493 /* HeldItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListViewController.h; sourceTree = "<group>"; };
+		37CDAF4C13872F6400114493 /* HeldItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeldItemListViewController.m; sourceTree = "<group>"; };
+		37CDAF4E13872F9600114493 /* HeldItemListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListDelegate.h; sourceTree = "<group>"; };
 		37ECABD9138450A400C04B45 /* PokemonListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PokemonListViewController.xib; sourceTree = "<group>"; };
 		37ECABDB1384783E00C04B45 /* StatFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatFilterButton.h; sourceTree = "<group>"; };
 		37ECABDC1384783E00C04B45 /* StatFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatFilterButton.m; sourceTree = "<group>"; };
@@ -1892,12 +1896,15 @@
 		374D14A913839893004022E3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				374D14AC13839893004022E3 /* TrackerViewController.h */,
+				374D14AD13839893004022E3 /* TrackerViewController.m */,
 				377DF1BD1385B24D00EEBBC5 /* PokemonListDelegate.h */,
 				374D14AA13839893004022E3 /* PokemonListViewController.h */,
 				374D14AB13839893004022E3 /* PokemonListViewController.m */,
 				37ECABD9138450A400C04B45 /* PokemonListViewController.xib */,
-				374D14AC13839893004022E3 /* TrackerViewController.h */,
-				374D14AD13839893004022E3 /* TrackerViewController.m */,
+				37CDAF4E13872F9600114493 /* HeldItemListDelegate.h */,
+				37CDAF4B13872F6400114493 /* HeldItemListViewController.h */,
+				37CDAF4C13872F6400114493 /* HeldItemListViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -3548,6 +3555,7 @@
 				377DEC991385A96100EEBBC5 /* _Pokemon.m in Sources */,
 				3795EC0A1385D7FA0065C0C8 /* EVCountView.m in Sources */,
 				3795EC0E13861F6E0065C0C8 /* EVStyleSheet.m in Sources */,
+				37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

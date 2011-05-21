@@ -10,6 +10,7 @@
 #import "PokemonDataImport.h"
 #import "TrackerViewController.h"
 #import "EVStyleSheet.h"
+#import "Pokemon.h"
 
 @implementation PokemonEVAppDelegate
 
@@ -30,7 +31,16 @@
 	BOOL importedData = [PokemonDataImport importPokemonData:[self managedObjectContext]];
 	DLog(@"Imported data: %@", importedData ? @"YES" : @"NO");
   
-  TrackerViewController *trackerVC = [[TrackerViewController alloc] initWithManagedObjectContext:[self managedObjectContext]];
+  Pokemon *aPokemon = [[self managedObjectContext] fetchSingleObjectForEntityName:[Pokemon entityName] withPredicate:nil];
+  TrackerViewController *trackerVC = nil;
+  if (aPokemon == nil)
+  {
+    trackerVC = [[TrackerViewController alloc] initWithManagedObjectContext:[self managedObjectContext]];
+  }
+  else
+  {
+    trackerVC = [[TrackerViewController alloc] initWithPokemon:aPokemon];
+  }
 	
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:trackerVC];
 	navController.toolbarHidden = NO;
