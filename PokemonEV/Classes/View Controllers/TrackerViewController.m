@@ -14,6 +14,7 @@
 #import "EVCountView.h"
 #import "HeldItem.h"
 #import "HeldItemListViewController.h"
+#import "EVCountViewController.h"
 
 @interface TrackerViewController()
 
@@ -31,6 +32,8 @@
 	if ((self = [super initWithStyle:UITableViewStyleGrouped]))
 	{
 		managedObjectContext = [context retain];
+    evViewControllers = [[NSMutableDictionary alloc] init];
+    evMode = EVCountModeView;
 	}
 	
 	return self;
@@ -139,7 +142,7 @@
 	if (indexPath.section == 0)
 	{
 		UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		TTGridLayout *grid = [[TTGridLayout alloc] init];
 		grid.columnCount = 3;
@@ -152,9 +155,10 @@
 		
 		for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
 		{
-			EVCountView *cell = [[EVCountView alloc] initWithStat:i];
-			[evTable addSubview:cell];
-			[cell release];
+      EVCountViewController *countVC = [[EVCountViewController alloc] initWithStatID:i];
+			[evTable addSubview:countVC.view];
+      [evViewControllers setObject:countVC forKey:[NSNumber numberWithInt:i]];
+      [countVC release];
 		}
 		
 		[cell.contentView addSubview:evTable];
@@ -185,6 +189,16 @@
 	{
 		[self presentPokemonListWithEVs:YES];
 	}
+  else if (indexPath.section == 0)
+  {
+    evMode = (evMode == EVCountModeView) ? EVCountModeEditGoal : EVCountModeView;
+    for (id key in evViewControllers)
+    {
+      EVCountViewController *vc = [evViewControllers objectForKey:key];
+      vc.mode = evMode;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

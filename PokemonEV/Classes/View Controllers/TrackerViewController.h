@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PokemonListDelegate.h"
 #import "HeldItemListDelegate.h"
+#import "EVCountViewController.h"
+
 
 @class Pokemon;
 
@@ -17,6 +19,9 @@
 	NSManagedObjectContext *managedObjectContext;
 	
 	Pokemon *pokemon;
+  
+  NSMutableDictionary *evViewControllers;
+  EVCountMode evMode;
 }
 
 @property (nonatomic, retain) Pokemon *pokemon;

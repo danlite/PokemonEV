@@ -12,11 +12,7 @@
 @interface EVCountView : TTView
 {
 	PokemonStatID statID;
-	NSInteger goal;
-	NSInteger current;
 }
-
-@property (nonatomic, assign) NSInteger goal, current;
 
 - (id)initWithStat:(PokemonStatID)stat;
 

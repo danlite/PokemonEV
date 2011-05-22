@@ -719,7 +719,7 @@
 		3795EC1E138633E90065C0C8 /* power-lens.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC17138633E90065C0C8 /* power-lens.png */; };
 		3795EC1F138633E90065C0C8 /* power-weight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC18138633E90065C0C8 /* power-weight.png */; };
 		37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF4C13872F6400114493 /* HeldItemListViewController.m */; };
-		37ECABDA138450A400C04B45 /* PokemonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37ECABD9138450A400C04B45 /* PokemonListViewController.xib */; };
+		37CDAF5D1388647F00114493 /* EVCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF5C1388647F00114493 /* EVCountViewController.m */; };
 		37ECABDD1384783E00C04B45 /* StatFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECABDC1384783E00C04B45 /* StatFilterButton.m */; };
 /* End PBXBuildFile section */
 
@@ -1618,7 +1618,8 @@
 		37CDAF4B13872F6400114493 /* HeldItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListViewController.h; sourceTree = "<group>"; };
 		37CDAF4C13872F6400114493 /* HeldItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeldItemListViewController.m; sourceTree = "<group>"; };
 		37CDAF4E13872F9600114493 /* HeldItemListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListDelegate.h; sourceTree = "<group>"; };
-		37ECABD9138450A400C04B45 /* PokemonListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PokemonListViewController.xib; sourceTree = "<group>"; };
+		37CDAF5B1388647F00114493 /* EVCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCountViewController.h; sourceTree = "<group>"; };
+		37CDAF5C1388647F00114493 /* EVCountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCountViewController.m; sourceTree = "<group>"; };
 		37ECABDB1384783E00C04B45 /* StatFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatFilterButton.h; sourceTree = "<group>"; };
 		37ECABDC1384783E00C04B45 /* StatFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatFilterButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1896,15 +1897,11 @@
 		374D14A913839893004022E3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				374D14AC13839893004022E3 /* TrackerViewController.h */,
-				374D14AD13839893004022E3 /* TrackerViewController.m */,
-				377DF1BD1385B24D00EEBBC5 /* PokemonListDelegate.h */,
-				374D14AA13839893004022E3 /* PokemonListViewController.h */,
-				374D14AB13839893004022E3 /* PokemonListViewController.m */,
-				37ECABD9138450A400C04B45 /* PokemonListViewController.xib */,
-				37CDAF4E13872F9600114493 /* HeldItemListDelegate.h */,
-				37CDAF4B13872F6400114493 /* HeldItemListViewController.h */,
-				37CDAF4C13872F6400114493 /* HeldItemListViewController.m */,
+				37CDAF571388641100114493 /* Main View */,
+				37CDAF591388642A00114493 /* Held Item List */,
+				37CDAF581388641B00114493 /* Pokemon List */,
+				37CDAF5B1388647F00114493 /* EVCountViewController.h */,
+				37CDAF5C1388647F00114493 /* EVCountViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -2618,6 +2615,35 @@
 			path = item_icons;
 			sourceTree = "<group>";
 		};
+		37CDAF571388641100114493 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				374D14AC13839893004022E3 /* TrackerViewController.h */,
+				374D14AD13839893004022E3 /* TrackerViewController.m */,
+			);
+			name = "Main View";
+			sourceTree = "<group>";
+		};
+		37CDAF581388641B00114493 /* Pokemon List */ = {
+			isa = PBXGroup;
+			children = (
+				377DF1BD1385B24D00EEBBC5 /* PokemonListDelegate.h */,
+				374D14AA13839893004022E3 /* PokemonListViewController.h */,
+				374D14AB13839893004022E3 /* PokemonListViewController.m */,
+			);
+			name = "Pokemon List";
+			sourceTree = "<group>";
+		};
+		37CDAF591388642A00114493 /* Held Item List */ = {
+			isa = PBXGroup;
+			children = (
+				37CDAF4E13872F9600114493 /* HeldItemListDelegate.h */,
+				37CDAF4B13872F6400114493 /* HeldItemListViewController.h */,
+				37CDAF4C13872F6400114493 /* HeldItemListViewController.m */,
+			);
+			name = "Held Item List";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2831,7 +2857,6 @@
 				374D13FA13839712004022E3 /* MainWindow.xib in Resources */,
 				374D14BF13839AB9004022E3 /* pokedex.plist in Resources */,
 				374D14C013839AB9004022E3 /* PokemonStats.plist in Resources */,
-				37ECABDA138450A400C04B45 /* PokemonListViewController.xib in Resources */,
 				377DEF2C1385AA6000EEBBC5 /* pokemon-icon-1.png in Resources */,
 				377DEF2D1385AA6000EEBBC5 /* pokemon-icon-10.png in Resources */,
 				377DEF2E1385AA6000EEBBC5 /* pokemon-icon-100.png in Resources */,
@@ -3556,6 +3581,7 @@
 				3795EC0A1385D7FA0065C0C8 /* EVCountView.m in Sources */,
 				3795EC0E13861F6E0065C0C8 /* EVStyleSheet.m in Sources */,
 				37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */,
+				37CDAF5D1388647F00114493 /* EVCountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
