@@ -8,6 +8,7 @@
 
 #import "Constants.h"
 
+NSString * const EVCountInputChanged = @"EVCountInputChanged";
 
 @implementation Constants
 

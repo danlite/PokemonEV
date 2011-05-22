@@ -29,6 +29,9 @@ typedef enum PokemonStatID
 } PokemonStatID;
 
 
+extern NSString * const EVCountInputChanged;
+
+
 @interface Constants : NSObject {
     
 }

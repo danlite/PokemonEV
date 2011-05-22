@@ -21,6 +21,7 @@
 
 @synthesize view;
 @synthesize goal, current;
+@synthesize statID;
 
 - (id)initWithStatID:(PokemonStatID)stat
 {
@@ -79,6 +80,7 @@
     textField.keyboardType = UIKeyboardTypeNumberPad;
     textField.alpha = 0;
     textField.font = [UIFont systemFontOfSize:20];
+    textField.delegate = self;
   }
   return textField;
 }
@@ -197,6 +199,37 @@
     
     UIGraphicsPopContext();
   }
+}
+
+- (void)updateView
+{
+  [textLayer setNeedsDisplay];
+}
+
+#pragma mark - Text field delegate
+
+- (BOOL)textField:(UITextField *)aTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\\d{0,3}$" options:0 error:NULL];
+  
+  NSString *newString = [aTextField.text stringByReplacingCharactersInRange:range withString:string];
+  
+  NSRange newRange;
+  newRange.length = [newString length];
+  newRange.location = 0;
+  if ([regex numberOfMatchesInString:newString options:0 range:newRange] != 1)
+  {
+    return NO;
+  }
+  
+  NSInteger newValue = [newString intValue];
+  
+  [[NSNotificationCenter defaultCenter]
+   postNotificationName:EVCountInputChanged
+   object:self
+   userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:newValue] forKey:@"newValue"]];
+  
+  return YES;
 }
 
 #pragma mark - Memory management

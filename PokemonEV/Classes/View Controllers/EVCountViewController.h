@@ -10,7 +10,7 @@
 
 @class EVCountView;
 
-@interface EVCountViewController : NSObject
+@interface EVCountViewController : NSObject <UITextFieldDelegate>
 {
   EVCountView *view;
   
@@ -29,10 +29,12 @@
 }
 
 @property (nonatomic, readonly) EVCountView *view;
+@property (nonatomic, readonly) PokemonStatID statID;
 @property (nonatomic, assign) NSInteger goal, current;
 @property (nonatomic, assign) EVCountMode mode;
 @property (nonatomic, readonly) UITextField *textField;
 
 - (id)initWithStatID:(PokemonStatID)stat;
+- (void)updateView;
 
 @end

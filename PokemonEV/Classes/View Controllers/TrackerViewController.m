@@ -38,6 +38,8 @@
 		managedObjectContext = [context retain];
     evViewControllers = [[NSMutableDictionary alloc] init];
     evMode = EVCountModeView;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evCountInputChanged:) name:EVCountInputChanged object:nil];
 	}
 	
 	return self;
@@ -132,7 +134,7 @@
 	}
 }
 
-#pragma mark - Control handlers
+#pragma mark - Event handlers
 
 - (void)heldItemButtonTapped
 {
@@ -142,6 +144,29 @@
   [self.navigationController presentModalViewController:navController animated:YES];
   [navController release];
   [listVC release];
+}
+
+- (void)evCountInputChanged:(NSNotification *)note
+{
+  EVCountViewController *countVC = [note object];
+  EVCountMode mode = countVC.mode;
+  PokemonStatID stat = countVC.statID;
+  NSInteger newValue = [(NSNumber *)[[note userInfo] objectForKey:@"newValue"] intValue];
+  
+  if (mode == EVCountModeEditGoal)
+  {
+    countVC.goal = newValue;
+    [pokemon.goalSpread setEffort:newValue forStat:stat];
+    evCountFooterCell.goal = [pokemon.goalSpread totalEffort];
+  }
+  else if (mode == EVCountModeEditCurrent)
+  {
+    countVC.current = newValue;
+    [pokemon.currentSpread setEffort:newValue forStat:stat];
+    evCountFooterCell.current = [pokemon.currentSpread totalEffort];
+  }
+  
+  [countVC updateView];
 }
 
 #pragma mark - Table view data source
@@ -312,6 +337,8 @@
 	{
 		Pokemon *newPokemon = [Pokemon insertInManagedObjectContext:managedObjectContext];
 		newPokemon.species = species;
+    newPokemon.goalSpread = [EVSpread insertInManagedObjectContext:managedObjectContext];
+    newPokemon.currentSpread = [EVSpread insertInManagedObjectContext:managedObjectContext];
 		
 		self.pokemon = newPokemon;
     
@@ -346,6 +373,10 @@
 
 - (void)dealloc
 {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  
+  [evViewControllers release];
+  [evCountFooterCell release];
   [managedObjectContext release];
   [pokemon release];
 	[super dealloc];

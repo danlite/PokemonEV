@@ -1,4 +1,5 @@
 #import "EVSpread.h"
+#import "PokemonStats.h"
 
 @implementation EVSpread
 
@@ -21,6 +22,12 @@
 	}
 	
 	return 0;
+}
+
+- (void)setEffort:(NSInteger)value forStat:(PokemonStatID)statID
+{
+  NSString *prefix = [PokemonStats methodPrefixForStat:statID];
+  [self setValue:[NSNumber numberWithInt:value] forKey:prefix];
 }
 
 - (NSInteger)totalEffort
