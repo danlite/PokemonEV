@@ -7,7 +7,7 @@
 //
 
 #import "EVYieldView.h"
-
+#import "PokemonStats.h"
 
 @implementation EVYieldView
 

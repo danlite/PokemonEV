@@ -16,6 +16,7 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		371EFEFA138976FF0093C0FC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 371EFEF9138976FF0093C0FC /* Constants.m */; };
 		374D13E513839712004022E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E413839712004022E3 /* UIKit.framework */; };
 		374D13E713839712004022E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E613839712004022E3 /* Foundation.framework */; };
 		374D13E913839712004022E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E813839712004022E3 /* CoreGraphics.framework */; };
@@ -890,6 +891,8 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		371EFEF8138976FF0093C0FC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		371EFEF9138976FF0093C0FC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		374D13E013839712004022E3 /* PokemonEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonEV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		374D13E413839712004022E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		374D13E613839712004022E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1836,6 +1839,8 @@
 				374D149513839893004022E3 /* Core Data */,
 				374D149C13839893004022E3 /* UIColor+Hex.h */,
 				374D149D13839893004022E3 /* UIColor+Hex.m */,
+				371EFEF8138976FF0093C0FC /* Constants.h */,
+				371EFEF9138976FF0093C0FC /* Constants.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3582,6 +3587,7 @@
 				3795EC0E13861F6E0065C0C8 /* EVStyleSheet.m in Sources */,
 				37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */,
 				37CDAF5D1388647F00114493 /* EVCountViewController.m in Sources */,
+				371EFEFA138976FF0093C0FC /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3681,7 +3687,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)/../three20",
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
-					../three20/Build/Products/three20,
+					"$(SOURCE_ROOT)/three20/Build/Products/three20",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
@@ -3701,7 +3707,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)/../three20",
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
-					../three20/Build/Products/three20,
+					"$(SOURCE_ROOT)/three20/Build/Products/three20",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

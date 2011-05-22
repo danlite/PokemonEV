@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PokemonStats.h"
 
 extern NSString * const StatFilterButtonSelected; 
 

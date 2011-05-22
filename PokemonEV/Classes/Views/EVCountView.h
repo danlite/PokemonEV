@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PokemonStats.h"
 
 @interface EVCountView : TTView
 {

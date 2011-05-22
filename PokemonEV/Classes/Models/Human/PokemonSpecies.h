@@ -1,5 +1,4 @@
 #import "_PokemonSpecies.h"
-#import "PokemonStats.h"
 
 @interface PokemonSpecies : _PokemonSpecies {}
 

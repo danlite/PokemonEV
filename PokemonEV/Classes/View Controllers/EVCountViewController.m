@@ -8,6 +8,7 @@
 
 #import "EVCountViewController.h"
 #import "EVCountView.h"
+#import "PokemonStats.h"
 
 @interface EVCountViewController()
 

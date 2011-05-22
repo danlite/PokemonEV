@@ -8,19 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-typedef enum PokemonStatID
-{
-	PokemonStatFirst     = 0,
-	PokemonStatHP        = PokemonStatFirst,
-	PokemonStatAttack,
-	PokemonStatDefense,
-	PokemonStatSpAttack,
-	PokemonStatSpDefense,
-	PokemonStatSpeed,
-	PokemonStatLast      = PokemonStatSpeed
-} PokemonStatID;
-
 @interface PokemonStats : NSObject
 
 + (NSString *)methodPrefixForStat:(PokemonStatID)statID;

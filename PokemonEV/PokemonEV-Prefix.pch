@@ -16,6 +16,7 @@
 
 #import <Three20/Three20.h>
 #import "NSManagedObjectContext+Convenience.h"
+#import "Constants.h"
 
 #pragma mark - Defaults
 

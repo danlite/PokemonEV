@@ -7,7 +7,7 @@
 //
 
 #import "EVCountView.h"
-
+#import "PokemonStats.h"
 
 @implementation EVCountView
 

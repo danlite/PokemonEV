@@ -7,16 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PokemonStats.h"
 
 @class EVCountView;
-
-typedef enum EVCountMode
-{
-  EVCountModeView,
-  EVCountModeEditGoal,
-  EVCountModeEditCurrent
-} EVCountMode;
 
 @interface EVCountViewController : NSObject
 {

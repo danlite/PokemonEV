@@ -7,6 +7,7 @@
 //
 
 #import "StatFilterButton.h"
+#import "PokemonStats.h"
 
 NSString * const StatFilterButtonSelected = @"StatFilterButtonSelected";
 

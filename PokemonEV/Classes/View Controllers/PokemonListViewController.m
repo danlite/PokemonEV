@@ -10,6 +10,7 @@
 #import "PokemonSpecies.h"
 #import "EVYieldView.h"
 #import "StatFilterButton.h"
+#import "PokemonStats.h"
 
 @interface PokemonListViewController()
 
