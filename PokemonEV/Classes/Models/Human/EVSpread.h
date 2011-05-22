@@ -1,5 +1,8 @@
 #import "_EVSpread.h"
 
 @interface EVSpread : _EVSpread {}
-// Custom logic goes here.
+
+- (NSInteger)effortForStat:(PokemonStatID)statID;
+- (NSInteger)totalEffort;
+
 @end

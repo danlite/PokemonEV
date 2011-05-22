@@ -65,9 +65,9 @@
   }
   
   [UIView animateWithDuration:transition.duration animations:^(void)
-  {
-    textField.alpha = edit ? 1 : 0;
-  }];
+   {
+     textField.alpha = edit ? 1 : 0;
+   }];
 }
 
 - (UITextField *)textField
@@ -197,11 +197,6 @@
     
     UIGraphicsPopContext();
   }
-}
-
-- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
-{
-//  containerLayer.shouldRasterize = NO;
 }
 
 #pragma mark - Memory management

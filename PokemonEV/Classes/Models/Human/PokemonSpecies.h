@@ -2,7 +2,6 @@
 
 @interface PokemonSpecies : _PokemonSpecies {}
 
-- (NSInteger)effortForStat:(PokemonStatID)statID;
 - (NSString *)fullName;
 - (NSDictionary *)effortDictionary;
 

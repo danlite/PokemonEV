@@ -27,10 +27,10 @@
 				shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:8 bottomRight:0 bottomLeft:0];
 				break;
 			case 3:
-				shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:0 bottomLeft:8];
+				shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:0 bottomLeft:0];
 				break;
 			case 5:
-				shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:8 bottomLeft:0];
+				shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:0 bottomLeft:0];
 				break;
 			default:
 				shape = [TTRectangleShape shape];
@@ -38,7 +38,7 @@
 		}
 				
 		self.style = [TTShapeStyle styleWithShape:shape next:
-									[TTBevelBorderStyle styleWithHighlight:[UIColor whiteColor] shadow:[UIColor lightGrayColor] width:1 lightSource:305 next:
+									[TTBevelBorderStyle styleWithHighlight:[UIColor lightGrayColor] shadow:[UIColor grayColor] width:1 lightSource:305 next:
 									 [TTSolidFillStyle styleWithColor:[[PokemonStats colourForStat:statID] colorWithAlphaComponent:0.5] next:nil]]];
 		
 		self.backgroundColor = [UIColor clearColor];

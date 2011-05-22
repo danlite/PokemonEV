@@ -11,21 +11,25 @@
 #import "Pokemon.h"
 #import "PokemonSpecies.h"
 #import "PokemonStats.h"
+#import "EVSpread.h"
 #import "EVCountView.h"
 #import "HeldItem.h"
 #import "HeldItemListViewController.h"
 #import "EVCountViewController.h"
+#import "EVCountFooterCell.h"
 
 @interface TrackerViewController()
 
 - (void)presentPokemonListWithEVs:(BOOL)showEVYield;
 - (void)refreshView;
+- (void)updateEVCountViews;
 
 @end
 
 @implementation TrackerViewController
 
 @synthesize pokemon;
+@synthesize evCountFooterCell;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -59,6 +63,29 @@
 	}
   
   [self refreshView];
+}
+
+#pragma mark - Updating views
+
+- (EVSpread *)activeEVSpread
+{
+  return (evMode == EVCountModeEditGoal) ? pokemon.goalSpread : pokemon.currentSpread;
+}
+
+- (void)updateEVCountViews
+{
+  for (NSNumber *statNumber in evViewControllers)
+  {
+    EVCountViewController *vc = [evViewControllers objectForKey:statNumber];
+    vc.mode = evMode;
+    
+    PokemonStatID statID = [statNumber intValue];
+    vc.current = [pokemon.currentSpread effortForStat:statID];
+    vc.goal = [pokemon.goalSpread effortForStat:statID];
+  }
+  
+  evCountFooterCell.goal = [pokemon.goalSpread totalEffort];
+  evCountFooterCell.current = [pokemon.currentSpread totalEffort];
 }
 
 - (void)refreshView
@@ -129,7 +156,7 @@
 	switch (section)
 	{
 		case 0:
-			return 1;
+			return 2;
 		case 1:
 			return 1;
 	}
@@ -141,29 +168,48 @@
 {
 	if (indexPath.section == 0)
 	{
-		UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		
-		TTGridLayout *grid = [[TTGridLayout alloc] init];
-		grid.columnCount = 3;
-		grid.spacing = 0;
-		grid.padding = 0;
-		
-		TTView *evTable = [[TTView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
-		evTable.layout = grid;
-		evTable.backgroundColor = [UIColor clearColor];
-		
-		for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
-		{
-      EVCountViewController *countVC = [[EVCountViewController alloc] initWithStatID:i];
-			[evTable addSubview:countVC.view];
-      [evViewControllers setObject:countVC forKey:[NSNumber numberWithInt:i]];
-      [countVC release];
-		}
-		
-		[cell.contentView addSubview:evTable];
-		
-		return cell;
+    if (indexPath.row == 0)
+    {
+      UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+      cell.selectionStyle = UITableViewCellSelectionStyleNone;
+      
+      TTGridLayout *grid = [[TTGridLayout alloc] init];
+      grid.columnCount = 3;
+      grid.spacing = 0;
+      grid.padding = 0;
+      
+      TTView *evTable = [[TTView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
+      evTable.layout = grid;
+      evTable.backgroundColor = [UIColor clearColor];
+      
+      for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
+      {
+        EVCountViewController *countVC = [[EVCountViewController alloc] initWithStatID:i];
+        if (evMode != EVCountModeView)
+          countVC.textField.alpha = 1;
+        countVC.mode = evMode;
+        
+        [evTable addSubview:countVC.view];
+        [evViewControllers setObject:countVC forKey:[NSNumber numberWithInt:i]];
+        [countVC release];
+      }
+      
+      [cell.contentView addSubview:evTable];
+      
+      return cell;
+    }
+    if (indexPath.row == 1)
+    {
+      if (self.evCountFooterCell == nil)
+      {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([EVCountFooterCell class]) owner:nil options:nil];
+        self.evCountFooterCell = [nib objectAtIndex:0];
+        
+        evCountFooterCell.mode = evMode;
+      }
+      
+      return self.evCountFooterCell;
+    }
 	}
 	
 	if (indexPath.section == 1)
@@ -192,18 +238,18 @@
   else if (indexPath.section == 0)
   {
     evMode = (evMode == EVCountModeView) ? EVCountModeEditGoal : EVCountModeView;
-    for (id key in evViewControllers)
-    {
-      EVCountViewController *vc = [evViewControllers objectForKey:key];
-      vc.mode = evMode;
-    }
+    
+    [self updateEVCountViews];
+    
+    evCountFooterCell.mode = evMode;
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
   }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 0)
+	if (indexPath.section == 0 && indexPath.row == 0)
 		return 80;
 	
 	return 44;

@@ -719,6 +719,8 @@
 		3795EC1D138633E90065C0C8 /* power-bracer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC16138633E90065C0C8 /* power-bracer.png */; };
 		3795EC1E138633E90065C0C8 /* power-lens.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC17138633E90065C0C8 /* power-lens.png */; };
 		3795EC1F138633E90065C0C8 /* power-weight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC18138633E90065C0C8 /* power-weight.png */; };
+		37A5001C13899B2900B63285 /* EVCountFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A5001B13899B2900B63285 /* EVCountFooterCell.m */; };
+		37A5001E1389A43300B63285 /* EVCountFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A5001D1389A43300B63285 /* EVCountFooterCell.xib */; };
 		37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF4C13872F6400114493 /* HeldItemListViewController.m */; };
 		37CDAF5D1388647F00114493 /* EVCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF5C1388647F00114493 /* EVCountViewController.m */; };
 		37ECABDD1384783E00C04B45 /* StatFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECABDC1384783E00C04B45 /* StatFilterButton.m */; };
@@ -1618,6 +1620,9 @@
 		3795EC16138633E90065C0C8 /* power-bracer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-bracer.png"; sourceTree = "<group>"; };
 		3795EC17138633E90065C0C8 /* power-lens.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-lens.png"; sourceTree = "<group>"; };
 		3795EC18138633E90065C0C8 /* power-weight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-weight.png"; sourceTree = "<group>"; };
+		37A5001A13899B2900B63285 /* EVCountFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCountFooterCell.h; sourceTree = "<group>"; };
+		37A5001B13899B2900B63285 /* EVCountFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCountFooterCell.m; sourceTree = "<group>"; };
+		37A5001D1389A43300B63285 /* EVCountFooterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVCountFooterCell.xib; sourceTree = "<group>"; };
 		37CDAF4B13872F6400114493 /* HeldItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListViewController.h; sourceTree = "<group>"; };
 		37CDAF4C13872F6400114493 /* HeldItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeldItemListViewController.m; sourceTree = "<group>"; };
 		37CDAF4E13872F9600114493 /* HeldItemListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListDelegate.h; sourceTree = "<group>"; };
@@ -1920,6 +1925,9 @@
 				37ECABDC1384783E00C04B45 /* StatFilterButton.m */,
 				3795EC081385D7FA0065C0C8 /* EVCountView.h */,
 				3795EC091385D7FA0065C0C8 /* EVCountView.m */,
+				37A5001A13899B2900B63285 /* EVCountFooterCell.h */,
+				37A5001B13899B2900B63285 /* EVCountFooterCell.m */,
+				37A5001D1389A43300B63285 /* EVCountFooterCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3527,6 +3535,7 @@
 				3795EC1D138633E90065C0C8 /* power-bracer.png in Resources */,
 				3795EC1E138633E90065C0C8 /* power-lens.png in Resources */,
 				3795EC1F138633E90065C0C8 /* power-weight.png in Resources */,
+				37A5001E1389A43300B63285 /* EVCountFooterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3588,6 +3597,7 @@
 				37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */,
 				37CDAF5D1388647F00114493 /* EVCountViewController.m in Sources */,
 				371EFEFA138976FF0093C0FC /* Constants.m in Sources */,
+				37A5001C13899B2900B63285 /* EVCountFooterCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

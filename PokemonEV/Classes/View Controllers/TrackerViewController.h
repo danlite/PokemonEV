@@ -11,6 +11,7 @@
 #import "HeldItemListDelegate.h"
 
 @class Pokemon;
+@class EVCountFooterCell;
 
 @interface TrackerViewController : UITableViewController <PokemonListDelegate, HeldItemListDelegate>
 {
@@ -20,9 +21,12 @@
   
   NSMutableDictionary *evViewControllers;
   EVCountMode evMode;
+  
+  EVCountFooterCell *evCountFooterCell;
 }
 
 @property (nonatomic, retain) Pokemon *pokemon;
+@property (nonatomic, retain) EVCountFooterCell *evCountFooterCell;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
 - (id)initWithPokemon:(Pokemon *)pkmn;
