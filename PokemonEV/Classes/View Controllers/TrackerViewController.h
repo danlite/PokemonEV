@@ -31,4 +31,8 @@
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
 - (id)initWithPokemon:(Pokemon *)pkmn;
 
+- (void)evGoalTapped;
+- (void)evCurrentTapped;
+- (void)evDoneTapped;
+
 @end

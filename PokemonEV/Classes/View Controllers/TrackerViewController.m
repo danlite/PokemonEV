@@ -169,6 +169,42 @@
   [countVC updateView];
 }
 
+- (void)changeEVMode:(EVCountMode)mode
+{
+  evMode = mode;
+  
+  [self updateEVCountViews];
+  
+  // If editing, create temporary context
+  
+  evCountFooterCell.mode = evMode;
+}
+
+- (void)evDoneTapped
+{
+  EVSpread *spread = (evMode == EVCountModeEditGoal) ? pokemon.goalSpread : pokemon.currentSpread;
+  
+  if (![spread isValid])
+  {
+    // Notify user of error(s)
+    return;
+  }
+  
+  // Merge changes from temporary context
+  
+  [self changeEVMode:EVCountModeView];
+}
+
+- (void)evCurrentTapped
+{
+  [self changeEVMode:EVCountModeEditCurrent];
+}
+
+- (void)evGoalTapped
+{
+  [self changeEVMode:EVCountModeEditGoal];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -265,16 +301,6 @@
 	{
 		[self presentPokemonListWithEVs:YES];
 	}
-  else if (indexPath.section == 0)
-  {
-    evMode = (evMode == EVCountModeView) ? EVCountModeEditGoal : EVCountModeView;
-    
-    [self updateEVCountViews];
-    
-    evCountFooterCell.mode = evMode;
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

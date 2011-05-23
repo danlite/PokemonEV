@@ -27,13 +27,35 @@
   
   TTView *backgroundView = [[TTView alloc] initWithFrame:CGRectMake(0, 0, 300, 44)];
   backgroundView.style =
-  [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:8 bottomLeft:8] next:
+  [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:10 bottomLeft:10] next:
    [TTBevelBorderStyle styleWithHighlight:[UIColor lightGrayColor] shadow:[UIColor grayColor] width:1 lightSource:305 next:
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:nil]]];
   backgroundView.opaque = NO;
   backgroundView.backgroundColor = [UIColor clearColor];
   
   [self.contentView insertSubview:backgroundView atIndex:0];
+  
+  CGFloat buttonY = 5;
+  CGFloat buttonHeight = 35;
+  
+  goalButton = [[TTButton alloc] initWithFrame:CGRectMake(10, buttonY, 70, buttonHeight)];
+  [goalButton setTitle:@"Goal" forState:UIControlStateNormal];
+  [goalButton setStylesWithSelector:@"midGrayToolbarButton:"];
+  [goalButton addTarget:nil action:@selector(evGoalTapped) forControlEvents:UIControlEventTouchUpInside];
+  [self.contentView addSubview:goalButton];
+  
+  currentButton = [[TTButton alloc] initWithFrame:CGRectMake(10 + 70 + 10, buttonY, 70, buttonHeight)];
+  [currentButton setTitle:@"Current" forState:UIControlStateNormal];
+  [currentButton setStylesWithSelector:@"midGrayToolbarButton:"];
+  [currentButton addTarget:nil action:@selector(evCurrentTapped) forControlEvents:UIControlEventTouchUpInside];
+  [self.contentView addSubview:currentButton];
+  
+  doneButton = [[TTButton alloc] initWithFrame:CGRectMake(150, buttonY, 55, buttonHeight)];
+  [doneButton setTitle:@"Save" forState:UIControlStateNormal];
+  [doneButton setStylesWithSelector:@"blackToolbarButton:"];
+  [doneButton addTarget:nil action:@selector(evDoneTapped) forControlEvents:UIControlEventTouchUpInside];
+  doneButton.alpha = 0;
+  [self.contentView addSubview:doneButton];
   
   [self updateEVTotalLabel];
   [self updateTitleLabel];
@@ -77,6 +99,15 @@
   
   [self updateEVTotalLabel];
   [self updateTitleLabel];
+  
+  BOOL edit = (mode != EVCountModeView);
+  [UIView animateWithDuration:0.3 animations:^(void)
+   {
+     titleLabel.alpha = edit ? 1 : 0;
+     doneButton.alpha = edit ? 1 : 0;
+     goalButton.alpha = edit ? 0 : 1;
+     currentButton.alpha = edit ? 0 : 1;
+   }];
 }
 
 - (void)setGoal:(NSInteger)aGoal

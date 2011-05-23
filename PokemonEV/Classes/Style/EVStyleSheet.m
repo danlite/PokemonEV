@@ -11,6 +11,15 @@
 
 @implementation EVStyleSheet
 
+- (TTStyle*)midGrayToolbarButton:(UIControlState)state
+{
+  return
+  [self toolbarButtonForState:state
+                        shape:[TTRoundedRectangleShape shapeWithRadius:4.5]
+                    tintColor:RGBCOLOR(80, 80, 80)
+                         font:nil];
+}
+
 - (TTStyle *)imageTitleToolbarButton:(UIControlState)state
 {
 	TTShape *shape = [TTRoundedRectangleShape shapeWithRadius:4.5];

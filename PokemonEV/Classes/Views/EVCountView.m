@@ -21,10 +21,10 @@
 		switch (statID)
 		{
 			case 0:
-				shape = [TTRoundedRectangleShape shapeWithTopLeft:8 topRight:0 bottomRight:0 bottomLeft:0];
+				shape = [TTRoundedRectangleShape shapeWithTopLeft:10 topRight:0 bottomRight:0 bottomLeft:0];
 				break;
 			case 2:
-				shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:8 bottomRight:0 bottomLeft:0];
+				shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:10 bottomRight:0 bottomLeft:0];
 				break;
 			case 3:
 				shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:0 bottomLeft:0];

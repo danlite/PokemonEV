@@ -40,4 +40,20 @@
   return sum;
 }
 
+- (BOOL)isValid
+{
+  NSInteger sum = 0;
+  for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
+  {
+    NSInteger value = [self effortForStat:i];
+    
+    if (value > 255)
+      return NO;
+    
+    sum += value;
+  }
+  
+  return sum <= 510;
+}
+
 @end

@@ -15,6 +15,7 @@
   NSInteger goal, current;
   
   UILabel *titleLabel, *evTotalLabel;
+  TTButton *goalButton, *currentButton, *doneButton;
 }
 
 @property (nonatomic, assign) EVCountMode mode;
