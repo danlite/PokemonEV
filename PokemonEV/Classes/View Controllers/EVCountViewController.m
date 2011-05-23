@@ -66,11 +66,11 @@
   }
   else if (mode == EVCountModeEditGoal)
   {
-    textField.text = [NSString stringWithFormat:@"%d", goal];
+    textField.text = goal ? [NSString stringWithFormat:@"%d", goal] : @"";
   }
   else if (mode == EVCountModeEditCurrent)
   {
-    textField.text = [NSString stringWithFormat:@"%d", current];
+    textField.text = current ? [NSString stringWithFormat:@"%d", current] : @"";
   }
     
   

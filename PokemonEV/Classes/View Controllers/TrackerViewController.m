@@ -205,8 +205,8 @@
   if (![editingContext save:&error])
   {
     [[[[UIAlertView alloc]
-       initWithTitle:@"Wait!"
-       message:[[error allFailureReasons] componentsJoinedByString:@"\n"]
+       initWithTitle:@"Invalid Numbers"
+       message:[[error allFailureReasons] componentsJoinedByString:@" "]
        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]
       autorelease]
      show];
