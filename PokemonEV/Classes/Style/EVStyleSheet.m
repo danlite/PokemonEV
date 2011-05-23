@@ -11,12 +11,33 @@
 
 @implementation EVStyleSheet
 
+- (TTStyle *)pokerusButton:(UIControlState)state
+{
+	UIColor *buttonColour = (state == UIControlStateSelected) ? [RGBCOLOR(214, 122, 255) multiplyHue:1 saturation:1 value:0.8] : (state == UIControlStateHighlighted) ? [UIColor darkGrayColor] : [UIColor grayColor];
+	UIColor *textColour = [UIColor whiteColor];
+	
+	return
+	[TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:
+	 [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 1, 0) next:
+		
+		[TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.18) blur:0 offset:CGSizeMake(0, 1) next:
+		 [TTReflectiveFillStyle styleWithColor:buttonColour next:
+			[TTBevelBorderStyle styleWithHighlight:[TTSTYLEVAR(toolbarTintColor) multiplyHue:1 saturation:0.9 value:0.7]
+																			shadow:[TTSTYLEVAR(toolbarTintColor) multiplyHue:1 saturation:0.9 value:0.6]
+																			 width:1 lightSource:270 next:
+			 [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, -1, 0, -1) next:
+				[TTBevelBorderStyle styleWithHighlight:nil shadow:RGBACOLOR(0, 0, 0, 0.15) width:1 lightSource:270 next:
+				 [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(8, 8, 8, 8) next:
+					[TTTextStyle styleWithFont:nil color:textColour shadowColor:RGBACOLOR(0, 0, 0, 0.4) shadowOffset:CGSizeMake(0, 1) next:nil]]]]]]]]];
+	 
+}
+
 - (TTStyle*)midGrayToolbarButton:(UIControlState)state
 {
   return
   [self toolbarButtonForState:state
                         shape:[TTRoundedRectangleShape shapeWithRadius:4.5]
-                    tintColor:RGBCOLOR(80, 80, 80)
+                    tintColor:RGBCOLOR(99,99,99)
                          font:nil];
 }
 

@@ -94,46 +94,50 @@
 
 - (void)refreshView
 {
-	if (pokemon)
+	if (!pokemon)
 	{
-		UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		titleButton.frame = CGRectMake(0, 0, 160, 40);
-		titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 8, 8);
-		
-		titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-		titleButton.titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
-		titleButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
-		titleButton.titleLabel.textColor = [UIColor whiteColor];
-		titleButton.titleLabel.highlightedTextColor = [UIColor darkGrayColor];
-		titleButton.reversesTitleShadowWhenHighlighted = YES;
-		
-		[titleButton setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
-		[titleButton setTitle:pokemon.species.name forState:UIControlStateNormal];
-		self.navigationItem.titleView = titleButton;
-    
-    HeldItem *item = pokemon.heldItem;
-    
-    TTButton *heldItemButton = [[[TTButton alloc] initWithFrame:CGRectMake(0, 0, 130, 33)] autorelease];
-    [heldItemButton setStylesWithSelector:@"imageTitleToolbarButton:"];
-    [heldItemButton addTarget:self action:@selector(heldItemButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    
-    if (item)
-    {
-      [heldItemButton setImage:[NSString stringWithFormat:@"bundle://%@.png", item.identifier] forState:UIControlStateNormal];
-      [heldItemButton setTitle:item.name forState:UIControlStateNormal];
-    }
-    else
-    {
-      [heldItemButton setTitle:@"No held item" forState:UIControlStateNormal];
-    }
-    
-    UIBarButtonItem *heldItemButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heldItemButton] autorelease];
-    self.toolbarItems = [NSArray arrayWithObject:heldItemButtonItem];
+		self.navigationItem.titleView = nil;
+		return;
+	}
+	UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	titleButton.frame = CGRectMake(0, 0, 160, 40);
+	titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 8, 8);
+	
+	titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+	titleButton.titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+	titleButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+	titleButton.titleLabel.textColor = [UIColor whiteColor];
+	titleButton.titleLabel.highlightedTextColor = [UIColor darkGrayColor];
+	titleButton.reversesTitleShadowWhenHighlighted = YES;
+	
+	[titleButton setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
+	[titleButton setTitle:pokemon.species.name forState:UIControlStateNormal];
+	self.navigationItem.titleView = titleButton;
+	
+	HeldItem *item = pokemon.heldItem;
+	
+	TTButton *heldItemButton = [[[TTButton alloc] initWithFrame:CGRectMake(0, 0, 130, 33)] autorelease];
+	[heldItemButton setStylesWithSelector:@"imageTitleToolbarButton:"];
+	[heldItemButton addTarget:self action:@selector(heldItemButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+	
+	if (item)
+	{
+		[heldItemButton setImage:[NSString stringWithFormat:@"bundle://%@.png", item.identifier] forState:UIControlStateNormal];
+		[heldItemButton setTitle:item.name forState:UIControlStateNormal];
 	}
 	else
 	{
-		self.navigationItem.titleView = nil;
+		[heldItemButton setTitle:@"No held item" forState:UIControlStateNormal];
 	}
+	
+	TTButton *pokerusButton = [[[TTButton alloc] initWithFrame:CGRectMake(0, 0, 50, 33)] autorelease];
+	[pokerusButton setStylesWithSelector:@"pokerusButton:"];
+	[pokerusButton setTitle:@"PKRS" forState:UIControlStateNormal];
+	[pokerusButton addTarget:self action:@selector(pokerusTapped:) forControlEvents:UIControlEventTouchUpInside];
+	
+	UIBarButtonItem *heldItemButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heldItemButton] autorelease];
+	UIBarButtonItem *pokerusButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:pokerusButton] autorelease];
+	self.toolbarItems = [NSArray arrayWithObjects:heldItemButtonItem, pokerusButtonItem, nil];
 }
 
 #pragma mark - Event handlers
@@ -141,6 +145,11 @@
 - (void)editingContextDidSave:(NSNotification *)note
 {
   [managedObjectContext mergeChangesFromContextDidSaveNotification:note];
+}
+
+- (void)pokerusTapped:(UIButton *)button
+{
+	button.selected = !button.selected;
 }
 
 - (void)heldItemButtonTapped
