@@ -721,6 +721,13 @@
 		3795EC1F138633E90065C0C8 /* power-weight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC18138633E90065C0C8 /* power-weight.png */; };
 		37A5001C13899B2900B63285 /* EVCountFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A5001B13899B2900B63285 /* EVCountFooterCell.m */; };
 		37A5001E1389A43300B63285 /* EVCountFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A5001D1389A43300B63285 /* EVCountFooterCell.xib */; };
+		37A50026138AB11700B63285 /* power-weight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A5001F138AB11700B63285 /* power-weight@2x.png */; };
+		37A50027138AB11700B63285 /* power-lens@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A50020138AB11700B63285 /* power-lens@2x.png */; };
+		37A50028138AB11700B63285 /* power-bracer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A50021138AB11700B63285 /* power-bracer@2x.png */; };
+		37A50029138AB11700B63285 /* power-belt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A50022138AB11700B63285 /* power-belt@2x.png */; };
+		37A5002A138AB11700B63285 /* power-band@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A50023138AB11700B63285 /* power-band@2x.png */; };
+		37A5002B138AB11700B63285 /* power-anklet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A50024138AB11700B63285 /* power-anklet@2x.png */; };
+		37A5002C138AB11700B63285 /* macho-brace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A50025138AB11700B63285 /* macho-brace@2x.png */; };
 		37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF4C13872F6400114493 /* HeldItemListViewController.m */; };
 		37CDAF5D1388647F00114493 /* EVCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF5C1388647F00114493 /* EVCountViewController.m */; };
 		37ECABDD1384783E00C04B45 /* StatFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECABDC1384783E00C04B45 /* StatFilterButton.m */; };
@@ -1623,6 +1630,13 @@
 		37A5001A13899B2900B63285 /* EVCountFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCountFooterCell.h; sourceTree = "<group>"; };
 		37A5001B13899B2900B63285 /* EVCountFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCountFooterCell.m; sourceTree = "<group>"; };
 		37A5001D1389A43300B63285 /* EVCountFooterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVCountFooterCell.xib; sourceTree = "<group>"; };
+		37A5001F138AB11700B63285 /* power-weight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-weight@2x.png"; sourceTree = "<group>"; };
+		37A50020138AB11700B63285 /* power-lens@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-lens@2x.png"; sourceTree = "<group>"; };
+		37A50021138AB11700B63285 /* power-bracer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-bracer@2x.png"; sourceTree = "<group>"; };
+		37A50022138AB11700B63285 /* power-belt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-belt@2x.png"; sourceTree = "<group>"; };
+		37A50023138AB11700B63285 /* power-band@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-band@2x.png"; sourceTree = "<group>"; };
+		37A50024138AB11700B63285 /* power-anklet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-anklet@2x.png"; sourceTree = "<group>"; };
+		37A50025138AB11700B63285 /* macho-brace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "macho-brace@2x.png"; sourceTree = "<group>"; };
 		37CDAF4B13872F6400114493 /* HeldItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListViewController.h; sourceTree = "<group>"; };
 		37CDAF4C13872F6400114493 /* HeldItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeldItemListViewController.m; sourceTree = "<group>"; };
 		37CDAF4E13872F9600114493 /* HeldItemListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListDelegate.h; sourceTree = "<group>"; };
@@ -2617,6 +2631,13 @@
 		3795EC11138633DC0065C0C8 /* item_icons */ = {
 			isa = PBXGroup;
 			children = (
+				37A5001F138AB11700B63285 /* power-weight@2x.png */,
+				37A50020138AB11700B63285 /* power-lens@2x.png */,
+				37A50021138AB11700B63285 /* power-bracer@2x.png */,
+				37A50022138AB11700B63285 /* power-belt@2x.png */,
+				37A50023138AB11700B63285 /* power-band@2x.png */,
+				37A50024138AB11700B63285 /* power-anklet@2x.png */,
+				37A50025138AB11700B63285 /* macho-brace@2x.png */,
 				3795EC12138633E90065C0C8 /* macho-brace.png */,
 				3795EC13138633E90065C0C8 /* power-anklet.png */,
 				3795EC14138633E90065C0C8 /* power-band.png */,
@@ -3536,6 +3557,13 @@
 				3795EC1E138633E90065C0C8 /* power-lens.png in Resources */,
 				3795EC1F138633E90065C0C8 /* power-weight.png in Resources */,
 				37A5001E1389A43300B63285 /* EVCountFooterCell.xib in Resources */,
+				37A50026138AB11700B63285 /* power-weight@2x.png in Resources */,
+				37A50027138AB11700B63285 /* power-lens@2x.png in Resources */,
+				37A50028138AB11700B63285 /* power-bracer@2x.png in Resources */,
+				37A50029138AB11700B63285 /* power-belt@2x.png in Resources */,
+				37A5002A138AB11700B63285 /* power-band@2x.png in Resources */,
+				37A5002B138AB11700B63285 /* power-anklet@2x.png in Resources */,
+				37A5002C138AB11700B63285 /* macho-brace@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
