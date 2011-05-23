@@ -407,7 +407,7 @@
 		{
 			EVCountViewController *countVC = [evViewControllers objectForKey:statKey];
 			[countVC updateView];
-			// Animate!
+			[countVC animatePulseWithValue:[[earnedEVs objectForKey:statKey] intValue]];
 		}
 	}
 	else

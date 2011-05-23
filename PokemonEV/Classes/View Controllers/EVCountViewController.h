@@ -17,6 +17,8 @@
   PokemonStatID statID;
 	NSInteger goal;
 	NSInteger current;
+	
+	NSInteger pointChange;
   
   EVCountMode mode;
   
@@ -24,6 +26,7 @@
   CALayer *textLayer;
   CALayer *maskLayer;
   CALayer *editLayer;
+	CALayer *pointLayer;
   
   UITextField *textField;
 }
@@ -36,5 +39,6 @@
 
 - (id)initWithStatID:(PokemonStatID)stat;
 - (void)updateView;
+- (void)animatePulseWithValue:(NSInteger)value;
 
 @end

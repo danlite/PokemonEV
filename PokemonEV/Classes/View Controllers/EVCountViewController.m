@@ -50,7 +50,7 @@
   BOOL edit = (mode != EVCountModeView);
   
   CATransition *transition = [CATransition animation];
-  transition.duration = 0.4;
+  transition.duration = 0.3;
   transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
   
   transition.type = edit ? kCATransitionReveal : kCATransitionMoveIn;
@@ -78,6 +78,14 @@
    {
      textField.alpha = edit ? 1 : 0;
    }];
+}
+
+- (UIColor *)textColour
+{
+	if (goal == 0 && current == 0)
+		return [UIColor grayColor];
+	
+	return [UIColor blackColor];
 }
 
 - (UITextField *)textField
@@ -117,6 +125,17 @@
   textLayer.contentsScale = [[UIScreen mainScreen] scale];
   textLayer.shouldRasterize = YES;
   textLayer.rasterizationScale = [[UIScreen mainScreen] scale];
+	
+	pointLayer = [[CALayer layer] retain];
+	pointLayer.delegate = self;
+	pointLayer.frame = containerLayer.frame;
+	pointLayer.contentsScale = [[UIScreen mainScreen] scale];
+	pointLayer.shouldRasterize = NO;
+	pointLayer.opacity = 0;
+	pointLayer.shadowOffset = CGSizeMake(0, 1);
+	pointLayer.shadowOpacity = 0.5;
+	pointLayer.shadowRadius = 0.5;
+	pointLayer.shadowColor = [[UIColor blackColor] CGColor];
   
   maskLayer = [[CALayer layer] retain];
   maskLayer.frame = textLayer.frame;
@@ -147,17 +166,8 @@
   [view.layer addSublayer:containerLayer];
   [containerLayer addSublayer:textLayer];
   [containerLayer addSublayer:editLayer];
-  
-//  CABasicAnimation *pulseColorAnimation = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
-//  pulseColorAnimation.duration = arc4random() % 7;
-//  pulseColorAnimation.fillMode = kCAFillModeForwards;
-//  pulseColorAnimation.toValue = (id)[[PokemonStats colourForStat:statID] CGColor];
-//  pulseColorAnimation.beginTime = arc4random() % 6;
-//  pulseColorAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//  pulseColorAnimation.autoreverses = YES;
-//  pulseColorAnimation.repeatCount = FLT_MAX;
-//  
-//  [textLayer addAnimation:pulseColorAnimation forKey:nil];
+	
+	[view.layer addSublayer:pointLayer];
   
   [textLayer setNeedsDisplay];
   [editLayer setNeedsDisplay];
@@ -177,8 +187,7 @@
     CGRect bottomRect;
     CGRectDivide(rect, &topRect, &bottomRect, rectHeight / 2, CGRectMinYEdge);
     
-    if (goal == 0 && current == 0)
-      [[UIColor grayColor] set];
+		[[self textColour] set];
     
     NSString *statName = [PokemonStats nameForStat:statID length:12];
     [statName drawInRect:topRect withFont:[UIFont boldSystemFontOfSize:10] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
@@ -208,11 +217,93 @@
     
     UIGraphicsPopContext();
   }
+	else if (layer == pointLayer)
+	{
+		CGRect rect = CGContextGetClipBoundingBox(ctx);
+		rect = CGRectInset(rect, 5, 0);
+		
+		UIGraphicsPushContext(ctx);
+		
+		if (pointChange == 0)
+			return;
+		
+		UIColor *colour = (pointChange > 0) ? [UIColor greenColor] : [UIColor redColor];
+		[colour set];
+		NSString *text = [NSString stringWithFormat:@"%@%d", (pointChange > 0) ? @"+" : @"-", abs(pointChange)];
+		[text drawInRect:rect withFont:[UIFont boldSystemFontOfSize:12] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentRight];
+		
+		UIGraphicsPopContext();
+	}
 }
 
 - (void)updateView
 {
   [textLayer setNeedsDisplay];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+	if ([[anim valueForKey:@"name"] isEqualToString:@"fadeIn"])
+	{
+		CGMutablePathRef path = CGPathCreateMutable();
+		CGFloat originalX = pointLayer.position.x;
+		CGFloat originalY = pointLayer.position.y;
+		CGPathMoveToPoint(path, NULL, originalX, originalY);
+		CGPathAddLineToPoint(path, NULL, originalX, originalY - 3);
+		
+		CGFloat disappearDuration = 0.3;
+		CGFloat disappearDelay = 0.5;
+		
+		CAKeyframeAnimation *slideUpAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+		slideUpAnimation.path = path;
+		slideUpAnimation.duration = disappearDuration;
+		slideUpAnimation.beginTime = disappearDelay;
+		
+		CABasicAnimation *fadeOutAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+		fadeOutAnimation.toValue = [NSNumber numberWithFloat:0];
+		fadeOutAnimation.duration = disappearDuration;
+		fadeOutAnimation.beginTime = disappearDelay;
+		
+		CAAnimationGroup *group = [CAAnimationGroup animation];
+		group.duration = disappearDelay + disappearDuration;
+		group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+		group.animations = [NSArray arrayWithObjects:slideUpAnimation, fadeOutAnimation, nil];
+		group.delegate = self;
+		group.removedOnCompletion = NO;
+		group.fillMode = kCAFillModeForwards;
+		
+		[pointLayer addAnimation:group forKey:nil];
+	}
+	else
+	{
+		[pointLayer removeAllAnimations];
+	}
+}
+
+- (void)animatePulseWithValue:(NSInteger)value
+{
+	pointChange = value;
+	[pointLayer setNeedsDisplay];
+	
+	CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+	pulseAnimation.duration = 0.3;
+	pulseAnimation.toValue = [NSNumber numberWithFloat:1.2];
+	pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	pulseAnimation.autoreverses = YES;
+	pulseAnimation.repeatCount = 1;
+	
+	[textLayer addAnimation:pulseAnimation forKey:nil];
+		
+	CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+	fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
+	fadeInAnimation.duration = 0.3;
+	fadeInAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	fadeInAnimation.delegate = self;
+	[fadeInAnimation setValue:@"fadeIn" forKey:@"name"];
+	fadeInAnimation.removedOnCompletion = NO;
+	fadeInAnimation.fillMode = kCAFillModeForwards;
+		
+	[pointLayer addAnimation:fadeInAnimation forKey:nil];
 }
 
 #pragma mark - Text field delegate
@@ -250,6 +341,7 @@
   [textLayer release];
   [editLayer release];
   [maskLayer release];
+	[pointLayer release];
   [textField release];
   
   [super dealloc];
