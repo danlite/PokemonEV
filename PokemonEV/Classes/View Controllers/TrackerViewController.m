@@ -255,34 +255,39 @@
 	{
     if (indexPath.row == 0)
     {
-      UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-      cell.selectionStyle = UITableViewCellSelectionStyleNone;
-      
-      TTGridLayout *grid = [[TTGridLayout alloc] init];
-      grid.columnCount = 3;
-      grid.spacing = 0;
-      grid.padding = 0;
-      
-      TTView *evTable = [[TTView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
-      evTable.layout = grid;
-      evTable.backgroundColor = [UIColor clearColor];
-      
-      for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
-      {
-        EVCountViewController *countVC = [[EVCountViewController alloc] initWithStatID:i];
-        if (evMode != EVCountModeView)
-          countVC.textField.alpha = 1;
-        
-        countVC.mode = evMode;
-        countVC.goal = [pokemon.goalSpread effortForStat:i];
-        countVC.current = [pokemon.currentSpread effortForStat:i];
-        
-        [evTable addSubview:countVC.view];
-        [evViewControllers setObject:countVC forKey:[NSNumber numberWithInt:i]];
-        [countVC release];
-      }
-      
-      [cell.contentView addSubview:evTable];
+			static NSString *EVCountCellIdentifier = @"EVCountCellIdentifier";
+      UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:EVCountCellIdentifier];
+			if (cell == nil)
+			{
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:EVCountCellIdentifier] autorelease];
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
+				
+				TTGridLayout *grid = [[TTGridLayout alloc] init];
+				grid.columnCount = 3;
+				grid.spacing = 0;
+				grid.padding = 0;
+				
+				TTView *evTable = [[TTView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
+				evTable.layout = grid;
+				evTable.backgroundColor = [UIColor clearColor];
+				
+				for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
+				{
+					EVCountViewController *countVC = [[EVCountViewController alloc] initWithStatID:i];
+					if (evMode != EVCountModeView)
+						countVC.textField.alpha = 1;
+					
+					countVC.mode = evMode;
+					countVC.goal = [pokemon.goalSpread effortForStat:i];
+					countVC.current = [pokemon.currentSpread effortForStat:i];
+					
+					[evTable addSubview:countVC.view];
+					[evViewControllers setObject:countVC forKey:[NSNumber numberWithInt:i]];
+					[countVC release];
+				}
+				
+				[cell.contentView addSubview:evTable];
+			}
       
       return cell;
     }
