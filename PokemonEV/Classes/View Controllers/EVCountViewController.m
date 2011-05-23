@@ -64,6 +64,15 @@
   {
     [textField resignFirstResponder];
   }
+  else if (mode == EVCountModeEditGoal)
+  {
+    textField.text = [NSString stringWithFormat:@"%d", goal];
+  }
+  else if (mode == EVCountModeEditCurrent)
+  {
+    textField.text = [NSString stringWithFormat:@"%d", current];
+  }
+    
   
   [UIView animateWithDuration:transition.duration animations:^(void)
    {

@@ -212,7 +212,10 @@
         EVCountViewController *countVC = [[EVCountViewController alloc] initWithStatID:i];
         if (evMode != EVCountModeView)
           countVC.textField.alpha = 1;
+        
         countVC.mode = evMode;
+        countVC.goal = [pokemon.goalSpread effortForStat:i];
+        countVC.current = [pokemon.currentSpread effortForStat:i];
         
         [evTable addSubview:countVC.view];
         [evViewControllers setObject:countVC forKey:[NSNumber numberWithInt:i]];
@@ -231,6 +234,8 @@
         self.evCountFooterCell = [nib objectAtIndex:0];
         
         evCountFooterCell.mode = evMode;
+        evCountFooterCell.goal = [pokemon.goalSpread totalEffort];
+        evCountFooterCell.current = [pokemon.currentSpread totalEffort];
       }
       
       return self.evCountFooterCell;
