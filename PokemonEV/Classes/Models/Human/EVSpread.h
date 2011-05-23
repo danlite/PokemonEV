@@ -5,6 +5,5 @@
 - (NSInteger)effortForStat:(PokemonStatID)statID;
 - (void)setEffort:(NSInteger)value forStat:(PokemonStatID)statID;
 - (NSInteger)totalEffort;
-- (BOOL)isValid;
 
 @end

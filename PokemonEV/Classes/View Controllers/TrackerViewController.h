@@ -12,6 +12,7 @@
 
 @class Pokemon;
 @class EVCountFooterCell;
+@class EVSpread;
 
 @interface TrackerViewController : UITableViewController <PokemonListDelegate, HeldItemListDelegate>
 {
@@ -23,10 +24,16 @@
   EVCountMode evMode;
   
   EVCountFooterCell *evCountFooterCell;
+  
+  NSManagedObjectContext *editingContext;
+  EVSpread *editingCurrentSpread, *editingGoalSpread;
 }
 
 @property (nonatomic, retain) Pokemon *pokemon;
 @property (nonatomic, retain) EVCountFooterCell *evCountFooterCell;
+
+@property (nonatomic, retain) NSManagedObjectContext *editingContext;
+@property (nonatomic, retain) EVSpread *editingEVSpread;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
 - (id)initWithPokemon:(Pokemon *)pkmn;

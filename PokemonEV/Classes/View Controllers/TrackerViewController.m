@@ -17,6 +17,7 @@
 #import "HeldItemListViewController.h"
 #import "EVCountViewController.h"
 #import "EVCountFooterCell.h"
+#import "NSError+Multiple.h"
 
 @interface TrackerViewController()
 
@@ -30,6 +31,7 @@
 
 @synthesize pokemon;
 @synthesize evCountFooterCell;
+@synthesize editingContext, editingEVSpread;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -136,6 +138,11 @@
 
 #pragma mark - Event handlers
 
+- (void)editingContextDidSave:(NSNotification *)note
+{
+  [managedObjectContext mergeChangesFromContextDidSaveNotification:note];
+}
+
 - (void)heldItemButtonTapped
 {
   HeldItemListViewController *listVC = [[HeldItemListViewController alloc] initWithManagedObjectContext:managedObjectContext];
@@ -156,14 +163,14 @@
   if (mode == EVCountModeEditGoal)
   {
     countVC.goal = newValue;
-    [pokemon.goalSpread setEffort:newValue forStat:stat];
-    evCountFooterCell.goal = [pokemon.goalSpread totalEffort];
+    [self.editingEVSpread setEffort:newValue forStat:stat];
+    evCountFooterCell.goal = [editingEVSpread totalEffort];
   }
   else if (mode == EVCountModeEditCurrent)
   {
     countVC.current = newValue;
-    [pokemon.currentSpread setEffort:newValue forStat:stat];
-    evCountFooterCell.current = [pokemon.currentSpread totalEffort];
+    [self.editingEVSpread setEffort:newValue forStat:stat];
+    evCountFooterCell.current = [editingEVSpread totalEffort];
   }
   
   [countVC updateView];
@@ -175,22 +182,39 @@
   
   [self updateEVCountViews];
   
-  // If editing, create temporary context
+  if (evMode != EVCountModeView)
+  {
+    self.editingContext = [[NSManagedObjectContext alloc] init];
+    [editingContext setPersistentStoreCoordinator:[managedObjectContext persistentStoreCoordinator]];
+    
+    EVSpread *thisSpread = (evMode == EVCountModeEditCurrent) ? pokemon.currentSpread : pokemon.goalSpread;
+    self.editingEVSpread = [editingContext
+                            fetchSingleObjectForEntityName:[EVSpread entityName]
+                            withPredicate:[NSPredicate predicateWithFormat:@"SELF == %@", thisSpread]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:editingContext];
+  }
+  
   
   evCountFooterCell.mode = evMode;
 }
 
 - (void)evDoneTapped
 {
-  EVSpread *spread = (evMode == EVCountModeEditGoal) ? pokemon.goalSpread : pokemon.currentSpread;
-  
-  if (![spread isValid])
+  NSError *error;
+  if (![editingContext save:&error])
   {
-    // Notify user of error(s)
+    [[[[UIAlertView alloc]
+       initWithTitle:@"Wait!"
+       message:[[error allFailureReasons] componentsJoinedByString:@"\n"]
+       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]
+      autorelease]
+     show];
     return;
   }
   
-  // Merge changes from temporary context
+  self.editingEVSpread = nil;
+  self.editingContext = nil;
   
   [self changeEVMode:EVCountModeView];
 }
@@ -406,6 +430,8 @@
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
+  [editingContext release];
+  [editingEVSpread release];
   [evViewControllers release];
   [evCountFooterCell release];
   [managedObjectContext release];
