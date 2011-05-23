@@ -363,6 +363,7 @@
   {
     DLog(@"Unable to set held item: %@", error);
     [managedObjectContext rollback];
+		return;
   }
   
   [self refreshView];
@@ -383,6 +384,11 @@
 	
 	[navController release];
 	[listVC release];
+	
+  self.editingEVSpread = nil;
+  self.editingContext = nil;
+  
+  [self changeEVMode:EVCountModeView];
 }
 
 - (void)pokemonList:(PokemonListViewController *)listVC chosePokemon:(PokemonSpecies *)species
@@ -391,7 +397,18 @@
 	
 	if (listVC.showEVYield)
 	{
+		NSDictionary *earnedEVs = [pokemon addEffortFromPokemon:species];
 		
+		[managedObjectContext save:nil];
+		
+		[self updateEVCountViews];
+		
+		for (NSNumber *statKey in earnedEVs)
+		{
+			EVCountViewController *countVC = [evViewControllers objectForKey:statKey];
+			[countVC updateView];
+			// Animate!
+		}
 	}
 	else
 	{

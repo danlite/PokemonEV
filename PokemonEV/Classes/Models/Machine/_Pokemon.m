@@ -29,6 +29,32 @@
 
 
 
+@dynamic pokerus;
+
+
+
+- (BOOL)pokerusValue {
+	NSNumber *result = [self pokerus];
+	return [result boolValue];
+}
+
+- (void)setPokerusValue:(BOOL)value_ {
+	[self setPokerus:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitivePokerusValue {
+	NSNumber *result = [self primitivePokerus];
+	return [result boolValue];
+}
+
+- (void)setPrimitivePokerusValue:(BOOL)value_ {
+	[self setPrimitivePokerus:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
 @dynamic goalSpread;
 
 	
@@ -44,6 +70,8 @@
 @dynamic heldItem;
 
 	
+
+
 
 
 

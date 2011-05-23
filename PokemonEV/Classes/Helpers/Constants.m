@@ -9,6 +9,7 @@
 #import "Constants.h"
 
 NSString * const EVCountInputChanged = @"EVCountInputChanged";
+NSInteger const MaximumStatEVCount = 255;
 
 @implementation Constants
 

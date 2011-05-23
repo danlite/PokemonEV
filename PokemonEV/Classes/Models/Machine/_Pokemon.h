@@ -10,6 +10,7 @@
 @class HeldItem;
 
 
+
 @interface PokemonID : NSManagedObjectID {}
 @end
 
@@ -18,6 +19,16 @@
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (PokemonID*)objectID;
+
+
+
+@property (nonatomic, retain) NSNumber *pokerus;
+
+@property BOOL pokerusValue;
+- (BOOL)pokerusValue;
+- (void)setPokerusValue:(BOOL)value_;
+
+//- (BOOL)validatePokerus:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -42,6 +53,7 @@
 
 
 
+
 @end
 
 @interface _Pokemon (CoreDataGeneratedAccessors)
@@ -49,6 +61,13 @@
 @end
 
 @interface _Pokemon (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitivePokerus;
+- (void)setPrimitivePokerus:(NSNumber*)value;
+
+- (BOOL)primitivePokerusValue;
+- (void)setPrimitivePokerusValue:(BOOL)value_;
+
 
 
 

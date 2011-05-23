@@ -1,5 +1,9 @@
 #import "_Pokemon.h"
 
+@class PokemonSpecies;
+
 @interface Pokemon : _Pokemon {}
-// Custom logic goes here.
+
+- (NSDictionary *)addEffortFromPokemon:(PokemonSpecies *)species;
+
 @end

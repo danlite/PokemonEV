@@ -31,6 +31,8 @@ typedef enum PokemonStatID
 
 extern NSString * const EVCountInputChanged;
 
+extern NSInteger const MaximumStatEVCount;
+
 
 @interface Constants : NSObject {
     

@@ -38,16 +38,16 @@
   CGFloat buttonY = 5;
   CGFloat buttonHeight = 35;
   
-  goalButton = [[TTButton alloc] initWithFrame:CGRectMake(10, buttonY, 70, buttonHeight)];
+  currentButton = [[TTButton alloc] initWithFrame:CGRectMake(10, buttonY, 70, buttonHeight)];
+  [currentButton setTitle:@"Current" forState:UIControlStateNormal];
+  [currentButton setStylesWithSelector:@"midGrayToolbarButton:"];
+  [currentButton addTarget:nil action:@selector(evCurrentTapped) forControlEvents:UIControlEventTouchUpInside];
+  
+  goalButton = [[TTButton alloc] initWithFrame:CGRectMake(10 + 70 + 10, buttonY, 70, buttonHeight)];
   [goalButton setTitle:@"Goal" forState:UIControlStateNormal];
   [goalButton setStylesWithSelector:@"midGrayToolbarButton:"];
   [goalButton addTarget:nil action:@selector(evGoalTapped) forControlEvents:UIControlEventTouchUpInside];
   [self.contentView addSubview:goalButton];
-  
-  currentButton = [[TTButton alloc] initWithFrame:CGRectMake(10 + 70 + 10, buttonY, 70, buttonHeight)];
-  [currentButton setTitle:@"Current" forState:UIControlStateNormal];
-  [currentButton setStylesWithSelector:@"midGrayToolbarButton:"];
-  [currentButton addTarget:nil action:@selector(evCurrentTapped) forControlEvents:UIControlEventTouchUpInside];
   [self.contentView addSubview:currentButton];
   
   doneButton = [[TTButton alloc] initWithFrame:CGRectMake(150, buttonY, 55, buttonHeight)];
