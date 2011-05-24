@@ -16,6 +16,9 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		370758C6138B66C70011D998 /* PokemonEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 370758C5138B66C70011D998 /* PokemonEncounter.m */; };
+		370758C9138B66D00011D998 /* _PokemonEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 370758C8138B66D00011D998 /* _PokemonEncounter.m */; };
+		370758CC138C05C20011D998 /* PokemonSpeciesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 370758CB138C05C20011D998 /* PokemonSpeciesCell.m */; };
 		371EFEFA138976FF0093C0FC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 371EFEF9138976FF0093C0FC /* Constants.m */; };
 		374D13E513839712004022E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E413839712004022E3 /* UIKit.framework */; };
 		374D13E713839712004022E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E613839712004022E3 /* Foundation.framework */; };
@@ -901,6 +904,12 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		370758C4138B66C70011D998 /* PokemonEncounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonEncounter.h; sourceTree = "<group>"; };
+		370758C5138B66C70011D998 /* PokemonEncounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonEncounter.m; sourceTree = "<group>"; };
+		370758C7138B66D00011D998 /* _PokemonEncounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PokemonEncounter.h; sourceTree = "<group>"; };
+		370758C8138B66D00011D998 /* _PokemonEncounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PokemonEncounter.m; sourceTree = "<group>"; };
+		370758CA138C05C20011D998 /* PokemonSpeciesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonSpeciesCell.h; sourceTree = "<group>"; };
+		370758CB138C05C20011D998 /* PokemonSpeciesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonSpeciesCell.m; sourceTree = "<group>"; };
 		371EFEF8138976FF0093C0FC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		371EFEF9138976FF0093C0FC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		374D13E013839712004022E3 /* PokemonEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonEV.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1896,6 +1905,8 @@
 		374D149F13839893004022E3 /* Human */ = {
 			isa = PBXGroup;
 			children = (
+				370758C4138B66C70011D998 /* PokemonEncounter.h */,
+				370758C5138B66C70011D998 /* PokemonEncounter.m */,
 				377DEC881385A94F00EEBBC5 /* EVSpread.h */,
 				377DEC891385A94F00EEBBC5 /* EVSpread.m */,
 				377DEC8A1385A94F00EEBBC5 /* HeldItem.h */,
@@ -1911,6 +1922,8 @@
 		374D14A213839893004022E3 /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				370758C7138B66D00011D998 /* _PokemonEncounter.h */,
+				370758C8138B66D00011D998 /* _PokemonEncounter.m */,
 				377DEC911385A96100EEBBC5 /* _EVSpread.h */,
 				377DEC921385A96100EEBBC5 /* _EVSpread.m */,
 				377DEC931385A96100EEBBC5 /* _HeldItem.h */,
@@ -1947,6 +1960,8 @@
 				37A5001A13899B2900B63285 /* EVCountFooterCell.h */,
 				37A5001B13899B2900B63285 /* EVCountFooterCell.m */,
 				37A5001D1389A43300B63285 /* EVCountFooterCell.xib */,
+				370758CA138C05C20011D998 /* PokemonSpeciesCell.h */,
+				370758CB138C05C20011D998 /* PokemonSpeciesCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3632,6 +3647,9 @@
 				371EFEFA138976FF0093C0FC /* Constants.m in Sources */,
 				37A5001C13899B2900B63285 /* EVCountFooterCell.m in Sources */,
 				37A500A9138AB82200B63285 /* NSError+Multiple.m in Sources */,
+				370758C6138B66C70011D998 /* PokemonEncounter.m in Sources */,
+				370758C9138B66D00011D998 /* _PokemonEncounter.m in Sources */,
+				370758CC138C05C20011D998 /* PokemonSpeciesCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "PokemonListViewController.h"
 #import "Pokemon.h"
 #import "PokemonSpecies.h"
+#import "PokemonEncounter.h"
 #import "PokemonStats.h"
 #import "EVSpread.h"
 #import "EVCountView.h"
@@ -18,12 +19,15 @@
 #import "EVCountViewController.h"
 #import "EVCountFooterCell.h"
 #import "NSError+Multiple.h"
+#import "PokemonSpeciesCell.h"
 
 @interface TrackerViewController()
 
 - (void)presentPokemonListWithEVs:(BOOL)showEVYield;
 - (void)refreshView;
 - (void)updateEVCountViews;
+- (void)loadRecentEncounters;
+- (void)battledPokemon:(PokemonSpecies *)species indexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -32,6 +36,7 @@
 @synthesize pokemon;
 @synthesize evCountFooterCell;
 @synthesize editingContext, editingEVSpread;
+@synthesize recentEncounters;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -52,6 +57,7 @@
 	if ((self = [self initWithManagedObjectContext:[pkmn managedObjectContext]]))
 	{
 		self.pokemon = pkmn;
+		[self loadRecentEncounters];
 	}
 	
 	return self;
@@ -67,6 +73,11 @@
 	}
   
   [self refreshView];
+}
+
+- (void)loadRecentEncounters
+{
+	self.recentEncounters = [managedObjectContext fetchAllObjectsForEntityName:[PokemonEncounter entityName] withSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]] andPredicate:[NSPredicate predicateWithFormat:@"pokemon == %@", pokemon]];
 }
 
 #pragma mark - Updating views
@@ -290,7 +301,7 @@
 		case 0:
 			return 2;
 		case 1:
-			return 1;
+			return 1 + [recentEncounters count];
 	}
 	
 	return 0;
@@ -364,6 +375,24 @@
 			
 			return cell;
 		}
+		else
+		{
+			NSInteger index = indexPath.row - 1;
+			PokemonEncounter *encounter = [recentEncounters objectAtIndex:index];
+			
+			static NSString *SpeciesCellIdentifier = @"SpeciesCell";
+			
+			PokemonSpeciesCell *cell = (PokemonSpeciesCell *)[tableView dequeueReusableCellWithIdentifier:SpeciesCellIdentifier];
+			if (cell == nil)
+			{
+				cell = [[[PokemonSpeciesCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SpeciesCellIdentifier] autorelease];
+				cell.showEVYield = YES;
+			}
+			
+			[cell setPokemon:encounter.species filteredStat:nil];
+			
+			return cell;
+		}
 	}
 	
 	return nil;
@@ -376,6 +405,11 @@
 	if (indexPath.section == 1 && indexPath.row == 0)
 	{
 		[self presentPokemonListWithEVs:YES];
+	}
+	else if (indexPath.section == 1)
+	{
+		PokemonEncounter *encounter = [recentEncounters objectAtIndex:indexPath.row - 1];
+		[self battledPokemon:encounter.species indexPath:indexPath];
 	}
 }
 
@@ -418,6 +452,72 @@
 
 #pragma mark - Pokemon list
 
+- (void)battledPokemon:(PokemonSpecies *)species indexPath:(NSIndexPath *)indexPath
+{
+	PokemonEncounter *encounter = [managedObjectContext fetchSingleObjectForEntityName:[PokemonEncounter entityName] withPredicate:[NSPredicate predicateWithFormat:@"pokemon == %@ AND species == %@", pokemon, species]];
+	
+	BOOL createdEncounter = NO;
+	if (encounter == nil)
+	{
+		encounter = [PokemonEncounter insertInManagedObjectContext:managedObjectContext];
+		encounter.pokemon = pokemon;
+		encounter.species = species;
+		createdEncounter = YES;
+	}
+	encounter.date = [NSDate date];
+	
+	if (indexPath == nil)
+	{
+		if (createdEncounter)
+		{
+			indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+		}
+		else
+		{
+			NSInteger row = 1;
+			for (PokemonEncounter *anEncounter in recentEncounters)
+			{
+				if ([anEncounter isEqual:encounter])
+					break;
+				row++;
+			}
+			indexPath = [NSIndexPath indexPathForRow:row inSection:1];
+		}
+	}
+	
+	[self loadRecentEncounters];
+	
+	[self.tableView beginUpdates];
+	if (createdEncounter)
+	{
+		[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
+	}
+	else if (indexPath.row == 1)
+	{
+//		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	}
+	else
+	{
+		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+		[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationRight];
+	}
+	[self.tableView endUpdates];
+	
+	NSDictionary *earnedEVs = [pokemon addEffortFromPokemon:species];
+	
+	[managedObjectContext save:nil];
+	
+	[self updateEVCountViews];
+	
+	for (NSNumber *statKey in earnedEVs)
+	{
+		EVCountViewController *countVC = [evViewControllers objectForKey:statKey];
+		[countVC updateView];
+		[countVC animatePulseWithValue:[[earnedEVs objectForKey:statKey] intValue]];
+	}	
+}
+
 - (void)presentPokemonListWithEVs:(BOOL)showEVYield
 {
 	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:managedObjectContext];
@@ -444,18 +544,7 @@
 	
 	if (listVC.showEVYield)
 	{
-		NSDictionary *earnedEVs = [pokemon addEffortFromPokemon:species];
-		
-		[managedObjectContext save:nil];
-		
-		[self updateEVCountViews];
-		
-		for (NSNumber *statKey in earnedEVs)
-		{
-			EVCountViewController *countVC = [evViewControllers objectForKey:statKey];
-			[countVC updateView];
-			[countVC animatePulseWithValue:[[earnedEVs objectForKey:statKey] intValue]];
-		}
+		[self battledPokemon:species indexPath:nil];
 	}
 	else
 	{
@@ -465,6 +554,7 @@
     newPokemon.currentSpread = [EVSpread insertInManagedObjectContext:managedObjectContext];
 		
 		self.pokemon = newPokemon;
+		[self loadRecentEncounters];
     
     NSError *error;
     if (![managedObjectContext save:&error])
@@ -499,6 +589,7 @@
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
+	[recentEncounters release];
 	[pokerusButton release];
   [editingContext release];
   [editingEVSpread release];

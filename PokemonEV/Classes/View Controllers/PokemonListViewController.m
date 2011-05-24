@@ -8,9 +8,9 @@
 
 #import "PokemonListViewController.h"
 #import "PokemonSpecies.h"
-#import "EVYieldView.h"
 #import "StatFilterButton.h"
 #import "PokemonStats.h"
+#import "PokemonSpeciesCell.h"
 
 @interface PokemonListViewController()
 
@@ -163,63 +163,14 @@
 	else
 		species = [fetchedResults objectAtIndexPath:indexPath];
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	PokemonSpeciesCell *cell = (PokemonSpeciesCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[[PokemonSpeciesCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell.showEVYield = showEVYield;
 	}
 	
-	for (UIView *subview in [cell.contentView subviews])
-	{
-		[subview removeFromSuperview];
-	}
-  
-	cell.imageView.image = [UIImage imageNamed:species.iconFilename];
-	cell.textLabel.text = species.name;
-	cell.detailTextLabel.text = species.formName;
-	
-  if (showEVYield)
-  {
-    CGFloat xOffset = 180;
-    CGFloat yOffset = 1;
-    CGFloat evViewSpacing = 4;
-    NSDictionary *effortDict = [species effortDictionary];
-		
-		NSArray *sortedEVYields = [[effortDict allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-			int statID1 = [(NSNumber *)obj1 intValue];
-			int statID2 = [(NSNumber *)obj2 intValue];
-			
-			if (filterByStat)
-			{
-				if (statID1 == [selectedStatFilter intValue])
-					return NSOrderedAscending;
-				if (statID2 == [selectedStatFilter intValue])
-					return NSOrderedDescending;
-			}
-			
-			if (statID1 < statID2)
-				return NSOrderedAscending;
-			if (statID1 > statID2)
-				return NSOrderedDescending;
-			
-			return NSOrderedSame;
-		}];
-		
-    for (NSNumber *statIDNumber in sortedEVYields)
-    {
-      NSNumber *evNumber = [effortDict objectForKey:statIDNumber];
-      EVYieldView *evView = [[EVYieldView alloc] initWithStat:[statIDNumber intValue] value:[evNumber intValue]];
-      
-      CGRect evFrame = evView.frame;
-      evFrame.origin = CGPointMake(xOffset, yOffset);
-      evView.frame = evFrame;
-      
-      xOffset += evFrame.size.width + evViewSpacing;
-      
-      [cell.contentView addSubview:evView];
-      [evView release];
-    }
-	}
+	[cell setPokemon:species filteredStat:selectedStatFilter];
   
 	return cell;
 }

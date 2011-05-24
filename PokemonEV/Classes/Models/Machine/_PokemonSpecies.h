@@ -5,6 +5,7 @@
 
 
 @class Pokemon;
+@class PokemonEncounter;
 @class EVSpread;
 
 
@@ -75,14 +76,25 @@
 
 
 
+@property (nonatomic, retain) NSSet* encounters;
+- (NSMutableSet*)encountersSet;
+
+
+
 @property (nonatomic, retain) EVSpread* yield;
 //- (BOOL)validateYield:(id*)value_ error:(NSError**)error_;
+
 
 
 
 @end
 
 @interface _PokemonSpecies (CoreDataGeneratedAccessors)
+
+- (void)addEncounters:(NSSet*)value_;
+- (void)removeEncounters:(NSSet*)value_;
+- (void)addEncountersObject:(PokemonEncounter*)value_;
+- (void)removeEncountersObject:(PokemonEncounter*)value_;
 
 @end
 
@@ -122,6 +134,11 @@
 
 - (Pokemon*)primitivePokemon;
 - (void)setPrimitivePokemon:(Pokemon*)value;
+
+
+
+- (NSMutableSet*)primitiveEncounters;
+- (void)setPrimitiveEncounters:(NSMutableSet*)value;
 
 
 
