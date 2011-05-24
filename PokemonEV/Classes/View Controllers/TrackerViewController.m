@@ -130,14 +130,52 @@
 		[heldItemButton setTitle:@"No held item" forState:UIControlStateNormal];
 	}
 	
-	TTButton *pokerusButton = [[[TTButton alloc] initWithFrame:CGRectMake(0, 0, 50, 33)] autorelease];
+	[pokerusButton release];
+	pokerusButton = [[TTButton alloc] initWithFrame:CGRectMake(0, 0, 50, 33)];
 	[pokerusButton setStylesWithSelector:@"pokerusButton:"];
 	[pokerusButton setTitle:@"PKRS" forState:UIControlStateNormal];
 	[pokerusButton addTarget:self action:@selector(pokerusTapped:) forControlEvents:UIControlEventTouchUpInside];
+	pokerusButton.selected = pokemon.pokerusValue;
 	
 	UIBarButtonItem *heldItemButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heldItemButton] autorelease];
 	UIBarButtonItem *pokerusButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:pokerusButton] autorelease];
 	self.toolbarItems = [NSArray arrayWithObjects:heldItemButtonItem, pokerusButtonItem, nil];
+}
+
+- (void)showPokerusActionSheet:(BOOL)applyPokerus
+{
+	NSString *action = [NSString stringWithFormat:@"%@ Pokérus", applyPokerus ? @"Apply" : @"Remove"];
+	
+	UIActionSheet *sheet = [[UIActionSheet alloc]
+													initWithTitle:@"When your Pokémon is affected by Pokérus, it gains twice as many EVs from battling."
+													delegate:self
+													cancelButtonTitle:@"Cancel"
+													destructiveButtonTitle:nil
+													otherButtonTitles:action, nil];
+	
+	[sheet showFromToolbar:self.navigationController.toolbar];
+	[sheet release];
+}
+
+#pragma mark - Action sheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex != actionSheet.cancelButtonIndex)
+	{
+		BOOL newValue = !pokerusButton.selected;
+		
+		pokemon.pokerusValue = newValue;
+		
+		NSError *error;
+		if (![managedObjectContext save:&error])
+		{
+			DLog(@"Unable to set Pokerus status: %@", error);
+			[managedObjectContext rollback];
+		}
+		
+		pokerusButton.selected = newValue;
+	}
 }
 
 #pragma mark - Event handlers
@@ -149,7 +187,7 @@
 
 - (void)pokerusTapped:(UIButton *)button
 {
-	button.selected = !button.selected;
+	[self showPokerusActionSheet:!button.selected];
 }
 
 - (void)heldItemButtonTapped
@@ -461,6 +499,7 @@
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
+	[pokerusButton release];
   [editingContext release];
   [editingEVSpread release];
   [evViewControllers release];

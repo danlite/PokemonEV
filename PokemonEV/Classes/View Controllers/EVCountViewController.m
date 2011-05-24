@@ -230,7 +230,7 @@
 		UIColor *colour = (pointChange > 0) ? [UIColor greenColor] : [UIColor redColor];
 		[colour set];
 		NSString *text = [NSString stringWithFormat:@"%@%d", (pointChange > 0) ? @"+" : @"-", abs(pointChange)];
-		[text drawInRect:rect withFont:[UIFont boldSystemFontOfSize:12] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentRight];
+		[text drawInRect:rect withFont:[UIFont boldSystemFontOfSize:15] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentRight];
 		
 		UIGraphicsPopContext();
 	}
@@ -252,7 +252,7 @@
 		CGPathAddLineToPoint(path, NULL, originalX, originalY - 3);
 		
 		CGFloat disappearDuration = 0.3;
-		CGFloat disappearDelay = 0.5;
+		CGFloat disappearDelay = 1.5;
 		
 		CAKeyframeAnimation *slideUpAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
 		slideUpAnimation.path = path;
