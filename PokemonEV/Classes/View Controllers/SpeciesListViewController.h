@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PokemonListDelegate.h"
+#import "SpeciesListDelegate.h"
 
-@interface PokemonListViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface SpeciesListViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
 {
   BOOL showEVYield;
 	BOOL filterByStat;
 	
-	id<PokemonListDelegate> delegate;
+	id<SpeciesListDelegate> delegate;
   
 	NSManagedObjectContext *managedObjectContext;
 	NSFetchedResultsController *fetchedResults;
@@ -25,7 +25,7 @@
 }
 
 @property (nonatomic) BOOL showEVYield;
-@property (nonatomic, assign) id<PokemonListDelegate> delegate;
+@property (nonatomic, assign) id<SpeciesListDelegate> delegate;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedSearchResults;
 @property (nonatomic, retain) NSArray *statFilterButtons;
 

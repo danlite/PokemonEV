@@ -7,7 +7,7 @@
 //
 
 #import "TrackerViewController.h"
-#import "PokemonListViewController.h"
+#import "SpeciesListViewController.h"
 #import "Pokemon.h"
 #import "PokemonSpecies.h"
 #import "PokemonEncounter.h"
@@ -524,7 +524,7 @@
 
 - (void)presentPokemonListWithEVs:(BOOL)showEVYield
 {
-	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:managedObjectContext];
+	SpeciesListViewController *listVC = [[SpeciesListViewController alloc] initWithManagedObjectContext:managedObjectContext];
 	listVC.delegate = self;
 	listVC.showEVYield = showEVYield;
 	
@@ -542,7 +542,7 @@
   [self changeEVMode:EVCountModeView];
 }
 
-- (void)pokemonList:(PokemonListViewController *)listVC chosePokemon:(PokemonSpecies *)species
+- (void)speciesList:(SpeciesListViewController *)listVC choseSpecies:(PokemonSpecies *)species
 {
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	

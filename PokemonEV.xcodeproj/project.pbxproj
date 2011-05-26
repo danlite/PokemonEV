@@ -44,7 +44,7 @@
 		374D14B613839893004022E3 /* PokemonSpecies.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D14A113839893004022E3 /* PokemonSpecies.m */; };
 		374D14B713839893004022E3 /* _PokemonSpecies.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D14A413839893004022E3 /* _PokemonSpecies.m */; };
 		374D14B813839893004022E3 /* PokemonStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D14A613839893004022E3 /* PokemonStats.m */; };
-		374D14BA13839893004022E3 /* PokemonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D14AB13839893004022E3 /* PokemonListViewController.m */; };
+		374D14BA13839893004022E3 /* SpeciesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D14AB13839893004022E3 /* SpeciesListViewController.m */; };
 		374D14BB13839893004022E3 /* TrackerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D14AD13839893004022E3 /* TrackerViewController.m */; };
 		374D14BC13839893004022E3 /* EVYieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D14B013839893004022E3 /* EVYieldView.m */; };
 		374D14BF13839AB9004022E3 /* pokedex.plist in Resources */ = {isa = PBXBuildFile; fileRef = 374D14BD13839AB9004022E3 /* pokedex.plist */; };
@@ -947,8 +947,8 @@
 		374D14A413839893004022E3 /* _PokemonSpecies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PokemonSpecies.m; sourceTree = "<group>"; };
 		374D14A513839893004022E3 /* PokemonStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonStats.h; sourceTree = "<group>"; };
 		374D14A613839893004022E3 /* PokemonStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonStats.m; sourceTree = "<group>"; };
-		374D14AA13839893004022E3 /* PokemonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListViewController.h; sourceTree = "<group>"; };
-		374D14AB13839893004022E3 /* PokemonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonListViewController.m; sourceTree = "<group>"; };
+		374D14AA13839893004022E3 /* SpeciesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeciesListViewController.h; sourceTree = "<group>"; };
+		374D14AB13839893004022E3 /* SpeciesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeciesListViewController.m; sourceTree = "<group>"; };
 		374D14AC13839893004022E3 /* TrackerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackerViewController.h; sourceTree = "<group>"; };
 		374D14AD13839893004022E3 /* TrackerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackerViewController.m; sourceTree = "<group>"; };
 		374D14AF13839893004022E3 /* EVYieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVYieldView.h; sourceTree = "<group>"; };
@@ -1624,7 +1624,7 @@
 		377DEF291385AA5F00EEBBC5 /* pokemon-icon-97.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pokemon-icon-97.png"; sourceTree = "<group>"; };
 		377DEF2A1385AA5F00EEBBC5 /* pokemon-icon-98.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pokemon-icon-98.png"; sourceTree = "<group>"; };
 		377DEF2B1385AA5F00EEBBC5 /* pokemon-icon-99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pokemon-icon-99.png"; sourceTree = "<group>"; };
-		377DF1BD1385B24D00EEBBC5 /* PokemonListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListDelegate.h; sourceTree = "<group>"; };
+		377DF1BD1385B24D00EEBBC5 /* SpeciesListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeciesListDelegate.h; sourceTree = "<group>"; };
 		3795EC081385D7FA0065C0C8 /* EVCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCountView.h; sourceTree = "<group>"; };
 		3795EC091385D7FA0065C0C8 /* EVCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCountView.m; sourceTree = "<group>"; };
 		3795EC0C13861F6E0065C0C8 /* EVStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVStyleSheet.h; sourceTree = "<group>"; };
@@ -1941,7 +1941,7 @@
 			children = (
 				37CDAF571388641100114493 /* Main View */,
 				37CDAF591388642A00114493 /* Held Item List */,
-				37CDAF581388641B00114493 /* Pokemon List */,
+				37CDAF581388641B00114493 /* Species List */,
 				37CDAF5B1388647F00114493 /* EVCountViewController.h */,
 				37CDAF5C1388647F00114493 /* EVCountViewController.m */,
 			);
@@ -2678,14 +2678,14 @@
 			name = "Main View";
 			sourceTree = "<group>";
 		};
-		37CDAF581388641B00114493 /* Pokemon List */ = {
+		37CDAF581388641B00114493 /* Species List */ = {
 			isa = PBXGroup;
 			children = (
-				377DF1BD1385B24D00EEBBC5 /* PokemonListDelegate.h */,
-				374D14AA13839893004022E3 /* PokemonListViewController.h */,
-				374D14AB13839893004022E3 /* PokemonListViewController.m */,
+				377DF1BD1385B24D00EEBBC5 /* SpeciesListDelegate.h */,
+				374D14AA13839893004022E3 /* SpeciesListViewController.h */,
+				374D14AB13839893004022E3 /* SpeciesListViewController.m */,
 			);
-			name = "Pokemon List";
+			name = "Species List";
 			sourceTree = "<group>";
 		};
 		37CDAF591388642A00114493 /* Held Item List */ = {
@@ -3630,7 +3630,7 @@
 				374D14B613839893004022E3 /* PokemonSpecies.m in Sources */,
 				374D14B713839893004022E3 /* _PokemonSpecies.m in Sources */,
 				374D14B813839893004022E3 /* PokemonStats.m in Sources */,
-				374D14BA13839893004022E3 /* PokemonListViewController.m in Sources */,
+				374D14BA13839893004022E3 /* SpeciesListViewController.m in Sources */,
 				374D14BB13839893004022E3 /* TrackerViewController.m in Sources */,
 				374D14BC13839893004022E3 /* EVYieldView.m in Sources */,
 				37ECABDD1384783E00C04B45 /* StatFilterButton.m in Sources */,

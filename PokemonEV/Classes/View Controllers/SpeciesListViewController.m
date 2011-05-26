@@ -6,19 +6,19 @@
 //  Copyright 2011 Daniel Lichty. All rights reserved.
 //
 
-#import "PokemonListViewController.h"
+#import "SpeciesListViewController.h"
 #import "PokemonSpecies.h"
 #import "StatFilterButton.h"
 #import "PokemonStats.h"
 #import "PokemonSpeciesCell.h"
 
-@interface PokemonListViewController()
+@interface SpeciesListViewController()
 
 - (void)fetchFilteredResults;
 
 @end
 
-@implementation PokemonListViewController
+@implementation SpeciesListViewController
 
 @synthesize fetchedSearchResults;
 @synthesize showEVYield;
@@ -214,7 +214,7 @@
 	[fetchedSearchResults objectAtIndexPath:indexPath] :
 	[fetchedResults objectAtIndexPath:indexPath];
 	
-	[[self delegate] pokemonList:self chosePokemon:species];
+	[[self delegate] speciesList:self choseSpecies:species];
 }
 
 #pragma mark -

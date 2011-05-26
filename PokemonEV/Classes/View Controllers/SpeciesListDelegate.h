@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @class PokemonSpecies;
-@class PokemonListViewController;
+@class SpeciesListViewController;
 
-@protocol PokemonListDelegate <NSObject>
+@protocol SpeciesListDelegate <NSObject>
 
-- (void)pokemonList:(PokemonListViewController *)listVC chosePokemon:(PokemonSpecies *)species;
+- (void)speciesList:(SpeciesListViewController *)listVC choseSpecies:(PokemonSpecies *)species;
 
 @end
