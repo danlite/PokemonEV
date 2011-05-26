@@ -8,6 +8,7 @@
 
 #import "EVStyleSheet.h"
 #import "Three20Style/UIColorAdditions.h"
+#import "UIColor+Hex.h"
 
 @implementation EVStyleSheet
 
@@ -32,7 +33,16 @@
 	 
 }
 
-- (TTStyle*)midGrayToolbarButton:(UIControlState)state
+- (TTStyle *)blueToolbarButton:(UIControlState)state
+{
+	return
+  [self toolbarButtonForState:state
+                        shape:[TTRoundedRectangleShape shapeWithRadius:4.5]
+                    tintColor:[UIColor colorWithHex:0x007dff]
+                         font:nil];
+}
+
+- (TTStyle *)midGrayToolbarButton:(UIControlState)state
 {
   return
   [self toolbarButtonForState:state

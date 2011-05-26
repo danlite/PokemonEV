@@ -77,7 +77,9 @@
 
 - (void)loadRecentEncounters
 {
-	self.recentEncounters = [managedObjectContext fetchAllObjectsForEntityName:[PokemonEncounter entityName] withSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]] andPredicate:[NSPredicate predicateWithFormat:@"pokemon == %@", pokemon]];
+	self.recentEncounters = [managedObjectContext fetchAllObjectsForEntityName:[PokemonEncounter entityName]
+																												 withSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]
+																																andPredicate:[NSPredicate predicateWithFormat:@"pokemon == %@", pokemon]];
 }
 
 #pragma mark - Updating views
@@ -454,7 +456,9 @@
 
 - (void)battledPokemon:(PokemonSpecies *)species indexPath:(NSIndexPath *)indexPath
 {
-	PokemonEncounter *encounter = [managedObjectContext fetchSingleObjectForEntityName:[PokemonEncounter entityName] withPredicate:[NSPredicate predicateWithFormat:@"pokemon == %@ AND species == %@", pokemon, species]];
+	PokemonEncounter *encounter = [managedObjectContext
+																 fetchSingleObjectForEntityName:[PokemonEncounter entityName]
+																 withPredicate:[NSPredicate predicateWithFormat:@"pokemon == %@ AND species == %@", pokemon, species]];
 	
 	BOOL createdEncounter = NO;
 	if (encounter == nil)

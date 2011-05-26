@@ -16,6 +16,8 @@
   
   UILabel *titleLabel, *evTotalLabel;
   TTButton *goalButton, *currentButton, *doneButton;
+	
+	CALayer *goalHighlight;
 }
 
 @property (nonatomic, assign) EVCountMode mode;

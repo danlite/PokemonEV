@@ -7,10 +7,11 @@
 //
 
 #import "EVCountFooterCell.h"
+#import "UIColor+Hex.h"
 
 @interface EVCountFooterCell()
 
-- (void)updateEVTotalLabel;
+- (void)updateEVTotalViews;
 - (void)updateTitleLabel;
 
 @end
@@ -56,16 +57,61 @@
   [doneButton addTarget:nil action:@selector(evDoneTapped) forControlEvents:UIControlEventTouchUpInside];
   doneButton.alpha = 0;
   [self.contentView addSubview:doneButton];
+	
+	goalHighlight = [[CALayer layer] retain];
+	
+	CGFloat highlightSpread = 10;
+	
+	CGRect goalRect = CGRectInset(goalButton.frame, -highlightSpread, -highlightSpread);
+	UIGraphicsBeginImageContext(goalRect.size);
+	
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	
+	CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
+	
+	CGRect fillRect = CGRectInset(CGContextGetClipBoundingBox(context), highlightSpread + 2, highlightSpread + 2);
+	CGContextFillRect(context, fillRect);
+	UIImage *fillImage = UIGraphicsGetImageFromCurrentImageContext();
+	
+	UIGraphicsEndImageContext();
+	
+	goalHighlight.contents = (id)[fillImage CGImage];
+	goalHighlight.shadowColor = [[UIColor colorWithHex:0x007dff] CGColor];
+	goalHighlight.shadowOpacity = 1;
+	goalHighlight.shadowOffset = CGSizeMake(0, 0);
+	goalHighlight.shadowRadius = 0;
+	goalHighlight.frame = goalRect;
+	
+	[self.contentView.layer insertSublayer:goalHighlight atIndex:1];
   
-  [self updateEVTotalLabel];
+  [self updateEVTotalViews];
   [self updateTitleLabel];
 }
 
-- (void)updateEVTotalLabel
+- (void)updateEVTotalViews
 {
   if (mode == EVCountModeView)
   {
     evTotalLabel.text = [NSString stringWithFormat:@"%d / %d", current, goal];
+		if (goal == 0)
+		{
+			CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"shadowRadius"];
+			animation.toValue = [NSNumber numberWithFloat:10];
+			animation.fromValue = [NSNumber numberWithFloat:1];
+			animation.duration = 1;
+			animation.autoreverses = YES;
+			animation.repeatCount = FLT_MAX;
+			animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+			
+			[goalHighlight addAnimation:animation forKey:nil];
+			
+			[goalButton setStylesWithSelector:@"blueToolbarButton:"];
+		}
+		else
+		{
+			[goalHighlight removeAllAnimations];
+			[goalButton setStylesWithSelector:@"midGrayToolbarButton:"];
+		}
   }
   else
   {
@@ -97,7 +143,7 @@
   
   mode = aMode;
   
-  [self updateEVTotalLabel];
+  [self updateEVTotalViews];
   [self updateTitleLabel];
   
   BOOL edit = (mode != EVCountModeView);
@@ -107,7 +153,18 @@
      doneButton.alpha = edit ? 1 : 0;
      goalButton.alpha = edit ? 0 : 1;
      currentButton.alpha = edit ? 0 : 1;
-   }];
+   }
+									 completion:^(BOOL finished)
+	{
+		if (!edit)
+			goalHighlight.hidden = NO;
+	}];
+	
+	if (edit)
+		goalHighlight.hidden = YES;
+	
+	CAAnimation *animation = [goalHighlight animationForKey:nil];
+	[goalHighlight addAnimation:animation forKey:nil];
 }
 
 - (void)setGoal:(NSInteger)aGoal
@@ -117,7 +174,7 @@
   
   goal = aGoal;
   
-  [self updateEVTotalLabel];
+  [self updateEVTotalViews];
 }
 
 - (void)setCurrent:(NSInteger)aCurrent
@@ -127,11 +184,12 @@
   
   current = aCurrent;
   
-  [self updateEVTotalLabel];
+  [self updateEVTotalViews];
 }
 
 - (void)dealloc
 {
+	[goalHighlight release];
   [titleLabel release];
   [evTotalLabel release];
   [super dealloc];

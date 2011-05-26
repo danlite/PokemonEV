@@ -29,6 +29,7 @@
   EVSpread *editingCurrentSpread, *editingGoalSpread;
 	
 	TTButton *pokerusButton;
+	CALayer *goalHighlight;
 	
 	NSArray *recentEncounters;
 }
