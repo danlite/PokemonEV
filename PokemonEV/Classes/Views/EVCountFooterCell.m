@@ -69,7 +69,7 @@
 	
 	CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
 	
-	CGRect fillRect = CGRectInset(CGContextGetClipBoundingBox(context), highlightSpread + 2, highlightSpread + 2);
+	CGRect fillRect = CGRectInset(CGContextGetClipBoundingBox(context), highlightSpread + 3, highlightSpread + 3);
 	CGContextFillRect(context, fillRect);
 	UIImage *fillImage = UIGraphicsGetImageFromCurrentImageContext();
 	

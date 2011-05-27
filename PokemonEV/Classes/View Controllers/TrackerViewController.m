@@ -421,6 +421,28 @@
 	return nil;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (editingStyle == UITableViewCellEditingStyleDelete)
+	{
+		NSInteger index = indexPath.row - 1;
+		PokemonEncounter *encounter = [recentEncounters objectAtIndex:index];
+		
+		[managedObjectContext deleteObject:encounter];
+		
+		NSError *error;
+		if (![managedObjectContext save:&error])
+		{
+			DLog(@"Unable to remove encounter: %@", error);
+			[managedObjectContext rollback];
+			return;
+		}
+		
+		[self loadRecentEncounters];
+		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+	}
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -450,8 +472,19 @@
 		cell.backgroundView = nil;
 }
 
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	if (indexPath.section == 1 && indexPath.row > 0)
+	{
+		return UITableViewCellEditingStyleDelete;
+	}
+	
+	return UITableViewCellEditingStyleNone;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return @"Remove";
 }
 
 #pragma mark - Held item list
