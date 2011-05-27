@@ -542,8 +542,13 @@
 	}
 	[self.tableView endUpdates];
 	
+	// Save encounter
+	[managedObjectContext save:nil];
+	
+	// If this fails, the MOC will be rolled back to the previous state, and it will return an empty NSDictionary
 	NSDictionary *earnedEVs = [pokemon addEffortFromPokemon:species];
 	
+	// Save EV change
 	[managedObjectContext save:nil];
 	
 	[self cancelEditingEVs];

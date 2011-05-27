@@ -80,6 +80,11 @@
 		[self.currentSpread setEffort:newValue forStat:statID];
 	}
 	
+	if (![self.currentSpread validateForUpdate:nil])
+	{
+		[[self managedObjectContext] rollback];
+		return [NSDictionary dictionary];
+	}
 	
 	return effortDict;
 }
