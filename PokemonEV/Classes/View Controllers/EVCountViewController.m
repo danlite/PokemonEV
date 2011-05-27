@@ -36,6 +36,29 @@
   return self;
 }
 
+- (void)setGoal:(NSInteger)aGoal
+{
+	if (aGoal == goal)
+		return;
+	
+	goal = aGoal;
+	
+	[textLayer setNeedsDisplay];
+}
+
+- (void)setCurrent:(NSInteger)aCurrent
+{
+	if (aCurrent == current)
+		return;
+	
+	current = aCurrent;
+	
+	if (![containerLayer animationForKey:kCATransition])
+	{
+		[textLayer setNeedsDisplay];
+	}
+}
+
 - (EVCountMode)mode
 {
   return mode;
@@ -52,11 +75,13 @@
   CATransition *transition = [CATransition animation];
   transition.duration = 0.3;
   transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	transition.delegate = self;
+	transition.removedOnCompletion = NO;
   
   transition.type = edit ? kCATransitionReveal : kCATransitionMoveIn;
   transition.subtype = edit ? kCATransitionFromRight : kCATransitionFromLeft;
 
-  [containerLayer addAnimation:transition forKey:nil];
+  [containerLayer addAnimation:transition forKey:kCATransition];
   textLayer.hidden = edit;
   editLayer.hidden = !edit;
   
@@ -72,7 +97,6 @@
   {
     textField.text = current ? [NSString stringWithFormat:@"%d", current] : @"";
   }
-    
   
   [UIView animateWithDuration:transition.duration animations:^(void)
    {
@@ -236,14 +260,33 @@
 	}
 }
 
-- (void)updateView
+- (void)performPulse
 {
-  [textLayer setNeedsDisplay];
+	[textLayer setNeedsDisplay];
+	
+	CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+	pulseAnimation.duration = 0.3;
+	pulseAnimation.toValue = [NSNumber numberWithFloat:1.2];
+	pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	pulseAnimation.autoreverses = YES;
+	pulseAnimation.repeatCount = 1;
+	
+	[textLayer addAnimation:pulseAnimation forKey:@"pulseLarge"];
+	
+	CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+	fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
+	fadeInAnimation.duration = 0.3;
+	fadeInAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	fadeInAnimation.delegate = self;
+	fadeInAnimation.removedOnCompletion = NO;
+	fadeInAnimation.fillMode = kCAFillModeForwards;
+	
+	[pointLayer addAnimation:fadeInAnimation forKey:@"pointFadeIn"];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-	if ([[anim valueForKey:@"name"] isEqualToString:@"fadeIn"])
+	if (anim == [pointLayer animationForKey:@"pointFadeIn"])
 	{
 		CGMutablePathRef path = CGPathCreateMutable();
 		CGFloat originalX = pointLayer.position.x;
@@ -272,11 +315,20 @@
 		group.removedOnCompletion = NO;
 		group.fillMode = kCAFillModeForwards;
 		
-		[pointLayer addAnimation:group forKey:nil];
+		[pointLayer addAnimation:group forKey:@"pointRiseAndFadeOut"];
 	}
-	else
+	else if (anim == [pointLayer animationForKey:@"pointRiseAndFadeOut"])
 	{
 		[pointLayer removeAllAnimations];
+	}
+	else if (anim == [containerLayer animationForKey:kCATransition])
+	{
+		[containerLayer removeAnimationForKey:kCATransition];
+		if (shouldPulse)
+		{
+			[self performPulse];
+			shouldPulse = NO;
+		}
 	}
 }
 
@@ -285,25 +337,14 @@
 	pointChange = value;
 	[pointLayer setNeedsDisplay];
 	
-	CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-	pulseAnimation.duration = 0.3;
-	pulseAnimation.toValue = [NSNumber numberWithFloat:1.2];
-	pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-	pulseAnimation.autoreverses = YES;
-	pulseAnimation.repeatCount = 1;
-	
-	[textLayer addAnimation:pulseAnimation forKey:nil];
-		
-	CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-	fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
-	fadeInAnimation.duration = 0.3;
-	fadeInAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-	fadeInAnimation.delegate = self;
-	[fadeInAnimation setValue:@"fadeIn" forKey:@"name"];
-	fadeInAnimation.removedOnCompletion = NO;
-	fadeInAnimation.fillMode = kCAFillModeForwards;
-		
-	[pointLayer addAnimation:fadeInAnimation forKey:nil];
+	if ([containerLayer animationForKey:kCATransition])
+	{
+		shouldPulse = YES;
+	}
+	else
+	{
+		[self performPulse];
+	}
 }
 
 #pragma mark - Text field delegate

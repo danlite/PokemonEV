@@ -20,6 +20,7 @@
 		370758C9138B66D00011D998 /* _PokemonEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 370758C8138B66D00011D998 /* _PokemonEncounter.m */; };
 		370758CC138C05C20011D998 /* PokemonSpeciesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 370758CB138C05C20011D998 /* PokemonSpeciesCell.m */; };
 		371EFEFA138976FF0093C0FC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 371EFEF9138976FF0093C0FC /* Constants.m */; };
+		3745E40A138F042700F31683 /* PokemonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3745E409138F042700F31683 /* PokemonListViewController.m */; };
 		374D13E513839712004022E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E413839712004022E3 /* UIKit.framework */; };
 		374D13E713839712004022E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E613839712004022E3 /* Foundation.framework */; };
 		374D13E913839712004022E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E813839712004022E3 /* CoreGraphics.framework */; };
@@ -912,6 +913,8 @@
 		370758CB138C05C20011D998 /* PokemonSpeciesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonSpeciesCell.m; sourceTree = "<group>"; };
 		371EFEF8138976FF0093C0FC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		371EFEF9138976FF0093C0FC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		3745E408138F042700F31683 /* PokemonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListViewController.h; sourceTree = "<group>"; };
+		3745E409138F042700F31683 /* PokemonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonListViewController.m; sourceTree = "<group>"; };
 		374D13E013839712004022E3 /* PokemonEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonEV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		374D13E413839712004022E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		374D13E613839712004022E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1755,6 +1758,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3745E407138F03F800F31683 /* Pokemon List */ = {
+			isa = PBXGroup;
+			children = (
+				3745E408138F042700F31683 /* PokemonListViewController.h */,
+				3745E409138F042700F31683 /* PokemonListViewController.m */,
+			);
+			name = "Pokemon List";
+			sourceTree = "<group>";
+		};
 		374D13D513839712004022E3 = {
 			isa = PBXGroup;
 			children = (
@@ -1942,6 +1954,7 @@
 				37CDAF571388641100114493 /* Main View */,
 				37CDAF591388642A00114493 /* Held Item List */,
 				37CDAF581388641B00114493 /* Species List */,
+				3745E407138F03F800F31683 /* Pokemon List */,
 				37CDAF5B1388647F00114493 /* EVCountViewController.h */,
 				37CDAF5C1388647F00114493 /* EVCountViewController.m */,
 			);
@@ -3650,6 +3663,7 @@
 				370758C6138B66C70011D998 /* PokemonEncounter.m in Sources */,
 				370758C9138B66D00011D998 /* _PokemonEncounter.m in Sources */,
 				370758CC138C05C20011D998 /* PokemonSpeciesCell.m in Sources */,
+				3745E40A138F042700F31683 /* PokemonListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

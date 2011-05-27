@@ -29,6 +29,8 @@
 	CALayer *pointLayer;
   
   UITextField *textField;
+	
+	BOOL shouldPulse;
 }
 
 @property (nonatomic, readonly) EVCountView *view;
@@ -38,7 +40,6 @@
 @property (nonatomic, readonly) UITextField *textField;
 
 - (id)initWithStatID:(PokemonStatID)stat;
-- (void)updateView;
 - (void)animatePulseWithValue:(NSInteger)value;
 
 @end

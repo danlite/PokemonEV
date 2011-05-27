@@ -55,8 +55,22 @@
 
 
 
-@dynamic heldItem;
+@dynamic lastModified;
 
+
+
+
+
+
+@dynamic encounters;
+
+	
+- (NSMutableSet*)encountersSet {
+	[self willAccessValueForKey:@"encounters"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"encounters"];
+	[self didAccessValueForKey:@"encounters"];
+	return result;
+}
 	
 
 @dynamic goalSpread;
@@ -71,18 +85,9 @@
 
 	
 
-@dynamic encounters;
+@dynamic heldItem;
 
 	
-- (NSMutableSet*)encountersSet {
-	[self willAccessValueForKey:@"encounters"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"encounters"];
-	[self didAccessValueForKey:@"encounters"];
-	return result;
-}
-	
-
-
 
 
 

@@ -4,11 +4,12 @@
 #import <CoreData/CoreData.h>
 
 
-@class HeldItem;
+@class PokemonEncounter;
 @class EVSpread;
 @class PokemonSpecies;
 @class EVSpread;
-@class PokemonEncounter;
+@class HeldItem;
+
 
 
 
@@ -33,9 +34,15 @@
 
 
 
+@property (nonatomic, retain) NSDate *lastModified;
 
-@property (nonatomic, retain) HeldItem* heldItem;
-//- (BOOL)validateHeldItem:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateLastModified:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) NSSet* encounters;
+- (NSMutableSet*)encountersSet;
 
 
 
@@ -54,9 +61,8 @@
 
 
 
-@property (nonatomic, retain) NSSet* encounters;
-- (NSMutableSet*)encountersSet;
-
+@property (nonatomic, retain) HeldItem* heldItem;
+//- (BOOL)validateHeldItem:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -80,10 +86,14 @@
 - (void)setPrimitivePokerusValue:(BOOL)value_;
 
 
+- (NSDate*)primitiveLastModified;
+- (void)setPrimitiveLastModified:(NSDate*)value;
 
 
-- (HeldItem*)primitiveHeldItem;
-- (void)setPrimitiveHeldItem:(HeldItem*)value;
+
+
+- (NSMutableSet*)primitiveEncounters;
+- (void)setPrimitiveEncounters:(NSMutableSet*)value;
 
 
 
@@ -102,8 +112,8 @@
 
 
 
-- (NSMutableSet*)primitiveEncounters;
-- (void)setPrimitiveEncounters:(NSMutableSet*)value;
+- (HeldItem*)primitiveHeldItem;
+- (void)setPrimitiveHeldItem:(HeldItem*)value;
 
 
 @end

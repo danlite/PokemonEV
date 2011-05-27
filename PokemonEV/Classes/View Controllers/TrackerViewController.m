@@ -20,6 +20,7 @@
 #import "EVCountFooterCell.h"
 #import "NSError+Multiple.h"
 #import "PokemonSpeciesCell.h"
+#import "PokemonListViewController.h"
 
 @interface TrackerViewController()
 
@@ -28,6 +29,8 @@
 - (void)updateEVCountViews;
 - (void)loadRecentEncounters;
 - (void)battledPokemon:(PokemonSpecies *)species indexPath:(NSIndexPath *)indexPath;
+- (void)changeEVMode:(EVCountMode)mode;
+- (void)cancelEditingEVs;
 
 @end
 
@@ -71,6 +74,8 @@
 	{
 		[self presentPokemonListWithEVs:NO];
 	}
+	
+	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"List" style:UIBarButtonItemStyleBordered target:self action:@selector(listTapped)] autorelease];
   
   [self refreshView];
 }
@@ -170,6 +175,14 @@
 	[sheet release];
 }
 
+- (void)cancelEditingEVs
+{
+  self.editingEVSpread = nil;
+  self.editingContext = nil;
+  
+  [self changeEVMode:EVCountModeView];
+}
+
 #pragma mark - Action sheet delegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -191,26 +204,11 @@
 	}
 }
 
-#pragma mark - Event handlers
+#pragma mark - Notifications
 
 - (void)editingContextDidSave:(NSNotification *)note
 {
   [managedObjectContext mergeChangesFromContextDidSaveNotification:note];
-}
-
-- (void)pokerusTapped:(UIButton *)button
-{
-	[self showPokerusActionSheet:!button.selected];
-}
-
-- (void)heldItemButtonTapped
-{
-  HeldItemListViewController *listVC = [[HeldItemListViewController alloc] initWithManagedObjectContext:managedObjectContext];
-  listVC.delegate = self;
-  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
-  [self.navigationController presentModalViewController:navController animated:YES];
-  [navController release];
-  [listVC release];
 }
 
 - (void)evCountInputChanged:(NSNotification *)note
@@ -232,15 +230,39 @@
     [self.editingEVSpread setEffort:newValue forStat:stat];
     evCountFooterCell.current = [editingEVSpread totalEffort];
   }
-  
-  [countVC updateView];
+}
+
+#pragma mark - Event handlers
+
+- (void)listTapped
+{
+	[self cancelEditingEVs];
+	
+	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:managedObjectContext];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
+	[self.navigationController presentModalViewController:navController animated:YES];
+	[navController release];
+	[listVC release];
+}
+
+- (void)pokerusTapped:(UIButton *)button
+{
+	[self showPokerusActionSheet:!button.selected];
+}
+
+- (void)heldItemButtonTapped
+{
+  HeldItemListViewController *listVC = [[HeldItemListViewController alloc] initWithManagedObjectContext:managedObjectContext];
+  listVC.delegate = self;
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
+  [self.navigationController presentModalViewController:navController animated:YES];
+  [navController release];
+  [listVC release];
 }
 
 - (void)changeEVMode:(EVCountMode)mode
 {
   evMode = mode;
-  
-  [self updateEVCountViews];
   
   if (evMode != EVCountModeView)
   {
@@ -254,7 +276,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:editingContext];
   }
-  
+	
+	[self updateEVCountViews];
   
   evCountFooterCell.mode = evMode;
 }
@@ -272,11 +295,8 @@
      show];
     return;
   }
-  
-  self.editingEVSpread = nil;
-  self.editingContext = nil;
-  
-  [self changeEVMode:EVCountModeView];
+	
+	[self cancelEditingEVs];
 }
 
 - (void)evCurrentTapped
@@ -512,14 +532,15 @@
 	
 	[managedObjectContext save:nil];
 	
-	[self updateEVCountViews];
+	[self cancelEditingEVs];
 	
 	for (NSNumber *statKey in earnedEVs)
 	{
 		EVCountViewController *countVC = [evViewControllers objectForKey:statKey];
-		[countVC updateView];
 		[countVC animatePulseWithValue:[[earnedEVs objectForKey:statKey] intValue]];
-	}	
+	}
+	
+	[self updateEVCountViews];
 }
 
 - (void)presentPokemonListWithEVs:(BOOL)showEVYield
@@ -536,10 +557,7 @@
 	[navController release];
 	[listVC release];
 	
-  self.editingEVSpread = nil;
-  self.editingContext = nil;
-  
-  [self changeEVMode:EVCountModeView];
+	[self cancelEditingEVs];
 }
 
 - (void)speciesList:(SpeciesListViewController *)listVC choseSpecies:(PokemonSpecies *)species
@@ -556,6 +574,7 @@
 		newPokemon.species = species;
     newPokemon.goalSpread = [EVSpread insertInManagedObjectContext:managedObjectContext];
     newPokemon.currentSpread = [EVSpread insertInManagedObjectContext:managedObjectContext];
+		newPokemon.lastModified = [NSDate date];
 		
 		self.pokemon = newPokemon;
 		[self loadRecentEncounters];
