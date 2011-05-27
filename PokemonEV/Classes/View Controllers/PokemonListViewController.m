@@ -12,6 +12,12 @@
 #import "EVSpread.h"
 #import "SpeciesListViewController.h"
 
+@interface PokemonListViewController()
+
+- (void)refreshPokemonList;
+
+@end
+
 @implementation PokemonListViewController
 
 @synthesize delegate;
@@ -45,16 +51,21 @@
 	
 	[fetch release];
 	
-	NSError *error;
-	if (![fetchedResults performFetch:&error])
-	{
-		DLog(@"Unable to fetch Pokemon list: %@", error);
-	}
+	[self refreshPokemonList];
 }
 
 - (void)viewDidUnload
 {
 	[super viewDidUnload];
+}
+
+- (void)refreshPokemonList
+{
+	NSError *error;
+	if (![fetchedResults performFetch:&error])
+	{
+		DLog(@"Unable to fetch Pokemon list: %@", error);
+	}
 }
 
 #pragma mark - Control handlers
@@ -130,6 +141,31 @@
 	
 	return cell;
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	Pokemon *pokemon = [fetchedResults objectAtIndexPath:indexPath];
+	
+	if (editingStyle == UITableViewCellEditingStyleDelete)
+	{
+		[managedObjectContext deleteObject:pokemon];
+		
+		NSError *error;
+		if (![managedObjectContext save:&error])
+		{
+			DLog(@"Unable to delete Pokemon: %@", error);
+			[managedObjectContext rollback];
+			return;
+		}
+		
+		[self refreshPokemonList];
+		
+		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+		
+		self.navigationItem.leftBarButtonItem.enabled = ([[[fetchedResults sections] objectAtIndex:0] numberOfObjects] > 0);
+	}
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
