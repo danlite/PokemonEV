@@ -567,6 +567,7 @@
 	SpeciesListViewController *listVC = [[SpeciesListViewController alloc] initWithManagedObjectContext:managedObjectContext];
 	listVC.delegate = self;
 	listVC.showEVYield = showEVYield;
+	listVC.allowsClose = showEVYield;
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
 	navController.toolbarHidden = NO;
@@ -583,13 +584,16 @@
 {
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	
+	if (species == nil)
+		return;
+	
 	if (listVC.showEVYield)
 	{
 		[self battledPokemon:species indexPath:nil];
 	}
 	else
 	{
-		// This only happens the first time the user launches the app
+		// This only happens the when the user launches the app with no saved Pokemon (e.g. first time)
 		Pokemon *newPokemon = [Pokemon insertFromSpecies:species inManagedObjectContext:managedObjectContext];
 		
 		self.pokemon = newPokemon;

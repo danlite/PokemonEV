@@ -20,6 +20,7 @@
 
 @implementation SpeciesListViewController
 
+@synthesize allowsClose;
 @synthesize fetchedSearchResults;
 @synthesize showEVYield;
 @synthesize statFilterButtons;
@@ -51,6 +52,10 @@
   
 	self.title = @"Select a Pokémon";
 	self.navigationItem.prompt = showEVYield ? @"Record the EV gain from battling a Pokémon" : @"Begin EV training a new Pokémon";
+	if (allowsClose)
+	{
+		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closeTapped)] autorelease];
+	}
 	
 	NSMutableArray *toolbarItems = [NSMutableArray arrayWithObject:FlexibleSpace];
 	NSMutableArray *buttons = [NSMutableArray array];
@@ -84,8 +89,11 @@
 	searchDisplayController.searchResultsDataSource = self;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+#pragma mark - Control handlers
+
+- (void)closeTapped
 {
+	[delegate speciesList:self choseSpecies:nil];
 }
 
 #pragma mark - Fetching and filtering

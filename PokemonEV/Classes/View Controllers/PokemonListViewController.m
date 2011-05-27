@@ -90,6 +90,9 @@
 {
 	[self dismissModalViewControllerAnimated:YES];
 	
+	if (species == nil)
+		return;
+	
 	Pokemon *newPokemon = [Pokemon insertFromSpecies:species inManagedObjectContext:managedObjectContext];
 	
 	NSError *error;

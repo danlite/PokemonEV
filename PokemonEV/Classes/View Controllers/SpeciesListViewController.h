@@ -13,6 +13,7 @@
 {
   BOOL showEVYield;
 	BOOL filterByStat;
+	BOOL allowsClose;
 	
 	id<SpeciesListDelegate> delegate;
   
@@ -24,6 +25,7 @@
 	NSNumber *selectedStatFilter;
 }
 
+@property (nonatomic) BOOL allowsClose;
 @property (nonatomic) BOOL showEVYield;
 @property (nonatomic, assign) id<SpeciesListDelegate> delegate;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedSearchResults;
