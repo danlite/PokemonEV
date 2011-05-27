@@ -5,6 +5,18 @@
 
 @implementation Pokemon
 
++ (Pokemon *)insertFromSpecies:(PokemonSpecies *)species inManagedObjectContext:(NSManagedObjectContext *)context
+{
+	Pokemon *p = [Pokemon insertInManagedObjectContext:context];
+	
+	p.species = species;
+	p.goalSpread = [EVSpread insertInManagedObjectContext:context];
+	p.currentSpread = [EVSpread insertInManagedObjectContext:context];
+	p.lastModified = [NSDate date];
+	
+	return p;
+}
+
 - (NSDictionary *)addEffortFromPokemon:(PokemonSpecies *)species
 {
 	NSMutableDictionary *effortDict = [NSMutableDictionary dictionaryWithDictionary:[species effortDictionary]];

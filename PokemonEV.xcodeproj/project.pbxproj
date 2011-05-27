@@ -915,6 +915,7 @@
 		371EFEF9138976FF0093C0FC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		3745E408138F042700F31683 /* PokemonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListViewController.h; sourceTree = "<group>"; };
 		3745E409138F042700F31683 /* PokemonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonListViewController.m; sourceTree = "<group>"; };
+		3745E47D138F508400F31683 /* PokemonListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListDelegate.h; sourceTree = "<group>"; };
 		374D13E013839712004022E3 /* PokemonEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonEV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		374D13E413839712004022E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		374D13E613839712004022E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1761,6 +1762,7 @@
 		3745E407138F03F800F31683 /* Pokemon List */ = {
 			isa = PBXGroup;
 			children = (
+				3745E47D138F508400F31683 /* PokemonListDelegate.h */,
 				3745E408138F042700F31683 /* PokemonListViewController.h */,
 				3745E409138F042700F31683 /* PokemonListViewController.m */,
 			);

@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "SpeciesListDelegate.h"
 #import "HeldItemListDelegate.h"
+#import "PokemonListDelegate.h"
 
 @class Pokemon;
 @class EVCountFooterCell;
 @class EVSpread;
 
-@interface TrackerViewController : UITableViewController <SpeciesListDelegate, HeldItemListDelegate, UIActionSheetDelegate>
+@interface TrackerViewController : UITableViewController <PokemonListDelegate, SpeciesListDelegate, HeldItemListDelegate, UIActionSheetDelegate>
 {
 	NSManagedObjectContext *managedObjectContext;
 	

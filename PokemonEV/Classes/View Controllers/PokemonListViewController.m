@@ -10,8 +10,11 @@
 #import "Pokemon.h"
 #import "PokemonSpecies.h"
 #import "EVSpread.h"
+#import "SpeciesListViewController.h"
 
 @implementation PokemonListViewController
+
+@synthesize delegate;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -31,6 +34,7 @@
 	
 	self.title = @"Your Pokémon";
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closeTapped)] autorelease];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTapped)] autorelease];
 	
 	NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
 	[fetch setEntity:[Pokemon entityInManagedObjectContext:managedObjectContext]];
@@ -51,8 +55,6 @@
 - (void)viewDidUnload
 {
 	[super viewDidUnload];
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
 }
 
 #pragma mark - Control handlers
@@ -60,6 +62,34 @@
 - (void)closeTapped
 {
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)addTapped
+{
+	SpeciesListViewController *listVC = [[SpeciesListViewController alloc] initWithManagedObjectContext:managedObjectContext];
+	listVC.showEVYield = NO;
+	listVC.delegate = self;
+	
+	[self.navigationController pushViewController:listVC animated:YES];
+}
+
+#pragma mark - Species list
+
+- (void)speciesList:(SpeciesListViewController *)listVC choseSpecies:(PokemonSpecies *)species
+{
+	[self dismissModalViewControllerAnimated:YES];
+	
+	Pokemon *newPokemon = [Pokemon insertFromSpecies:species inManagedObjectContext:managedObjectContext];
+	
+	NSError *error;
+	if (![managedObjectContext save:&error])
+	{
+		DLog(@"Unable to create new Pokemon: %@", error);
+		[managedObjectContext rollback];
+		return;
+	}
+	
+	[delegate pokemonList:self chosePokemon:newPokemon];
 }
 
 #pragma mark - Table view data source
@@ -104,14 +134,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	// Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-	 // ...
-	 // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	Pokemon *pokemon = (Pokemon *)[fetchedResults objectAtIndexPath:indexPath];
+	
+	[delegate pokemonList:self chosePokemon:pokemon];
 }
 
 #pragma mark - Memory management

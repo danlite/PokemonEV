@@ -4,6 +4,8 @@
 
 @interface Pokemon : _Pokemon {}
 
++ (Pokemon *)insertFromSpecies:(PokemonSpecies *)species inManagedObjectContext:(NSManagedObjectContext *)context;
+
 - (NSDictionary *)addEffortFromPokemon:(PokemonSpecies *)species;
 
 @end

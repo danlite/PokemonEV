@@ -239,6 +239,7 @@
 	[self cancelEditingEVs];
 	
 	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:managedObjectContext];
+	listVC.delegate = self;
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
 	[self.navigationController presentModalViewController:navController animated:YES];
 	[navController release];
@@ -474,6 +475,19 @@
 
 #pragma mark - Pokemon list
 
+- (void)pokemonList:(PokemonListViewController *)listVC chosePokemon:(Pokemon *)aPokemon
+{
+	[self.navigationController dismissModalViewControllerAnimated:YES];
+	
+	self.pokemon = aPokemon;
+	[self loadRecentEncounters];
+	[self refreshView];
+	[self.tableView reloadData];
+	[self updateEVCountViews];
+}
+
+#pragma mark - Species list
+
 - (void)battledPokemon:(PokemonSpecies *)species indexPath:(NSIndexPath *)indexPath
 {
 	PokemonEncounter *encounter = [managedObjectContext
@@ -570,14 +584,12 @@
 	}
 	else
 	{
-		Pokemon *newPokemon = [Pokemon insertInManagedObjectContext:managedObjectContext];
-		newPokemon.species = species;
-    newPokemon.goalSpread = [EVSpread insertInManagedObjectContext:managedObjectContext];
-    newPokemon.currentSpread = [EVSpread insertInManagedObjectContext:managedObjectContext];
-		newPokemon.lastModified = [NSDate date];
+		// This only happens the first time the user launches the app
+		Pokemon *newPokemon = [Pokemon insertFromSpecies:species inManagedObjectContext:managedObjectContext];
 		
 		self.pokemon = newPokemon;
 		[self loadRecentEncounters];
+		[self refreshView];
     
     NSError *error;
     if (![managedObjectContext save:&error])
@@ -585,8 +597,6 @@
       DLog(@"Unable to create new Pokemon: %@", error);
       [managedObjectContext rollback];
     }
-		
-		[self refreshView];
 	}
 }
 
