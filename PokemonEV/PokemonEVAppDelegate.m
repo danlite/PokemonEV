@@ -31,7 +31,11 @@
 	BOOL importedData = [PokemonDataImport importPokemonData:[self managedObjectContext]];
 	DLog(@"Imported data: %@", importedData ? @"YES" : @"NO");
   
-  Pokemon *aPokemon = [[self managedObjectContext] fetchSingleObjectForEntityName:[Pokemon entityName] withPredicate:nil];
+  Pokemon *aPokemon = [[self managedObjectContext]
+											 fetchSingleObjectForEntityName:[Pokemon entityName]
+											 withSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastModified" ascending:NO]]
+											 andPredicate:nil];
+	
   TrackerViewController *trackerVC = nil;
   if (aPokemon == nil)
   {
