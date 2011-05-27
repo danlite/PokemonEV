@@ -7,5 +7,6 @@
 + (Pokemon *)insertFromSpecies:(PokemonSpecies *)species inManagedObjectContext:(NSManagedObjectContext *)context;
 
 - (NSDictionary *)addEffortFromPokemon:(PokemonSpecies *)species;
+- (void)setModified;
 
 @end

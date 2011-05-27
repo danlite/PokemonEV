@@ -192,6 +192,7 @@
 		BOOL newValue = !pokerusButton.selected;
 		
 		pokemon.pokerusValue = newValue;
+		[pokemon setModified];
 		
 		NSError *error;
 		if (![managedObjectContext save:&error])
@@ -208,7 +209,10 @@
 
 - (void)editingContextDidSave:(NSNotification *)note
 {
-  [managedObjectContext mergeChangesFromContextDidSaveNotification:note];
+	[managedObjectContext mergeChangesFromContextDidSaveNotification:note];
+	
+	[pokemon setModified];
+	[managedObjectContext save:nil];
 }
 
 - (void)evCountInputChanged:(NSNotification *)note
@@ -414,6 +418,11 @@
 			
 			[cell setPokemon:encounter.species filteredStat:nil];
 			
+			NSInteger encounterCount = encounter.countValue;
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"Battled %d time%@",
+																	 encounterCount,
+																	 (encounterCount == 1) ? @"" : @"s"];
+			
 			return cell;
 		}
 	}
@@ -429,6 +438,7 @@
 		PokemonEncounter *encounter = [recentEncounters objectAtIndex:index];
 		
 		[managedObjectContext deleteObject:encounter];
+		[pokemon setModified];
 		
 		NSError *error;
 		if (![managedObjectContext save:&error])
@@ -493,7 +503,8 @@
 {
 	[self.navigationController dismissModalViewControllerAnimated:YES];
   
-  self.pokemon.heldItem = item;
+  pokemon.heldItem = item;
+	[pokemon setModified];
   
   NSError *error;
   if (![managedObjectContext save:&error])
@@ -535,6 +546,8 @@
 		encounter.species = species;
 		createdEncounter = YES;
 	}
+	
+	encounter.countValue += 1;
 	encounter.date = [NSDate date];
 	
 	if (indexPath == nil)
@@ -565,8 +578,8 @@
 	}
 	else if (indexPath.row == 1)
 	{
-//		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+		[self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	}
 	else
 	{
@@ -574,6 +587,8 @@
 		[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationRight];
 	}
 	[self.tableView endUpdates];
+	
+	[pokemon setModified];
 	
 	// Save encounter
 	[managedObjectContext save:nil];

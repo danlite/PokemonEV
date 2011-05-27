@@ -87,4 +87,9 @@
 	return effortDict;
 }
 
+- (void)setModified
+{
+	self.lastModified = [NSDate date];
+}
+
 @end

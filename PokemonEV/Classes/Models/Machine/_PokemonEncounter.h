@@ -9,6 +9,7 @@
 
 
 
+
 @interface PokemonEncounterID : NSManagedObjectID {}
 @end
 
@@ -17,6 +18,16 @@
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (PokemonEncounterID*)objectID;
+
+
+
+@property (nonatomic, retain) NSNumber *count;
+
+@property short countValue;
+- (short)countValue;
+- (void)setCountValue:(short)value_;
+
+//- (BOOL)validateCount:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -45,6 +56,13 @@
 @end
 
 @interface _PokemonEncounter (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveCount;
+- (void)setPrimitiveCount:(NSNumber*)value;
+
+- (short)primitiveCountValue;
+- (void)setPrimitiveCountValue:(short)value_;
+
 
 - (NSDate*)primitiveDate;
 - (void)setPrimitiveDate:(NSDate*)value;
