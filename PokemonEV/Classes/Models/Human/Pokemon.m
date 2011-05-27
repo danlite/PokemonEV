@@ -37,11 +37,9 @@
 		{
 			NSNumber *itemStatKey = [NSNumber numberWithInt:item.trainingStatValue];
 			NSNumber *evNumber = [effortDict objectForKey:itemStatKey];
-			if (evNumber)
-			{
-				NSInteger newEV = [evNumber intValue] + 4;
-				[effortDict setObject:[NSNumber numberWithInt:newEV] forKey:itemStatKey];
-			}
+			NSInteger oldEV = evNumber ? [evNumber intValue] : 0;
+			NSInteger newEV = oldEV + PowerItemEVAddition;
+			[effortDict setObject:[NSNumber numberWithInt:newEV] forKey:itemStatKey];
 		}
 	}
 	

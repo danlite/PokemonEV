@@ -10,6 +10,7 @@
 
 NSString * const EVCountInputChanged = @"EVCountInputChanged";
 NSInteger const MaximumStatEVCount = 255;
+NSInteger const PowerItemEVAddition = 4;
 
 @implementation Constants
 
