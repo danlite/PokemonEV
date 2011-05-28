@@ -244,6 +244,7 @@
 	
 	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:managedObjectContext];
 	listVC.delegate = self;
+	listVC.currentPokemon = pokemon;
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
 	[self.navigationController presentModalViewController:navController animated:YES];
 	[navController release];

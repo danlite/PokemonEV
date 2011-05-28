@@ -10,11 +10,15 @@
 #import "PokemonListDelegate.h"
 #import "SpeciesListDelegate.h"
 
+@class Pokemon;
+
 @interface PokemonListViewController : UITableViewController <SpeciesListDelegate>
 {
 	NSManagedObjectContext *managedObjectContext;
 	
 	NSFetchedResultsController *fetchedResults;
+	
+	Pokemon *currentPokemon;
 	
 	BOOL showGoalEVs;
 	
@@ -22,6 +26,7 @@
 }
 
 @property (nonatomic, assign) id<PokemonListDelegate> delegate;
+@property (nonatomic, retain) Pokemon *currentPokemon;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
 

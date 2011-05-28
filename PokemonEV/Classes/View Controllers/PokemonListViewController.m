@@ -21,6 +21,7 @@
 @implementation PokemonListViewController
 
 @synthesize delegate;
+@synthesize currentPokemon;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -151,6 +152,7 @@
 	
 	if (editingStyle == UITableViewCellEditingStyleDelete)
 	{
+		BOOL deleteCurrentPokemon = (currentPokemon != nil && [pokemon isEqual:currentPokemon]);
 		[managedObjectContext deleteObject:pokemon];
 		
 		NSError *error;
@@ -161,11 +163,14 @@
 			return;
 		}
 		
+		if (deleteCurrentPokemon)
+			self.currentPokemon = nil;
+		
 		[self refreshPokemonList];
 		
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 		
-		self.navigationItem.leftBarButtonItem.enabled = ([[[fetchedResults sections] objectAtIndex:0] numberOfObjects] > 0);
+		self.navigationItem.leftBarButtonItem.enabled = (!deleteCurrentPokemon && ([[[fetchedResults sections] objectAtIndex:0] numberOfObjects] > 0));
 	}
 }
 
@@ -182,6 +187,7 @@
 
 - (void)dealloc
 {
+	[currentPokemon release];
 	[fetchedResults release];
 	[managedObjectContext release];
 	[super dealloc];
