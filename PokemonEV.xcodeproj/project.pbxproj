@@ -959,6 +959,7 @@
 		374D14B013839893004022E3 /* EVYieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVYieldView.m; sourceTree = "<group>"; };
 		374D14BD13839AB9004022E3 /* pokedex.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pokedex.plist; sourceTree = "<group>"; };
 		374D14BE13839AB9004022E3 /* PokemonStats.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PokemonStats.plist; sourceTree = "<group>"; };
+		37576CCF1390636500F0603A /* PokemonEV 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PokemonEV 2.xcdatamodel"; sourceTree = "<group>"; };
 		377DEC881385A94F00EEBBC5 /* EVSpread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EVSpread.h; path = PokemonEV/Classes/Models/Human/EVSpread.h; sourceTree = SOURCE_ROOT; };
 		377DEC891385A94F00EEBBC5 /* EVSpread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EVSpread.m; path = PokemonEV/Classes/Models/Human/EVSpread.m; sourceTree = SOURCE_ROOT; };
 		377DEC8A1385A94F00EEBBC5 /* HeldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeldItem.h; path = PokemonEV/Classes/Models/Human/HeldItem.h; sourceTree = SOURCE_ROOT; };
@@ -3906,9 +3907,10 @@
 		374D13FB13839712004022E3 /* PokemonEV.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				37576CCF1390636500F0603A /* PokemonEV 2.xcdatamodel */,
 				374D13FC13839712004022E3 /* PokemonEV.xcdatamodel */,
 			);
-			currentVersion = 374D13FC13839712004022E3 /* PokemonEV.xcdatamodel */;
+			currentVersion = 37576CCF1390636500F0603A /* PokemonEV 2.xcdatamodel */;
 			path = PokemonEV.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
