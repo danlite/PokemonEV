@@ -12,6 +12,8 @@
 #import "EVSpread.h"
 #import "SpeciesListViewController.h"
 
+NSString * const CacheName = @"PokemonList";
+
 @interface PokemonListViewController()
 
 - (void)refreshPokemonList;
@@ -48,7 +50,7 @@
 	[fetch setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastModified" ascending:NO]]];
 	
 	[fetchedResults release];
-	fetchedResults = [[NSFetchedResultsController alloc] initWithFetchRequest:fetch managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"PokemonList"];
+	fetchedResults = [[NSFetchedResultsController alloc] initWithFetchRequest:fetch managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:CacheName];
 	
 	[fetch release];
 	
@@ -103,6 +105,8 @@
 		[managedObjectContext rollback];
 		return;
 	}
+	
+	[NSFetchedResultsController deleteCacheWithName:CacheName];
 	
 	[delegate pokemonList:self chosePokemon:newPokemon];
 }
@@ -162,6 +166,8 @@
 			[managedObjectContext rollback];
 			return;
 		}
+		
+		[NSFetchedResultsController deleteCacheWithName:CacheName];
 		
 		if (deleteCurrentPokemon)
 			self.currentPokemon = nil;
