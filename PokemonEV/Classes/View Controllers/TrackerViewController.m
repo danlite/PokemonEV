@@ -128,7 +128,6 @@
 	titleButton.titleLabel.highlightedTextColor = [UIColor darkGrayColor];
 	titleButton.reversesTitleShadowWhenHighlighted = YES;
 	
-	[titleButton setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
 	[titleButton setTitle:pokemon.species.name forState:UIControlStateNormal];
 	self.navigationItem.titleView = titleButton;
 	
@@ -140,7 +139,6 @@
 	
 	if (item)
 	{
-		[heldItemButton setImage:[NSString stringWithFormat:@"bundle://%@.png", item.identifier] forState:UIControlStateNormal];
 		[heldItemButton setTitle:item.name forState:UIControlStateNormal];
 	}
 	else

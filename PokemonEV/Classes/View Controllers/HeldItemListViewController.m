@@ -73,7 +73,6 @@
     NSInteger statID = item.trainingStatValue;
     cell.detailTextLabel.text = (statID == -1) ?
     @"x2 EVs" : [NSString stringWithFormat:@"+4 %@ EVs", [PokemonStats nameForStat:statID length:15]];
-    cell.imageView.image = [UIImage imageNamed:item.identifier];
   }
   else if (indexPath.section == 1)
   {

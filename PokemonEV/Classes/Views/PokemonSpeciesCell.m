@@ -26,7 +26,6 @@
 
 - (void)setPokemon:(PokemonSpecies *)species filteredStat:(NSNumber *)stat
 {
-  self.imageView.image = [UIImage imageNamed:species.iconFilename];
 	self.textLabel.text = species.name;
 	self.detailTextLabel.text = species.formName;
 	
