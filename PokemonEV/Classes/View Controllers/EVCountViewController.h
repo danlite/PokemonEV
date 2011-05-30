@@ -22,15 +22,12 @@
   
   EVCountMode mode;
   
-  CALayer *containerLayer;
   CALayer *textLayer;
   CALayer *maskLayer;
   CALayer *editLayer;
 	CALayer *pointLayer;
   
   UITextField *textField;
-	
-	BOOL shouldPulse;
 }
 
 @property (nonatomic, readonly) EVCountView *view;

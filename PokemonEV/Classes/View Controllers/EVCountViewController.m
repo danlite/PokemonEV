@@ -53,10 +53,7 @@
 	
 	current = aCurrent;
 	
-	if (![containerLayer animationForKey:kCATransition])
-	{
-		[textLayer setNeedsDisplay];
-	}
+	[textLayer setNeedsDisplay];
 }
 
 - (EVCountMode)mode
@@ -71,19 +68,9 @@
   
   mode = aMode;
   BOOL edit = (mode != EVCountModeView);
-  
-  CATransition *transition = [CATransition animation];
-  transition.duration = 0.3;
-  transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-	transition.delegate = self;
-	transition.removedOnCompletion = NO;
-  
-  transition.type = edit ? kCATransitionReveal : kCATransitionMoveIn;
-  transition.subtype = edit ? kCATransitionFromRight : kCATransitionFromLeft;
-
-  [containerLayer addAnimation:transition forKey:kCATransition];
-  textLayer.hidden = edit;
-  editLayer.hidden = !edit;
+	
+  textLayer.opacity = edit ? 0 : 1;
+  editLayer.opacity = edit ? 1 : 0;
   
   if (!edit)
   {
@@ -98,7 +85,7 @@
     textField.text = current ? [NSString stringWithFormat:@"%d", current] : @"";
   }
   
-  [UIView animateWithDuration:transition.duration animations:^(void)
+  [UIView animateWithDuration:0.3 animations:^(void)
    {
      textField.alpha = edit ? 1 : 0;
    }];
@@ -132,27 +119,24 @@
   
   [self.view addSubview:self.textField];
   
-  containerLayer = [[CALayer layer] retain];
-  containerLayer.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
-  
   editLayer = [[CALayer layer] retain];
   editLayer.delegate = self;
-  editLayer.frame = containerLayer.frame;
-  editLayer.hidden = YES;
+  editLayer.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
+  editLayer.opacity = 0;
   editLayer.contentsScale = [[UIScreen mainScreen] scale];
   editLayer.shouldRasterize = YES;
   editLayer.rasterizationScale = [[UIScreen mainScreen] scale];
   
   textLayer = [[CALayer layer] retain];
   textLayer.delegate = self;
-  textLayer.frame = containerLayer.frame;
+  textLayer.frame = editLayer.frame;
   textLayer.contentsScale = [[UIScreen mainScreen] scale];
   textLayer.shouldRasterize = YES;
   textLayer.rasterizationScale = [[UIScreen mainScreen] scale];
 	
 	pointLayer = [[CALayer layer] retain];
 	pointLayer.delegate = self;
-	pointLayer.frame = containerLayer.frame;
+	pointLayer.frame = editLayer.frame;
 	pointLayer.contentsScale = [[UIScreen mainScreen] scale];
 	pointLayer.shouldRasterize = NO;
 	pointLayer.opacity = 0;
@@ -187,9 +171,8 @@
   
 //  textLayer.mask = maskLayer;
   
-  [view.layer addSublayer:containerLayer];
-  [containerLayer addSublayer:textLayer];
-  [containerLayer addSublayer:editLayer];
+  [view.layer addSublayer:textLayer];
+  [view.layer addSublayer:editLayer];
 	
 	[view.layer addSublayer:pointLayer];
   
@@ -273,6 +256,8 @@
 	
 	[textLayer addAnimation:pulseAnimation forKey:@"pulseLarge"];
 	
+	[pointLayer removeAllAnimations];
+	
 	CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
 	fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
 	fadeInAnimation.duration = 0.3;
@@ -321,15 +306,6 @@
 	{
 		[pointLayer removeAllAnimations];
 	}
-	else if (anim == [containerLayer animationForKey:kCATransition])
-	{
-		[containerLayer removeAnimationForKey:kCATransition];
-		if (shouldPulse)
-		{
-			[self performPulse];
-			shouldPulse = NO;
-		}
-	}
 }
 
 - (void)animatePulseWithValue:(NSInteger)value
@@ -337,14 +313,7 @@
 	pointChange = value;
 	[pointLayer setNeedsDisplay];
 	
-	if ([containerLayer animationForKey:kCATransition])
-	{
-		shouldPulse = YES;
-	}
-	else
-	{
-		[self performPulse];
-	}
+	[self performPulse];
 }
 
 #pragma mark - Text field delegate
@@ -378,7 +347,6 @@
 - (void)dealloc
 {
   [view release];
-  [containerLayer release];
   [textLayer release];
   [editLayer release];
   [maskLayer release];
