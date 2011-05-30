@@ -713,6 +713,9 @@
 		377DF1BA1385AA6000EEBBC5 /* pokemon-icon-97.png in Resources */ = {isa = PBXBuildFile; fileRef = 377DEF291385AA5F00EEBBC5 /* pokemon-icon-97.png */; };
 		377DF1BB1385AA6000EEBBC5 /* pokemon-icon-98.png in Resources */ = {isa = PBXBuildFile; fileRef = 377DEF2A1385AA5F00EEBBC5 /* pokemon-icon-98.png */; };
 		377DF1BC1385AA6000EEBBC5 /* pokemon-icon-99.png in Resources */ = {isa = PBXBuildFile; fileRef = 377DEF2B1385AA5F00EEBBC5 /* pokemon-icon-99.png */; };
+		378886C91392C2A200523380 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 378886C81392C2A200523380 /* iTunesArtwork */; };
+		378886CC1392C90B00523380 /* PokemonEV-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 378886CA1392C90B00523380 /* PokemonEV-Icon.png */; };
+		378886CD1392C90B00523380 /* PokemonEV-IconRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = 378886CB1392C90B00523380 /* PokemonEV-IconRetina.png */; };
 		3795EC0A1385D7FA0065C0C8 /* EVCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795EC091385D7FA0065C0C8 /* EVCountView.m */; };
 		3795EC0E13861F6E0065C0C8 /* EVStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795EC0D13861F6E0065C0C8 /* EVStyleSheet.m */; };
 		3795EC10138631410065C0C8 /* items.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3795EC0F138631410065C0C8 /* items.plist */; };
@@ -916,7 +919,7 @@
 		3745E408138F042700F31683 /* PokemonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListViewController.h; sourceTree = "<group>"; };
 		3745E409138F042700F31683 /* PokemonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonListViewController.m; sourceTree = "<group>"; };
 		3745E47D138F508400F31683 /* PokemonListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListDelegate.h; sourceTree = "<group>"; };
-		374D13E013839712004022E3 /* PokemonEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonEV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		374D13E013839712004022E3 /* EVTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EVTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		374D13E413839712004022E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		374D13E613839712004022E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		374D13E813839712004022E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1630,6 +1633,9 @@
 		377DEF2A1385AA5F00EEBBC5 /* pokemon-icon-98.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pokemon-icon-98.png"; sourceTree = "<group>"; };
 		377DEF2B1385AA5F00EEBBC5 /* pokemon-icon-99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pokemon-icon-99.png"; sourceTree = "<group>"; };
 		377DF1BD1385B24D00EEBBC5 /* SpeciesListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeciesListDelegate.h; sourceTree = "<group>"; };
+		378886C81392C2A200523380 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = PokemonEV/iTunesArtwork; sourceTree = SOURCE_ROOT; };
+		378886CA1392C90B00523380 /* PokemonEV-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PokemonEV-Icon.png"; sourceTree = "<group>"; };
+		378886CB1392C90B00523380 /* PokemonEV-IconRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PokemonEV-IconRetina.png"; sourceTree = "<group>"; };
 		3795EC081385D7FA0065C0C8 /* EVCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCountView.h; sourceTree = "<group>"; };
 		3795EC091385D7FA0065C0C8 /* EVCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCountView.m; sourceTree = "<group>"; };
 		3795EC0C13861F6E0065C0C8 /* EVStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVStyleSheet.h; sourceTree = "<group>"; };
@@ -1783,7 +1789,7 @@
 		374D13E113839712004022E3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				374D13E013839712004022E3 /* PokemonEV.app */,
+				374D13E013839712004022E3 /* EVTrack.app */,
 				374D140313839713004022E3 /* PokemonEVTests.octest */,
 			);
 			name = Products;
@@ -1985,6 +1991,9 @@
 		374D14C113839AE2004022E3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				378886CA1392C90B00523380 /* PokemonEV-Icon.png */,
+				378886CB1392C90B00523380 /* PokemonEV-IconRetina.png */,
+				378886C81392C2A200523380 /* iTunesArtwork */,
 				3795EC11138633DC0065C0C8 /* item_icons */,
 				377DEC9A1385AA5E00EEBBC5 /* pokemon_icons */,
 			);
@@ -2717,9 +2726,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		374D13DF13839712004022E3 /* PokemonEV */ = {
+		374D13DF13839712004022E3 /* EVTrack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 374D141713839713004022E3 /* Build configuration list for PBXNativeTarget "PokemonEV" */;
+			buildConfigurationList = 374D141713839713004022E3 /* Build configuration list for PBXNativeTarget "EVTrack" */;
 			buildPhases = (
 				374D13DC13839712004022E3 /* Sources */,
 				374D13DD13839712004022E3 /* Frameworks */,
@@ -2736,9 +2745,9 @@
 				320A5A189C235877202780D1 /* PBXTargetDependency */,
 				320CC833B8AF0ACFD35E6221 /* PBXTargetDependency */,
 			);
-			name = PokemonEV;
+			name = EVTrack;
 			productName = PokemonEV;
-			productReference = 374D13E013839712004022E3 /* PokemonEV.app */;
+			productReference = 374D13E013839712004022E3 /* EVTrack.app */;
 			productType = "com.apple.product-type.application";
 		};
 		374D140213839713004022E3 /* PokemonEVTests */ = {
@@ -2810,7 +2819,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				374D13DF13839712004022E3 /* PokemonEV */,
+				374D13DF13839712004022E3 /* EVTrack */,
 				374D140213839713004022E3 /* PokemonEVTests */,
 			);
 		};
@@ -3600,6 +3609,9 @@
 				37A5002A138AB11700B63285 /* power-band@2x.png in Resources */,
 				37A5002B138AB11700B63285 /* power-anklet@2x.png in Resources */,
 				37A5002C138AB11700B63285 /* macho-brace@2x.png in Resources */,
+				378886C91392C2A200523380 /* iTunesArtwork in Resources */,
+				378886CC1392C90B00523380 /* PokemonEV-Icon.png in Resources */,
+				378886CD1392C90B00523380 /* PokemonEV-IconRetina.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3718,7 +3730,7 @@
 		};
 		374D140913839713004022E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 374D13DF13839712004022E3 /* PokemonEV */;
+			target = 374D13DF13839712004022E3 /* EVTrack */;
 			targetProxy = 374D140813839713004022E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -3883,7 +3895,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		374D141713839713004022E3 /* Build configuration list for PBXNativeTarget "PokemonEV" */ = {
+		374D141713839713004022E3 /* Build configuration list for PBXNativeTarget "EVTrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				374D141813839713004022E3 /* Debug */,
