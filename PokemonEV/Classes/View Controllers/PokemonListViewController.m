@@ -44,6 +44,7 @@ NSString * const CacheName = @"PokemonList";
 	self.title = @"Your Pokémon";
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closeTapped)] autorelease];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTapped)] autorelease];
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"List" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	
 	NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
 	[fetch setEntity:[Pokemon entityInManagedObjectContext:managedObjectContext]];
@@ -144,7 +145,9 @@ NSString * const CacheName = @"PokemonList";
 	{
 		[effortValues addObject:[NSString stringWithFormat:@"%d", [spreadToShow effortForStat:i]]];
 	}
-	cell.detailTextLabel.text = [effortValues componentsJoinedByString:@"/"];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",
+															 showGoalEVs ? @"Goal" : @"Current",
+															 [effortValues componentsJoinedByString:@"/"]];
 	
 	return cell;
 }

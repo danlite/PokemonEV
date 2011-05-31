@@ -22,6 +22,8 @@
 		370B0B95139456D1000FE2FF /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B0B94139456D1000FE2FF /* Appirater.m */; };
 		370B0B97139458D5000FE2FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370B0B96139458D5000FE2FF /* SystemConfiguration.framework */; };
 		371EFEFA138976FF0093C0FC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 371EFEF9138976FF0093C0FC /* Constants.m */; };
+		3725629513949C2000B34EFA /* icon-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 3725629313949C2000B34EFA /* icon-list.png */; };
+		3725629613949C2000B34EFA /* icon-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3725629413949C2000B34EFA /* icon-list@2x.png */; };
 		3745E40A138F042700F31683 /* PokemonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3745E409138F042700F31683 /* PokemonListViewController.m */; };
 		374D13E513839712004022E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E413839712004022E3 /* UIKit.framework */; };
 		374D13E713839712004022E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E613839712004022E3 /* Foundation.framework */; };
@@ -250,6 +252,8 @@
 		370B0B96139458D5000FE2FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		371EFEF8138976FF0093C0FC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		371EFEF9138976FF0093C0FC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		3725629313949C2000B34EFA /* icon-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-list.png"; sourceTree = "<group>"; };
+		3725629413949C2000B34EFA /* icon-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-list@2x.png"; sourceTree = "<group>"; };
 		3745E408138F042700F31683 /* PokemonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListViewController.h; sourceTree = "<group>"; };
 		3745E409138F042700F31683 /* PokemonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonListViewController.m; sourceTree = "<group>"; };
 		3745E47D138F508400F31683 /* PokemonListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListDelegate.h; sourceTree = "<group>"; };
@@ -666,6 +670,8 @@
 		374D14C113839AE2004022E3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3725629313949C2000B34EFA /* icon-list.png */,
+				3725629413949C2000B34EFA /* icon-list@2x.png */,
 				378886CA1392C90B00523380 /* PokemonEV-Icon.png */,
 				378886CB1392C90B00523380 /* PokemonEV-IconRetina.png */,
 				378886C81392C2A200523380 /* iTunesArtwork */,
@@ -929,6 +935,8 @@
 				378886C91392C2A200523380 /* iTunesArtwork in Resources */,
 				378886CC1392C90B00523380 /* PokemonEV-Icon.png in Resources */,
 				378886CD1392C90B00523380 /* PokemonEV-IconRetina.png in Resources */,
+				3725629513949C2000B34EFA /* icon-list.png in Resources */,
+				3725629613949C2000B34EFA /* icon-list@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -76,7 +76,7 @@
 		[self presentPokemonListWithEVs:NO];
 	}
 	
-	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"List" style:UIBarButtonItemStyleBordered target:self action:@selector(listTapped)] autorelease];
+	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-list"] style:UIBarButtonItemStyleBordered target:self action:@selector(listTapped)] autorelease];
   
   [self refreshView];
 }
