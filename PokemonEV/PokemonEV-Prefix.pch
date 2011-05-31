@@ -26,6 +26,14 @@
 
 #define FlexibleSpace [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]
 
+#pragma mark - LaunchImage
+
+#ifdef LAUNCH_IMAGE
+#define LaunchImage YES
+#else
+#define LaunchImage NO
+#endif
+
 #pragma mark -
 #pragma mark Logging
 

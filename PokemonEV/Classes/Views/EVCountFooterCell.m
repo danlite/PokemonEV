@@ -82,7 +82,8 @@
 	goalHighlight.shadowRadius = 0;
 	goalHighlight.frame = goalRect;
 	
-	[self.contentView.layer insertSublayer:goalHighlight atIndex:1];
+	if (!LaunchImage)
+		[self.contentView.layer insertSublayer:goalHighlight atIndex:1];
   
   [self updateEVTotalViews];
   [self updateTitleLabel];
@@ -92,8 +93,12 @@
 {
   if (mode == EVCountModeView)
   {
-    evTotalLabel.text = [NSString stringWithFormat:@"%d / %d", current, goal];
-		if (goal == 0)
+		if (!LaunchImage)
+		{
+			evTotalLabel.text = [NSString stringWithFormat:@"%d / %d", current, goal];
+		}
+		
+		if (goal == 0 && !LaunchImage)
 		{
 			CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"shadowRadius"];
 			animation.toValue = [NSNumber numberWithFloat:10];

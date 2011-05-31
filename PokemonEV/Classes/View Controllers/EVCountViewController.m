@@ -206,9 +206,12 @@
     CGRectDivide(bottomRect, &bottomLeft, &bottomRight, bottomChunkWidth, CGRectMinXEdge);
     CGRectDivide(bottomRight, &bottomRight, &bottomMiddle, bottomChunkWidth, CGRectMaxXEdge);
     
-    [[NSString stringWithFormat:@"%d", current] drawInRect:bottomLeft withFont:[UIFont systemFontOfSize:14] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentRight];
-    [@"/" drawInRect:bottomMiddle withFont:[UIFont systemFontOfSize:14] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
-    [[NSString stringWithFormat:@"%d", goal] drawInRect:bottomRight withFont:[UIFont systemFontOfSize:14] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentLeft];
+		if (!LaunchImage)
+		{
+			[[NSString stringWithFormat:@"%d", current] drawInRect:bottomLeft withFont:[UIFont systemFontOfSize:14] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentRight];
+			[@"/" drawInRect:bottomMiddle withFont:[UIFont systemFontOfSize:14] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
+			[[NSString stringWithFormat:@"%d", goal] drawInRect:bottomRight withFont:[UIFont systemFontOfSize:14] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentLeft];
+		}
     
     UIGraphicsPopContext();
   }

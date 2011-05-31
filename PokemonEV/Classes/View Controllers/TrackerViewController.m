@@ -71,7 +71,7 @@
 {
 	[super viewDidLoad];
 	
-	if (pokemon == nil)
+	if (pokemon == nil && !LaunchImage)
 	{
 		[self presentPokemonListWithEVs:NO];
 	}

@@ -24,6 +24,8 @@
 		371EFEFA138976FF0093C0FC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 371EFEF9138976FF0093C0FC /* Constants.m */; };
 		3725629513949C2000B34EFA /* icon-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 3725629313949C2000B34EFA /* icon-list.png */; };
 		3725629613949C2000B34EFA /* icon-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3725629413949C2000B34EFA /* icon-list@2x.png */; };
+		372562A01394A77300B34EFA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3725629E1394A77300B34EFA /* Default.png */; };
+		372562A11394A77300B34EFA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3725629F1394A77300B34EFA /* Default@2x.png */; };
 		3745E40A138F042700F31683 /* PokemonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3745E409138F042700F31683 /* PokemonListViewController.m */; };
 		374D13E513839712004022E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E413839712004022E3 /* UIKit.framework */; };
 		374D13E713839712004022E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E613839712004022E3 /* Foundation.framework */; };
@@ -254,6 +256,8 @@
 		371EFEF9138976FF0093C0FC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		3725629313949C2000B34EFA /* icon-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-list.png"; sourceTree = "<group>"; };
 		3725629413949C2000B34EFA /* icon-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-list@2x.png"; sourceTree = "<group>"; };
+		3725629E1394A77300B34EFA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		3725629F1394A77300B34EFA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3745E408138F042700F31683 /* PokemonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListViewController.h; sourceTree = "<group>"; };
 		3745E409138F042700F31683 /* PokemonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonListViewController.m; sourceTree = "<group>"; };
 		3745E47D138F508400F31683 /* PokemonListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListDelegate.h; sourceTree = "<group>"; };
@@ -672,6 +676,8 @@
 			children = (
 				3725629313949C2000B34EFA /* icon-list.png */,
 				3725629413949C2000B34EFA /* icon-list@2x.png */,
+				3725629E1394A77300B34EFA /* Default.png */,
+				3725629F1394A77300B34EFA /* Default@2x.png */,
 				378886CA1392C90B00523380 /* PokemonEV-Icon.png */,
 				378886CB1392C90B00523380 /* PokemonEV-IconRetina.png */,
 				378886C81392C2A200523380 /* iTunesArtwork */,
@@ -937,6 +943,8 @@
 				378886CD1392C90B00523380 /* PokemonEV-IconRetina.png in Resources */,
 				3725629513949C2000B34EFA /* icon-list.png in Resources */,
 				3725629613949C2000B34EFA /* icon-list@2x.png in Resources */,
+				372562A01394A77300B34EFA /* Default.png in Resources */,
+				372562A11394A77300B34EFA /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,6 +1097,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		372562971394A47400B34EFA /* LaunchImage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Daniel Lichty (876DLST485)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					LAUNCH_IMAGE,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)/../three20",
+					"$(BUILT_PRODUCTS_DIR)/../../three20",
+					"$(SOURCE_ROOT)/../three20/Build/Products/three20",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = "-ObjC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DBA054A2-DCCA-47F7-8B67-39BF199B77D9";
+				SDKROOT = iphoneos;
+			};
+			name = LaunchImage;
+		};
+		372562981394A47400B34EFA /* LaunchImage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PokemonEV/PokemonEV-Prefix.pch";
+				INFOPLIST_FILE = "PokemonEV/PokemonEV-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = LaunchImage;
+		};
+		372562991394A47400B34EFA /* LaunchImage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PokemonEV.app/PokemonEV";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PokemonEVTests/PokemonEVTests-Prefix.pch";
+				INFOPLIST_FILE = "PokemonEVTests/PokemonEVTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = LaunchImage;
+		};
 		374D141513839713004022E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1106,7 +1178,7 @@
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
 					"$(SOURCE_ROOT)/../three20/Build/Products/three20",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DBA054A2-DCCA-47F7-8B67-39BF199B77D9";
 				SDKROOT = iphoneos;
@@ -1127,7 +1199,7 @@
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
 					"$(SOURCE_ROOT)/../three20/Build/Products/three20",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25754E99-5870-45FC-9EC0-35C17B029F5D";
@@ -1216,6 +1288,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				374D141513839713004022E3 /* Debug */,
+				372562971394A47400B34EFA /* LaunchImage */,
 				374D141613839713004022E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1225,6 +1298,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				374D141813839713004022E3 /* Debug */,
+				372562981394A47400B34EFA /* LaunchImage */,
 				374D141913839713004022E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1234,6 +1308,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				374D141B13839713004022E3 /* Debug */,
+				372562991394A47400B34EFA /* LaunchImage */,
 				374D141C13839713004022E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
