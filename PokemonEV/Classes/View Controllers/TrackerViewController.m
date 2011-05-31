@@ -21,6 +21,7 @@
 #import "NSError+Multiple.h"
 #import "PokemonSpeciesCell.h"
 #import "PokemonListViewController.h"
+#import "Appirater.h"
 
 @interface TrackerViewController()
 
@@ -598,6 +599,12 @@
 	// Save EV change
 	[managedObjectContext save:nil];
 	
+	// If it earned EVs and has either reached the total limit of EVs or reached its EV goals
+	if (([earnedEVs count] > 0) && ([pokemon.currentSpread totalEffort] == MaximumStatEVCount || [pokemon.currentSpread matchesSpread:pokemon.goalSpread]))
+	{
+		[self performSelector:@selector(notifySignificantEvent) withObject:nil afterDelay:1];
+	}
+	
 	[self cancelEditingEVs];
 	
 	for (NSNumber *statKey in earnedEVs)
@@ -607,6 +614,11 @@
 	}
 	
 	[self updateEVCountViews];
+}
+
+- (void)notifySignificantEvent
+{
+	[Appirater userDidSignificantEvent:YES];
 }
 
 - (void)presentPokemonListWithEVs:(BOOL)showEVYield

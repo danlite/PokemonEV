@@ -19,6 +19,8 @@
 		370758C6138B66C70011D998 /* PokemonEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 370758C5138B66C70011D998 /* PokemonEncounter.m */; };
 		370758C9138B66D00011D998 /* _PokemonEncounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 370758C8138B66D00011D998 /* _PokemonEncounter.m */; };
 		370758CC138C05C20011D998 /* PokemonSpeciesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 370758CB138C05C20011D998 /* PokemonSpeciesCell.m */; };
+		370B0B95139456D1000FE2FF /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 370B0B94139456D1000FE2FF /* Appirater.m */; };
+		370B0B97139458D5000FE2FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370B0B96139458D5000FE2FF /* SystemConfiguration.framework */; };
 		371EFEFA138976FF0093C0FC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 371EFEF9138976FF0093C0FC /* Constants.m */; };
 		3745E40A138F042700F31683 /* PokemonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3745E409138F042700F31683 /* PokemonListViewController.m */; };
 		374D13E513839712004022E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E413839712004022E3 /* UIKit.framework */; };
@@ -243,6 +245,9 @@
 		370758C8138B66D00011D998 /* _PokemonEncounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PokemonEncounter.m; sourceTree = "<group>"; };
 		370758CA138C05C20011D998 /* PokemonSpeciesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonSpeciesCell.h; sourceTree = "<group>"; };
 		370758CB138C05C20011D998 /* PokemonSpeciesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonSpeciesCell.m; sourceTree = "<group>"; };
+		370B0B93139456D1000FE2FF /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
+		370B0B94139456D1000FE2FF /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
+		370B0B96139458D5000FE2FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		371EFEF8138976FF0093C0FC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		371EFEF9138976FF0093C0FC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		3745E408138F042700F31683 /* PokemonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListViewController.h; sourceTree = "<group>"; };
@@ -332,6 +337,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				370B0B97139458D5000FE2FF /* SystemConfiguration.framework in Frameworks */,
 				3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */,
 				320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */,
 				320A737074758E53BA54BE95 /* libThree20UINavigator.a in Frameworks */,
@@ -424,6 +430,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		370B0B92139456A0000FE2FF /* Appirater */ = {
+			isa = PBXGroup;
+			children = (
+				370B0B93139456D1000FE2FF /* Appirater.h */,
+				370B0B94139456D1000FE2FF /* Appirater.m */,
+			);
+			name = Appirater;
+			sourceTree = "<group>";
+		};
 		3745E407138F03F800F31683 /* Pokemon List */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,9 +476,10 @@
 				320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */,
 				320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */,
 				320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */,
-				320AF8492C47A4D819F7C450 /* QuartzCore.framework */,
 				320A5A189C235877202780D0 /* Three20Network.xcodeproj */,
 				320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */,
+				320AF8492C47A4D819F7C450 /* QuartzCore.framework */,
+				370B0B96139458D5000FE2FF /* SystemConfiguration.framework */,
 				374D13E413839712004022E3 /* UIKit.framework */,
 				374D13E613839712004022E3 /* Foundation.framework */,
 				374D13E813839712004022E3 /* CoreGraphics.framework */,
@@ -546,6 +562,7 @@
 		374D149413839893004022E3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				370B0B92139456A0000FE2FF /* Appirater */,
 				374D149513839893004022E3 /* Core Data */,
 				374D149C13839893004022E3 /* UIColor+Hex.h */,
 				374D149D13839893004022E3 /* UIColor+Hex.m */,
@@ -979,6 +996,7 @@
 				370758C9138B66D00011D998 /* _PokemonEncounter.m in Sources */,
 				370758CC138C05C20011D998 /* PokemonSpeciesCell.m in Sources */,
 				3745E40A138F042700F31683 /* PokemonListViewController.m in Sources */,
+				370B0B95139456D1000FE2FF /* Appirater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

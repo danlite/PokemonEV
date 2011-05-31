@@ -41,11 +41,22 @@
   return sum;
 }
 
+- (BOOL)matchesSpread:(EVSpread *)spread
+{
+	for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
+	{
+		if ([self effortForStat:i] != [spread effortForStat:i])
+			return NO;
+	}
+	
+	return YES;
+}
+
 - (BOOL)validateForUpdate:(NSError **)error
 {
   BOOL statsValid = [super validateForUpdate:NULL];
   
-  BOOL totalValid = ([self totalEffort] <= 510);
+  BOOL totalValid = ([self totalEffort] <= MaximumTotalEVCount);
   
   if (error != NULL)
   {
