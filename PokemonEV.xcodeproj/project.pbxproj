@@ -71,6 +71,9 @@
 		37A5001C13899B2900B63285 /* EVCountFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A5001B13899B2900B63285 /* EVCountFooterCell.m */; };
 		37A5001E1389A43300B63285 /* EVCountFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A5001D1389A43300B63285 /* EVCountFooterCell.xib */; };
 		37A500A9138AB82200B63285 /* NSError+Multiple.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A500A8138AB82200B63285 /* NSError+Multiple.m */; };
+		37BA35AE1395D34900F18686 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA35AD1395D34800F18686 /* MessageUI.framework */; };
+		37BA35CD1395DD0E00F18686 /* icon-envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BA35CB1395DD0E00F18686 /* icon-envelope.png */; };
+		37BA35CE1395DD0E00F18686 /* icon-envelope@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BA35CC1395DD0E00F18686 /* icon-envelope@2x.png */; };
 		37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF4C13872F6400114493 /* HeldItemListViewController.m */; };
 		37CDAF5D1388647F00114493 /* EVCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF5C1388647F00114493 /* EVCountViewController.m */; };
 		37ECABDD1384783E00C04B45 /* StatFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECABDC1384783E00C04B45 /* StatFilterButton.m */; };
@@ -331,6 +334,9 @@
 		37A5001D1389A43300B63285 /* EVCountFooterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVCountFooterCell.xib; sourceTree = "<group>"; };
 		37A500A7138AB82100B63285 /* NSError+Multiple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Multiple.h"; sourceTree = "<group>"; };
 		37A500A8138AB82200B63285 /* NSError+Multiple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Multiple.m"; sourceTree = "<group>"; };
+		37BA35AD1395D34800F18686 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		37BA35CB1395DD0E00F18686 /* icon-envelope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-envelope.png"; sourceTree = "<group>"; };
+		37BA35CC1395DD0E00F18686 /* icon-envelope@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-envelope@2x.png"; sourceTree = "<group>"; };
 		37CDAF4B13872F6400114493 /* HeldItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListViewController.h; sourceTree = "<group>"; };
 		37CDAF4C13872F6400114493 /* HeldItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeldItemListViewController.m; sourceTree = "<group>"; };
 		37CDAF4E13872F9600114493 /* HeldItemListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListDelegate.h; sourceTree = "<group>"; };
@@ -345,6 +351,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37BA35AE1395D34900F18686 /* MessageUI.framework in Frameworks */,
 				370B0B97139458D5000FE2FF /* SystemConfiguration.framework in Frameworks */,
 				3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */,
 				320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */,
@@ -486,6 +493,7 @@
 				320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */,
 				320A5A189C235877202780D0 /* Three20Network.xcodeproj */,
 				320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */,
+				37BA35AD1395D34800F18686 /* MessageUI.framework */,
 				320AF8492C47A4D819F7C450 /* QuartzCore.framework */,
 				370B0B96139458D5000FE2FF /* SystemConfiguration.framework */,
 				374D13E413839712004022E3 /* UIKit.framework */,
@@ -674,6 +682,8 @@
 		374D14C113839AE2004022E3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				37BA35CB1395DD0E00F18686 /* icon-envelope.png */,
+				37BA35CC1395DD0E00F18686 /* icon-envelope@2x.png */,
 				3725629313949C2000B34EFA /* icon-list.png */,
 				3725629413949C2000B34EFA /* icon-list@2x.png */,
 				3725629E1394A77300B34EFA /* Default.png */,
@@ -945,6 +955,8 @@
 				3725629613949C2000B34EFA /* icon-list@2x.png in Resources */,
 				372562A01394A77300B34EFA /* Default.png in Resources */,
 				372562A11394A77300B34EFA /* Default@2x.png in Resources */,
+				37BA35CD1395DD0E00F18686 /* icon-envelope.png in Resources */,
+				37BA35CE1395DD0E00F18686 /* icon-envelope@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

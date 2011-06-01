@@ -77,6 +77,7 @@
 	}
 	
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-list"] style:UIBarButtonItemStyleBordered target:self action:@selector(listTapped)] autorelease];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-envelope"] style:UIBarButtonItemStyleBordered target:self action:@selector(emailTapped)] autorelease];
   
   [self refreshView];
 }
@@ -113,13 +114,19 @@
 
 - (void)refreshView
 {
-	if (!pokemon)
+	if (LaunchImage)
+	{
+		self.navigationItem.title = @"Loading...";
+	}
+	else if (pokemon)
+	{
+		self.navigationItem.title = pokemon.species.name;
+	}
+	else
 	{
 		self.navigationItem.title = @"";
 		return;
 	}
-	
-	self.navigationItem.title = pokemon.species.name;
 	
 	HeldItem *item = pokemon.heldItem;
 	
@@ -655,6 +662,35 @@
       [managedObjectContext rollback];
     }
 	}
+}
+
+#pragma mark - Email
+
+- (void)emailTapped
+{
+	if (![MFMailComposeViewController canSendMail])
+	{
+		[[[[UIAlertView alloc] initWithTitle:@"Cannot Send Email" message:@"Email is not set up on this device." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+		return;
+	}
+	
+	MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
+	[composer setMailComposeDelegate:self];
+	
+	[composer setSubject:[NSString stringWithFormat:@"%@ Feedback", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey]]];
+	[composer setToRecipients:[NSArray arrayWithObject:@"dan@appsbydan.com"]];
+	
+	[self.navigationController presentModalViewController:composer animated:YES];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+	if (result == MFMailComposeResultFailed)
+	{
+		[[[[UIAlertView alloc] initWithTitle:@"Email Failed" message:@"There was an error sending your email. Please try again later." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+	}
+	
+	[self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - Memory management
