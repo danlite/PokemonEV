@@ -1197,7 +1197,7 @@
 			};
 			name = Debug;
 		};
-		374D141613839713004022E3 /* Release */ = {
+		374D141613839713004022E3 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -1217,7 +1217,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7DBA1371-72E4-4ABB-901F-A0EA41908910";
 				SDKROOT = iphoneos;
 			};
-			name = Release;
+			name = AdHoc;
 		};
 		374D141813839713004022E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1234,7 +1234,7 @@
 			};
 			name = Debug;
 		};
-		374D141913839713004022E3 /* Release */ = {
+		374D141913839713004022E3 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1247,7 +1247,7 @@
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
-			name = Release;
+			name = AdHoc;
 		};
 		374D141B13839713004022E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1271,7 +1271,7 @@
 			};
 			name = Debug;
 		};
-		374D141C13839713004022E3 /* Release */ = {
+		374D141C13839713004022E3 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1291,7 +1291,66 @@
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
-			name = Release;
+			name = AdHoc;
+		};
+		37BA35CF139762D000F18686 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Daniel Lichty";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)/../three20",
+					"$(BUILT_PRODUCTS_DIR)/../../three20",
+					"$(SOURCE_ROOT)/../three20/Build/Products/three20",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F878E85-D602-45A5-95B8-261554702BAC";
+				SDKROOT = iphoneos;
+			};
+			name = AppStore;
+		};
+		37BA35D0139762D000F18686 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PokemonEV/PokemonEV-Prefix.pch";
+				INFOPLIST_FILE = "PokemonEV/PokemonEV-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStore;
+		};
+		37BA35D1139762D000F18686 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PokemonEV.app/PokemonEV";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PokemonEVTests/PokemonEVTests-Prefix.pch";
+				INFOPLIST_FILE = "PokemonEVTests/PokemonEVTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = AppStore;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1301,30 +1360,33 @@
 			buildConfigurations = (
 				374D141513839713004022E3 /* Debug */,
 				372562971394A47400B34EFA /* LaunchImage */,
-				374D141613839713004022E3 /* Release */,
+				374D141613839713004022E3 /* AdHoc */,
+				37BA35CF139762D000F18686 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AdHoc;
 		};
 		374D141713839713004022E3 /* Build configuration list for PBXNativeTarget "EVTrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				374D141813839713004022E3 /* Debug */,
 				372562981394A47400B34EFA /* LaunchImage */,
-				374D141913839713004022E3 /* Release */,
+				374D141913839713004022E3 /* AdHoc */,
+				37BA35D0139762D000F18686 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AdHoc;
 		};
 		374D141A13839713004022E3 /* Build configuration list for PBXNativeTarget "PokemonEVTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				374D141B13839713004022E3 /* Debug */,
 				372562991394A47400B34EFA /* LaunchImage */,
-				374D141C13839713004022E3 /* Release */,
+				374D141C13839713004022E3 /* AdHoc */,
+				37BA35D1139762D000F18686 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AdHoc;
 		};
 /* End XCConfigurationList section */
 
