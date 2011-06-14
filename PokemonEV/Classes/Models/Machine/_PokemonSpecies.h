@@ -71,8 +71,8 @@
 
 
 
-@property (nonatomic, retain) Pokemon* pokemon;
-//- (BOOL)validatePokemon:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, retain) NSSet* pokemon;
+- (NSMutableSet*)pokemonSet;
 
 
 
@@ -90,6 +90,11 @@
 @end
 
 @interface _PokemonSpecies (CoreDataGeneratedAccessors)
+
+- (void)addPokemon:(NSSet*)value_;
+- (void)removePokemon:(NSSet*)value_;
+- (void)addPokemonObject:(Pokemon*)value_;
+- (void)removePokemonObject:(Pokemon*)value_;
 
 - (void)addEncounters:(NSSet*)value_;
 - (void)removeEncounters:(NSSet*)value_;
@@ -132,8 +137,8 @@
 
 
 
-- (Pokemon*)primitivePokemon;
-- (void)setPrimitivePokemon:(Pokemon*)value;
+- (NSMutableSet*)primitivePokemon;
+- (void)setPrimitivePokemon:(NSMutableSet*)value;
 
 
 

@@ -72,6 +72,15 @@
 @dynamic pokemon;
 
 	
+- (NSMutableSet*)pokemonSet {
+	[self willAccessValueForKey:@"pokemon"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"pokemon"];
+	[self didAccessValueForKey:@"pokemon"];
+	return result;
+}
+	
+
+
 
 
 

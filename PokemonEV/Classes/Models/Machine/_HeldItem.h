@@ -44,14 +44,20 @@
 
 
 
-@property (nonatomic, retain) Pokemon* pokemon;
-//- (BOOL)validatePokemon:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, retain) NSSet* pokemon;
+- (NSMutableSet*)pokemonSet;
+
 
 
 
 @end
 
 @interface _HeldItem (CoreDataGeneratedAccessors)
+
+- (void)addPokemon:(NSSet*)value_;
+- (void)removePokemon:(NSSet*)value_;
+- (void)addPokemonObject:(Pokemon*)value_;
+- (void)removePokemonObject:(Pokemon*)value_;
 
 @end
 
@@ -74,8 +80,8 @@
 
 
 
-- (Pokemon*)primitivePokemon;
-- (void)setPrimitivePokemon:(Pokemon*)value;
+- (NSMutableSet*)primitivePokemon;
+- (void)setPrimitivePokemon:(NSMutableSet*)value;
 
 
 @end

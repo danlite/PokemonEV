@@ -321,6 +321,7 @@
 		377DEC951385A96100EEBBC5 /* _Pokemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Pokemon.h; sourceTree = "<group>"; };
 		377DEC961385A96100EEBBC5 /* _Pokemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Pokemon.m; sourceTree = "<group>"; };
 		377DF1BD1385B24D00EEBBC5 /* SpeciesListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeciesListDelegate.h; sourceTree = "<group>"; };
+		378419C613A7EDA300E17956 /* PokemonEV 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PokemonEV 3.xcdatamodel"; sourceTree = "<group>"; };
 		378886C81392C2A200523380 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = PokemonEV/iTunesArtwork; sourceTree = SOURCE_ROOT; };
 		378886CA1392C90B00523380 /* PokemonEV-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PokemonEV-Icon.png"; sourceTree = "<group>"; };
 		378886CB1392C90B00523380 /* PokemonEV-IconRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PokemonEV-IconRetina.png"; sourceTree = "<group>"; };
@@ -1394,10 +1395,11 @@
 		374D13FB13839712004022E3 /* PokemonEV.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				378419C613A7EDA300E17956 /* PokemonEV 3.xcdatamodel */,
 				37576CCF1390636500F0603A /* PokemonEV 2.xcdatamodel */,
 				374D13FC13839712004022E3 /* PokemonEV.xcdatamodel */,
 			);
-			currentVersion = 37576CCF1390636500F0603A /* PokemonEV 2.xcdatamodel */;
+			currentVersion = 378419C613A7EDA300E17956 /* PokemonEV 3.xcdatamodel */;
 			path = PokemonEV.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
