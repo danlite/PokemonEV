@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>vitamins</key>
+	<array>
+		<string>HP Up</string>
+		<string>Protein</string>
+		<string>Iron</string>
+		<string>Calcium</string>
+		<string>Zinc</string>
+		<string>Carbos</string>
+	</array>
+	<key>wings</key>
+	<array>
+		<string>Health</string>
+		<string>Muscle</string>
+		<string>Resist</string>
+		<string>Genius</string>
+		<string>Clever</string>
+		<string>Swift</string>
+	</array>
+	<key>berries</key>
+	<array>
+		<string>Pomeg</string>
+		<string>Kelpsy</string>
+		<string>Qualot</string>
+		<string>Hondew</string>
+		<string>Grepa</string>
+		<string>Tamato</string>
+	</array>
+</dict>
+</plist>

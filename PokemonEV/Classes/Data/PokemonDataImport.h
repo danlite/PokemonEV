@@ -12,5 +12,6 @@
 @interface PokemonDataImport : NSObject
 
 + (BOOL)importPokemonData:(NSManagedObjectContext *)managedObjectContext;
++ (BOOL)importConsumableItemData:(NSManagedObjectContext *)managedObjectContext;
 
 @end

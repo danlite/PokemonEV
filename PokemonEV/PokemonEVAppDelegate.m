@@ -31,6 +31,9 @@
 	
 	BOOL importedData = [PokemonDataImport importPokemonData:[self managedObjectContext]];
 	DLog(@"Imported data: %@", importedData ? @"YES" : @"NO");
+	
+	importedData = [PokemonDataImport importConsumableItemData:[self managedObjectContext]];
+	DLog(@"Imported item data: %@", importedData ? @"YES" : @"NO");
   
   Pokemon *aPokemon = [[self managedObjectContext]
 											 fetchSingleObjectForEntityName:[Pokemon entityName]

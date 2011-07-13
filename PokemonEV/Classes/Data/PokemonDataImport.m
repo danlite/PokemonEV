@@ -10,6 +10,10 @@
 #import "PokemonSpecies.h"
 #import "EVSpread.h"
 #import "HeldItem.h"
+#import "ConsumableItem.h"
+#import "WingItem.h"
+#import "BerryItem.h"
+#import "VitaminItem.h"
 
 @implementation PokemonDataImport
 
@@ -59,6 +63,57 @@
 	if (![managedObjectContext save:&error])
 	{
 		DLog(@"Unable to load initial Pokemon data: %@", error);
+		[managedObjectContext rollback];
+		return NO;
+	}
+	
+	return YES;
+}
+
++ (void)importItems:(NSArray *)itemNames ofClass:(Class)ItemClass inContext:(NSManagedObjectContext *)managedObjectContext
+{
+	NSInteger statID = PokemonStatFirst;
+	for (NSString *itemName in itemNames)
+	{
+		NSString *suffix = @"";
+		if (ItemClass == [WingItem class])
+			suffix = @" Wing";
+		else if (ItemClass == [BerryItem class])
+			suffix = @" Berry";
+		
+		ConsumableItem *item = [ItemClass insertInManagedObjectContext:managedObjectContext];
+		item.statValue = statID++;
+		item.name = [NSString stringWithFormat:@"%@%@", itemName, suffix];
+	}
+}
+
++ (BOOL)importConsumableItemData:(NSManagedObjectContext *)managedObjectContext
+{
+	NSArray *consumableItems = [managedObjectContext fetchAllObjectsForEntityName:[ConsumableItem entityName] withPredicate:nil];
+	if ([consumableItems count])
+		return NO;
+	
+	NSDictionary *consumableItemData = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"consumable_items" ofType:@"plist"]];
+	
+	// Import vitamins
+	NSString *keyName = @"vitamins";
+	NSArray *items = [consumableItemData objectForKey:keyName];
+	[self importItems:items ofClass:[VitaminItem class] inContext:managedObjectContext];
+	
+	// Import wings
+	keyName = @"wings";
+	items = [consumableItemData objectForKey:keyName];
+	[self importItems:items ofClass:[WingItem class] inContext:managedObjectContext];
+	
+	// Import berries
+	keyName = @"berries";
+	items = [consumableItemData objectForKey:keyName];
+	[self importItems:items ofClass:[BerryItem class] inContext:managedObjectContext];
+	
+	NSError *error;
+	if (![managedObjectContext save:&error])
+	{
+		DLog(@"Unable to load consumable item data: %@", error);
 		[managedObjectContext rollback];
 		return NO;
 	}
