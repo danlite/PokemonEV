@@ -152,7 +152,8 @@
 	
 	UIBarButtonItem *heldItemButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heldItemButton] autorelease];
 	UIBarButtonItem *pokerusButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:pokerusButton] autorelease];
-	self.toolbarItems = [NSArray arrayWithObjects:heldItemButtonItem, pokerusButtonItem, nil];
+	UIBarButtonItem *itemButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Use Item" style:UIBarButtonItemStyleBordered target:self action:@selector(useItemButtonTapped)] autorelease];
+	self.toolbarItems = [NSArray arrayWithObjects:heldItemButtonItem, FlexibleSpace, pokerusButtonItem, FlexibleSpace, itemButtonItem, nil];
 }
 
 - (void)showPokerusActionSheet:(BOOL)applyPokerus
@@ -249,6 +250,14 @@
 - (void)pokerusTapped:(UIButton *)button
 {
 	[self showPokerusActionSheet:!button.selected];
+}
+
+- (void)useItemButtonTapped
+{
+	NSString *title = [NSString stringWithFormat:@"Use an item on %@:", pokemon.species.name];
+	UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:title delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Berries", @"Vitamins", @"Wings", nil];
+	
+	[sheet showFromToolbar:self.navigationController.toolbar];
 }
 
 - (void)heldItemButtonTapped
