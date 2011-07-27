@@ -22,6 +22,8 @@
 	NSManagedObjectContext *managedObjectContext;
 }
 
+@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+
 - (id)initWithItemType:(ConsumableItemType)type pokemon:(Pokemon *)aPokemon;
 
 @end

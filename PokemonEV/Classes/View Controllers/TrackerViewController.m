@@ -45,6 +45,7 @@ NSInteger const UseItemActionSheetTag = 102;
 @synthesize evCountFooterCell;
 @synthesize editingContext, editingEVSpread;
 @synthesize recentEncounters;
+@synthesize useItemListVC;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -84,6 +85,17 @@ NSInteger const UseItemActionSheetTag = 102;
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-envelope"] style:UIBarButtonItemStyleBordered target:self action:@selector(emailTapped)] autorelease];
   
   [self refreshView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	if (changesFromConsumableItem)
+	{
+		[self updateEVCountViews];
+		changesFromConsumableItem = NO;
+	}
 }
 
 - (void)loadRecentEncounters
@@ -211,9 +223,13 @@ NSInteger const UseItemActionSheetTag = 102;
 	{
 		if (buttonIndex != actionSheet.cancelButtonIndex)
 		{
-			UseItemListViewController *itemListVC = [[UseItemListViewController alloc] initWithItemType:buttonIndex pokemon:pokemon];
-			[self.navigationController pushViewController:itemListVC animated:YES];
-			[itemListVC release];
+			self.useItemListVC = [[UseItemListViewController alloc] initWithItemType:buttonIndex pokemon:pokemon];
+			[[NSNotificationCenter defaultCenter] addObserver:self
+																							 selector:@selector(editingContextDidSave:)
+																									 name:NSManagedObjectContextDidSaveNotification
+																								 object:useItemListVC.managedObjectContext];
+			[self.navigationController pushViewController:useItemListVC animated:YES];
+			[useItemListVC release];
 		}
 	}
 }
@@ -222,6 +238,13 @@ NSInteger const UseItemActionSheetTag = 102;
 
 - (void)editingContextDidSave:(NSNotification *)note
 {
+	NSManagedObjectContext *otherContext = [note object];
+	
+	if (otherContext == useItemListVC.managedObjectContext)
+	{
+		changesFromConsumableItem = YES;
+	}
+	
 	[managedObjectContext mergeChangesFromContextDidSaveNotification:note];
 	
 	[pokemon setModified];
@@ -742,6 +765,7 @@ NSInteger const UseItemActionSheetTag = 102;
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
+	[useItemListVC release];
 	[recentEncounters release];
 	[pokerusButton release];
   [editingContext release];

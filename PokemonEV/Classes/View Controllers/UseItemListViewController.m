@@ -20,6 +20,8 @@
 
 @implementation UseItemListViewController
 
+@synthesize managedObjectContext;
+
 - (id)initWithItemType:(ConsumableItemType)type pokemon:(Pokemon *)aPokemon
 {
 	if ((self = [super initWithStyle:UITableViewStyleGrouped]))
@@ -29,7 +31,7 @@
 		managedObjectContext = [[NSManagedObjectContext alloc] init];
 		[managedObjectContext setPersistentStoreCoordinator:[[aPokemon managedObjectContext] persistentStoreCoordinator]];
 		pokemon = [[managedObjectContext fetchSingleObjectForEntityName:[Pokemon entityName] withPredicate:[NSPredicate predicateWithFormat:@"self = %@", aPokemon]] retain];
-		
+				
 		self.hidesBottomBarWhenPushed = YES;
 	}
 	return self;
@@ -81,32 +83,6 @@
 	
 	[items release];
 	items = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	// Return YES for supported orientations
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Table view data source
@@ -180,6 +156,31 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	ConsumableItem *item = [items objectAtIndex:indexPath.row];
+	
+	if (![pokemon canConsumeItem:item])
+		return;
+	
+	NSInteger change = [pokemon useItem:item];
+	DLog(@"Changed by %d", change);
+	
+	NSError *error;
+	if (![managedObjectContext save:&error])
+	{
+		DLog(@"Unable to use item: %@", error);
+		[managedObjectContext rollback];
+	}
+	
+	if ([pokemon.currentSpread totalEffort] == MaximumTotalEVCount)
+	{
+		[tableView reloadData];
+	}
+	else
+	{
+		[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	}
 }
 
 @end

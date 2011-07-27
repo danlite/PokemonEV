@@ -25,6 +25,7 @@
 {
 	PokemonStatID statID = item.statValue;
 	NSInteger currentEV = [self.currentSpread effortForStat:statID];
+	NSInteger currentTotalEVs = [self.currentSpread totalEffort];
 	
 	if ([item isKindOfClass:[BerryItem class]])
 	{
@@ -32,11 +33,11 @@
 	}
 	else if ([item isKindOfClass:[VitaminItem class]])
 	{
-		return (currentEV + VitaminEVChange) <= 100;
+		return (currentEV + VitaminEVChange) <= MaximumVitaminEVAllotment && currentTotalEVs < MaximumTotalEVCount;
 	}
 	else if ([item isKindOfClass:[WingItem class]])
 	{
-		return currentEV < MaximumStatEVCount;
+		return (currentEV + WingEVChange) <= MaximumStatEVCount && currentTotalEVs < MaximumTotalEVCount;
 	}
 	
 	return NO;
@@ -61,14 +62,19 @@
 		}
 		else
 		{
-			[currentSpread setEffort:currentEV - BerryEVChange forStat:statID];
-			return -BerryEVChange;
+			NSInteger change = MIN(BerryEVChange, currentEV);
+			[currentSpread setEffort:currentEV - change forStat:statID];
+			return -change;
 		}
 	}
 	else if ([item isKindOfClass:[VitaminItem class]])
 	{
-		[currentSpread setEffort:currentEV + VitaminEVChange forStat:statID];
-		return VitaminEVChange;
+		NSInteger currentTotal = [currentSpread totalEffort];
+		NSInteger newTotal = MIN(currentTotal + VitaminEVChange, MaximumTotalEVCount);
+		NSInteger difference = newTotal - currentTotal;
+		
+		[currentSpread setEffort:currentEV + difference forStat:statID];
+		return difference;
 	}
 	else if ([item isKindOfClass:[WingItem class]])
 	{

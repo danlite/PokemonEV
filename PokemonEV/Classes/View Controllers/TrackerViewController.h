@@ -15,6 +15,7 @@
 @class Pokemon;
 @class EVCountFooterCell;
 @class EVSpread;
+@class UseItemListViewController;
 
 @interface TrackerViewController : UITableViewController <PokemonListDelegate, SpeciesListDelegate, HeldItemListDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 {
@@ -34,6 +35,9 @@
 	CALayer *goalHighlight;
 	
 	NSArray *recentEncounters;
+	
+	UseItemListViewController *useItemListVC;
+	BOOL changesFromConsumableItem;
 }
 
 @property (nonatomic, retain) Pokemon *pokemon;
@@ -43,6 +47,8 @@
 @property (nonatomic, retain) EVSpread *editingEVSpread;
 
 @property (nonatomic, retain) NSArray *recentEncounters;
+
+@property (nonatomic, retain) UseItemListViewController *useItemListVC;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
 - (id)initWithPokemon:(Pokemon *)pkmn;
