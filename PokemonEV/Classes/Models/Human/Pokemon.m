@@ -122,11 +122,20 @@
 	}
 	
 	// Add new EVs to current spread
+	BOOL oneStatEarned = [effortDict count] == 1;
 	for (NSNumber *statKey in [effortDict allKeys])
 	{
 		PokemonStatID statID = [statKey intValue];
 		NSInteger originalValue = [self.currentSpread effortForStat:statID];
 		NSInteger earnedEVs = [[effortDict objectForKey:statKey] intValue];
+		
+		if (oneStatEarned)
+		{
+			NSInteger currentTotal = [self.currentSpread totalEffort];
+			NSInteger newTotal = MIN(MaximumTotalEVCount, earnedEVs + currentTotal);
+			earnedEVs = newTotal - currentTotal;
+		}
+		
 		NSInteger newValue = originalValue + earnedEVs;
 		if (newValue > MaximumStatEVCount)
 		{
