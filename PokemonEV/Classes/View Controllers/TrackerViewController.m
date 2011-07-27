@@ -166,9 +166,13 @@ NSInteger const UseItemActionSheetTag = 102;
 	[pokerusButton addTarget:self action:@selector(pokerusTapped:) forControlEvents:UIControlEventTouchUpInside];
 	pokerusButton.selected = pokemon.pokerusValue;
 	
+	TTButton *useItemButton = [TTButton buttonWithStyle:@"toolbarButton:" title:@"Use Item"];
+	useItemButton.frame = CGRectMake(0, 0, 72, 33);
+	[useItemButton addTarget:self action:@selector(useItemButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+	
 	UIBarButtonItem *heldItemButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:heldItemButton] autorelease];
 	UIBarButtonItem *pokerusButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:pokerusButton] autorelease];
-	UIBarButtonItem *itemButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Use Item" style:UIBarButtonItemStyleBordered target:self action:@selector(useItemButtonTapped)] autorelease];
+	UIBarButtonItem *itemButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:useItemButton] autorelease];
 	self.toolbarItems = [NSArray arrayWithObjects:heldItemButtonItem, FlexibleSpace, pokerusButtonItem, FlexibleSpace, itemButtonItem, nil];
 }
 
