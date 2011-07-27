@@ -15,6 +15,7 @@
 #import "ConsumableItemCell.h"
 #import "EVSpread.h"
 #import "PokemonStats.h"
+#import "Three20Style/UIColorAdditions.h"
 
 #define BerrySwitchTag 101
 
@@ -32,6 +33,12 @@
 		[managedObjectContext setPersistentStoreCoordinator:[[aPokemon managedObjectContext] persistentStoreCoordinator]];
 		pokemon = [[managedObjectContext fetchSingleObjectForEntityName:[Pokemon entityName] withPredicate:[NSPredicate predicateWithFormat:@"self = %@", aPokemon]] retain];
 		
+		usageCounts = [[NSMutableArray array] retain];
+		for (int i = 0; i <= PokemonStatLast; i++)
+		{
+			[usageCounts addObject:[NSNumber numberWithInt:0]];
+		}
+		
 		self.hidesBottomBarWhenPushed = YES;
 	}
 	return self;
@@ -39,6 +46,7 @@
 
 - (void)dealloc
 {
+	[usageCounts release];
 	[pokemon release];
 	[items release];
 	[managedObjectContext release];
@@ -126,6 +134,19 @@
 	cell.statNameLabel.text = [PokemonStats nameForStat:stat];
 	cell.itemNameLabel.text = item.name;
 	
+	UIColor *statColour = [PokemonStats colourForStat:stat];
+	cell.backgroundColor = [UIColor colorWithHue:[statColour hue] saturation:0.15 value:0.9 alpha:1.0];
+	
+	NSInteger usage = [(NSNumber *)[usageCounts objectAtIndex:stat] intValue];
+	if (usage == 0)
+	{
+		cell.usageLabel.text = @"";
+	}
+	else
+	{
+		cell.usageLabel.text = [NSString stringWithFormat:@"Used %d", usage];
+	}
+	
 	cell.selectionStyle = valid ? UITableViewCellSelectionStyleBlue : UITableViewCellSelectionStyleNone;
 	
 	for (UILabel *label in [NSArray arrayWithObjects:cell.evLabel, cell.statNameLabel, cell.itemNameLabel, nil])
@@ -186,6 +207,11 @@
 	
 	NSInteger change = [pokemon useItem:item];
 	DLog(@"Changed by %d", change);
+	
+	PokemonStatID stat = indexPath.row;
+	
+	NSInteger newCount = [(NSNumber *)[usageCounts objectAtIndex:stat] intValue] + 1;
+	[usageCounts replaceObjectAtIndex:stat withObject:[NSNumber numberWithInt:newCount]];
 	
 	NSError *error;
 	if (![managedObjectContext save:&error])

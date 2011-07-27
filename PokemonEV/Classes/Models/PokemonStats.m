@@ -81,7 +81,7 @@ static NSArray *statArray;
 		case PokemonStatAttack: return [UIColor colorWithHex:0xe75857];
 		case PokemonStatDefense: return [UIColor colorWithHex:0xe7a147];
 		case PokemonStatSpAttack: return [UIColor colorWithHex:0xc3498d];
-		case PokemonStatSpDefense: return [UIColor colorWithHex:0xe0cc43];
+		case PokemonStatSpDefense: return [UIColor colorWithHex:0xe0dc43];
 		case PokemonStatSpeed: return [UIColor colorWithHex:0x2bb7da];
 	}
 	

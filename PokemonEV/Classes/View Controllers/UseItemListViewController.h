@@ -16,6 +16,7 @@
 	Pokemon *pokemon;
 	
 	NSArray *items;
+	NSMutableArray *usageCounts;
 	
 	IBOutlet UIView *berryFooterView;
 	

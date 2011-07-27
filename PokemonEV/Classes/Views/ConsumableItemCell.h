@@ -14,8 +14,9 @@
 	UILabel *evLabel;
 	UILabel *statNameLabel;
 	UILabel *itemNameLabel;
+	UILabel *usageLabel;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *evLabel, *statNameLabel, *itemNameLabel;
+@property (nonatomic, retain) IBOutlet UILabel *evLabel, *statNameLabel, *itemNameLabel, *usageLabel;
 
 @end

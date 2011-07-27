@@ -11,10 +11,11 @@
 
 @implementation ConsumableItemCell
 
-@synthesize evLabel, statNameLabel, itemNameLabel;
+@synthesize evLabel, statNameLabel, itemNameLabel, usageLabel;
 
 - (void)dealloc
 {
+	[usageLabel release];
 	[evLabel release];
 	[statNameLabel release];
 	[itemNameLabel release];
