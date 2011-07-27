@@ -166,7 +166,7 @@ NSInteger const UseItemActionSheetTag = 102;
 	[pokerusButton addTarget:self action:@selector(pokerusTapped:) forControlEvents:UIControlEventTouchUpInside];
 	pokerusButton.selected = pokemon.pokerusValue;
 	
-	TTButton *useItemButton = [TTButton buttonWithStyle:@"toolbarButton:" title:@"Use Item"];
+	TTButton *useItemButton = [TTButton buttonWithStyle:@"imageTitleToolbarButton:" title:@"Use Item"];
 	useItemButton.frame = CGRectMake(0, 0, 72, 33);
 	[useItemButton addTarget:self action:@selector(useItemButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 	

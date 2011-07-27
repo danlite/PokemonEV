@@ -31,7 +31,7 @@
 		managedObjectContext = [[NSManagedObjectContext alloc] init];
 		[managedObjectContext setPersistentStoreCoordinator:[[aPokemon managedObjectContext] persistentStoreCoordinator]];
 		pokemon = [[managedObjectContext fetchSingleObjectForEntityName:[Pokemon entityName] withPredicate:[NSPredicate predicateWithFormat:@"self = %@", aPokemon]] retain];
-				
+		
 		self.hidesBottomBarWhenPushed = YES;
 	}
 	return self;
@@ -111,9 +111,19 @@
 	
 	PokemonStatID stat = indexPath.row;
 	
+	ConsumableItem *item = [items objectAtIndex:stat];
+	BOOL valid = [pokemon canConsumeItem:item];
+	
 	cell.evLabel.text = [NSString stringWithFormat:@"%d / %d", [pokemon.currentSpread effortForStat:stat], [pokemon.goalSpread effortForStat:stat]];
 	cell.statNameLabel.text = [PokemonStats nameForStat:stat];
-	cell.itemNameLabel.text = [(ConsumableItem *)[items objectAtIndex:stat] name];
+	cell.itemNameLabel.text = item.name;
+	
+	cell.selectionStyle = valid ? UITableViewCellSelectionStyleBlue : UITableViewCellSelectionStyleNone;
+	
+	for (UILabel *label in [NSArray arrayWithObjects:cell.evLabel, cell.statNameLabel, cell.itemNameLabel, nil])
+	{
+		label.textColor = valid ? [UIColor blackColor] : [UIColor lightGrayColor];
+	}
 	
 	return cell;
 }
