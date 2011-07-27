@@ -69,7 +69,8 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">In all games after Emerald, if EVs are greater than 100, using a berry reduces EVs to 100.</string>
+						<string type="base64-UTF8" key="IBUIText">SW4gYWxsIGdhbWVzIGFmdGVyIEVtZXJhbGQsCmlmIEVWcyBhcmUgZ3JlYXRlciB0aGFuIDEwMCwKdXNp
+bmcgYSBiZXJyeSBsb3dlcnMgRVZzIHRvIDEwMC4</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">12</double>
