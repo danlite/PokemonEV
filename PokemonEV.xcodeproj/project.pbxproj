@@ -83,9 +83,13 @@
 		37BA35AE1395D34900F18686 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA35AD1395D34800F18686 /* MessageUI.framework */; };
 		37BA35CD1395DD0E00F18686 /* icon-envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BA35CB1395DD0E00F18686 /* icon-envelope.png */; };
 		37BA35CE1395DD0E00F18686 /* icon-envelope@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BA35CC1395DD0E00F18686 /* icon-envelope@2x.png */; };
+		37CBA4DF13DF21D100CA76A4 /* ConsumableItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37CBA4DE13DF21D100CA76A4 /* ConsumableItemCell.xib */; };
+		37CBA4E113DF510900CA76A4 /* BerryListFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37CBA4E013DF510900CA76A4 /* BerryListFooterView.xib */; };
 		37CDAF4D13872F6400114493 /* HeldItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF4C13872F6400114493 /* HeldItemListViewController.m */; };
 		37CDAF5D1388647F00114493 /* EVCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAF5C1388647F00114493 /* EVCountViewController.m */; };
+		37D0666213D8866000BA5676 /* ConsumableItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D0666113D8866000BA5676 /* ConsumableItemCell.m */; };
 		37ECABDD1384783E00C04B45 /* StatFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECABDC1384783E00C04B45 /* StatFilterButton.m */; };
+		37F32EC613D0E07E00F369C7 /* UseItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F32EC513D0E07E00F369C7 /* UseItemListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,8 +268,8 @@
 		370B0B93139456D1000FE2FF /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		370B0B94139456D1000FE2FF /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		370B0B96139458D5000FE2FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		371EFEF8138976FF0093C0FC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		371EFEF9138976FF0093C0FC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		371EFEF8138976FF0093C0FC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		371EFEF9138976FF0093C0FC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Constants.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3725629313949C2000B34EFA /* icon-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-list.png"; sourceTree = "<group>"; };
 		3725629413949C2000B34EFA /* icon-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-list@2x.png"; sourceTree = "<group>"; };
 		3725629E1394A77300B34EFA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -322,7 +326,7 @@
 		377DEC8A1385A94F00EEBBC5 /* HeldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeldItem.h; path = PokemonEV/Classes/Models/Human/HeldItem.h; sourceTree = SOURCE_ROOT; };
 		377DEC8B1385A94F00EEBBC5 /* HeldItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeldItem.m; path = PokemonEV/Classes/Models/Human/HeldItem.m; sourceTree = SOURCE_ROOT; };
 		377DEC8C1385A94F00EEBBC5 /* Pokemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pokemon.h; path = PokemonEV/Classes/Models/Human/Pokemon.h; sourceTree = SOURCE_ROOT; };
-		377DEC8D1385A94F00EEBBC5 /* Pokemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pokemon.m; path = PokemonEV/Classes/Models/Human/Pokemon.m; sourceTree = SOURCE_ROOT; };
+		377DEC8D1385A94F00EEBBC5 /* Pokemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = Pokemon.m; path = PokemonEV/Classes/Models/Human/Pokemon.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		377DEC911385A96100EEBBC5 /* _EVSpread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _EVSpread.h; sourceTree = "<group>"; };
 		377DEC921385A96100EEBBC5 /* _EVSpread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _EVSpread.m; sourceTree = "<group>"; };
 		377DEC931385A96100EEBBC5 /* _HeldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _HeldItem.h; sourceTree = "<group>"; };
@@ -364,13 +368,19 @@
 		37BA35AD1395D34800F18686 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		37BA35CB1395DD0E00F18686 /* icon-envelope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-envelope.png"; sourceTree = "<group>"; };
 		37BA35CC1395DD0E00F18686 /* icon-envelope@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-envelope@2x.png"; sourceTree = "<group>"; };
+		37CBA4DE13DF21D100CA76A4 /* ConsumableItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsumableItemCell.xib; sourceTree = "<group>"; };
+		37CBA4E013DF510900CA76A4 /* BerryListFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BerryListFooterView.xib; sourceTree = "<group>"; };
 		37CDAF4B13872F6400114493 /* HeldItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListViewController.h; sourceTree = "<group>"; };
 		37CDAF4C13872F6400114493 /* HeldItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeldItemListViewController.m; sourceTree = "<group>"; };
 		37CDAF4E13872F9600114493 /* HeldItemListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListDelegate.h; sourceTree = "<group>"; };
 		37CDAF5B1388647F00114493 /* EVCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCountViewController.h; sourceTree = "<group>"; };
 		37CDAF5C1388647F00114493 /* EVCountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCountViewController.m; sourceTree = "<group>"; };
+		37D0666013D8866000BA5676 /* ConsumableItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumableItemCell.h; sourceTree = "<group>"; };
+		37D0666113D8866000BA5676 /* ConsumableItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumableItemCell.m; sourceTree = "<group>"; };
 		37ECABDB1384783E00C04B45 /* StatFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatFilterButton.h; sourceTree = "<group>"; };
 		37ECABDC1384783E00C04B45 /* StatFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatFilterButton.m; sourceTree = "<group>"; };
+		37F32EC413D0E07E00F369C7 /* UseItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseItemListViewController.h; sourceTree = "<group>"; };
+		37F32EC513D0E07E00F369C7 /* UseItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseItemListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -697,6 +707,7 @@
 			children = (
 				37CDAF571388641100114493 /* Main View */,
 				37CDAF591388642A00114493 /* Held Item List */,
+				37F32EC313D0E05300F369C7 /* Consumable Item List */,
 				37CDAF581388641B00114493 /* Species List */,
 				3745E407138F03F800F31683 /* Pokemon List */,
 				37CDAF5B1388647F00114493 /* EVCountViewController.h */,
@@ -719,6 +730,10 @@
 				37A5001D1389A43300B63285 /* EVCountFooterCell.xib */,
 				370758CA138C05C20011D998 /* PokemonSpeciesCell.h */,
 				370758CB138C05C20011D998 /* PokemonSpeciesCell.m */,
+				37D0666013D8866000BA5676 /* ConsumableItemCell.h */,
+				37D0666113D8866000BA5676 /* ConsumableItemCell.m */,
+				37CBA4DE13DF21D100CA76A4 /* ConsumableItemCell.xib */,
+				37CBA4E013DF510900CA76A4 /* BerryListFooterView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -775,6 +790,15 @@
 				37CDAF4C13872F6400114493 /* HeldItemListViewController.m */,
 			);
 			name = "Held Item List";
+			sourceTree = "<group>";
+		};
+		37F32EC313D0E05300F369C7 /* Consumable Item List */ = {
+			isa = PBXGroup;
+			children = (
+				37F32EC413D0E07E00F369C7 /* UseItemListViewController.h */,
+				37F32EC513D0E07E00F369C7 /* UseItemListViewController.m */,
+			);
+			name = "Consumable Item List";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1002,6 +1026,8 @@
 				37BA35CD1395DD0E00F18686 /* icon-envelope.png in Resources */,
 				37BA35CE1395DD0E00F18686 /* icon-envelope@2x.png in Resources */,
 				37841A3A13A7FEA300E17956 /* consumable_items.plist in Resources */,
+				37CBA4DF13DF21D100CA76A4 /* ConsumableItemCell.xib in Resources */,
+				37CBA4E113DF510900CA76A4 /* BerryListFooterView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1078,6 +1104,8 @@
 				37841A5013A8019900E17956 /* ConsumableItem.m in Sources */,
 				37841A5113A8019900E17956 /* VitaminItem.m in Sources */,
 				37841A5213A8019900E17956 /* WingItem.m in Sources */,
+				37F32EC613D0E07E00F369C7 /* UseItemListViewController.m in Sources */,
+				37D0666213D8866000BA5676 /* ConsumableItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,6 +2,10 @@
 #import "PokemonSpecies.h"
 #import "HeldItem.h"
 #import "EVSpread.h"
+#import "ConsumableItem.h"
+#import "BerryItem.h"
+#import "VitaminItem.h"
+#import "WingItem.h"
 
 @implementation Pokemon
 
@@ -15,6 +19,64 @@
 	p.lastModified = [NSDate date];
 	
 	return p;
+}
+
+- (BOOL)canConsumeItem:(ConsumableItem *)item
+{
+	PokemonStatID statID = item.statValue;
+	NSInteger currentEV = [self.currentSpread effortForStat:statID];
+	
+	if ([item isKindOfClass:[BerryItem class]])
+	{
+		return currentEV > 0;
+	}
+	else if ([item isKindOfClass:[VitaminItem class]])
+	{
+		return (currentEV + VitaminEVChange) <= 100;
+	}
+	else if ([item isKindOfClass:[WingItem class]])
+	{
+		return currentEV < MaximumStatEVCount;
+	}
+	
+	return NO;
+}
+
+- (NSInteger)useItem:(ConsumableItem *)item
+{
+	PokemonStatID statID = item.statValue;
+	EVSpread *currentSpread = self.currentSpread;
+	NSInteger currentEV = [currentSpread effortForStat:statID];
+	
+	if (![self canConsumeItem:item])
+		return 0;
+	
+	if ([item isKindOfClass:[BerryItem class]])
+	{
+		if (currentEV > BerryEVCutoffAmount && true) // true = Gen 4/5 berries
+		{
+			NSInteger newValue = BerryEVCutoffAmount;
+			[currentSpread setEffort:newValue forStat:statID];
+			return newValue - currentEV;
+		}
+		else
+		{
+			[currentSpread setEffort:currentEV - BerryEVChange forStat:statID];
+			return -BerryEVChange;
+		}
+	}
+	else if ([item isKindOfClass:[VitaminItem class]])
+	{
+		[currentSpread setEffort:currentEV + VitaminEVChange forStat:statID];
+		return VitaminEVChange;
+	}
+	else if ([item isKindOfClass:[WingItem class]])
+	{
+		[currentSpread setEffort:currentEV + WingEVChange forStat:statID];
+		return WingEVChange;
+	}
+	
+	return 0;
 }
 
 - (NSDictionary *)addEffortFromPokemon:(PokemonSpecies *)species

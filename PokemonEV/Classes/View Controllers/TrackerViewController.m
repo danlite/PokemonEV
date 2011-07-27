@@ -21,7 +21,11 @@
 #import "NSError+Multiple.h"
 #import "PokemonSpeciesCell.h"
 #import "PokemonListViewController.h"
+#import "UseItemListViewController.h"
 #import "Appirater.h"
+
+NSInteger const PokerusActionSheetTag = 101;
+NSInteger const UseItemActionSheetTag = 102;
 
 @interface TrackerViewController()
 
@@ -166,6 +170,7 @@
 													cancelButtonTitle:@"Cancel"
 													destructiveButtonTitle:nil
 													otherButtonTitles:action, nil];
+	sheet.tag = PokerusActionSheetTag;
 	
 	[sheet showFromToolbar:self.navigationController.toolbar];
 	[sheet release];
@@ -183,21 +188,33 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-	if (buttonIndex != actionSheet.cancelButtonIndex)
+	if (actionSheet.tag == PokerusActionSheetTag)
 	{
-		BOOL newValue = !pokerusButton.selected;
-		
-		pokemon.pokerusValue = newValue;
-		[pokemon setModified];
-		
-		NSError *error;
-		if (![managedObjectContext save:&error])
+		if (buttonIndex != actionSheet.cancelButtonIndex)
 		{
-			DLog(@"Unable to set Pokerus status: %@", error);
-			[managedObjectContext rollback];
+			BOOL newValue = !pokerusButton.selected;
+			
+			pokemon.pokerusValue = newValue;
+			[pokemon setModified];
+			
+			NSError *error;
+			if (![managedObjectContext save:&error])
+			{
+				DLog(@"Unable to set Pokerus status: %@", error);
+				[managedObjectContext rollback];
+			}
+			
+			pokerusButton.selected = newValue;
 		}
-		
-		pokerusButton.selected = newValue;
+	}
+	else if (actionSheet.tag == UseItemActionSheetTag)
+	{
+		if (buttonIndex != actionSheet.cancelButtonIndex)
+		{
+			UseItemListViewController *itemListVC = [[UseItemListViewController alloc] initWithItemType:buttonIndex pokemon:pokemon];
+			[self.navigationController pushViewController:itemListVC animated:YES];
+			[itemListVC release];
+		}
 	}
 }
 
@@ -255,7 +272,8 @@
 - (void)useItemButtonTapped
 {
 	NSString *title = [NSString stringWithFormat:@"Use an item on %@:", pokemon.species.name];
-	UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:title delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Berries", @"Vitamins", @"Wings", nil];
+	UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Berries", @"Vitamins", @"Wings", nil];
+	sheet.tag = UseItemActionSheetTag;
 	
 	[sheet showFromToolbar:self.navigationController.toolbar];
 }

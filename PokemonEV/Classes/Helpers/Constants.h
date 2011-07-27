@@ -28,12 +28,23 @@ typedef enum PokemonStatID
 	PokemonStatLast      = PokemonStatSpeed
 } PokemonStatID;
 
+typedef enum ConsumableItemType
+{
+	BerryItemType,
+	VitaminItemType,
+	WingItemType
+} ConsumableItemType;
 
 extern NSString * const EVCountInputChanged;
 
 extern NSInteger const MaximumStatEVCount;
 extern NSInteger const MaximumTotalEVCount;
 extern NSInteger const PowerItemEVAddition;
+extern NSInteger const MaximumVitaminEVAllotment;
+extern NSInteger const VitaminEVChange;
+extern NSInteger const WingEVChange;
+extern NSInteger const BerryEVChange;
+extern NSInteger const BerryEVCutoffAmount;
 
 
 @interface Constants : NSObject {
