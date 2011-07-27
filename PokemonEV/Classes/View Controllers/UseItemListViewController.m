@@ -177,7 +177,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	
 	ConsumableItem *item = [items objectAtIndex:indexPath.row];
 	
@@ -200,7 +200,7 @@
 	}
 	else
 	{
-		[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 	}
 }
 

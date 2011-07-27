@@ -1212,7 +1212,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DBA054A2-DCCA-47F7-8B67-39BF199B77D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D7D7C17-5C2A-431D-A32D-8A6646ED06DF";
 				SDKROOT = iphoneos;
 			};
 			name = LaunchImage;
@@ -1273,7 +1273,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DBA054A2-DCCA-47F7-8B67-39BF199B77D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D7D7C17-5C2A-431D-A32D-8A6646ED06DF";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

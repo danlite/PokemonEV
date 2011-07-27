@@ -130,9 +130,11 @@ NSInteger const UseItemActionSheetTag = 102;
 
 - (void)refreshView
 {
+	self.navigationItem.title = @"";
+	
 	if (LaunchImage)
 	{
-		self.navigationItem.title = @"Loading...";
+		self.pokemon = nil;
 	}
 	else if (pokemon)
 	{
@@ -140,7 +142,6 @@ NSInteger const UseItemActionSheetTag = 102;
 	}
 	else
 	{
-		self.navigationItem.title = @"";
 		return;
 	}
 	
@@ -166,7 +167,7 @@ NSInteger const UseItemActionSheetTag = 102;
 	[pokerusButton addTarget:self action:@selector(pokerusTapped:) forControlEvents:UIControlEventTouchUpInside];
 	pokerusButton.selected = pokemon.pokerusValue;
 	
-	TTButton *useItemButton = [TTButton buttonWithStyle:@"imageTitleToolbarButton:" title:@"Use Item"];
+	TTButton *useItemButton = [TTButton buttonWithStyle:@"imageTitleToolbarButton:" title:@"Use item"];
 	useItemButton.frame = CGRectMake(0, 0, 72, 33);
 	[useItemButton addTarget:self action:@selector(useItemButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 	
@@ -544,7 +545,7 @@ NSInteger const UseItemActionSheetTag = 102;
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return @"Remove";
+	return @"Hide";
 }
 
 #pragma mark - Held item list

@@ -87,6 +87,14 @@
   
   [self updateEVTotalViews];
   [self updateTitleLabel];
+	
+	if (LaunchImage)
+	{
+		while ([self.contentView.subviews count] > 1)
+		{
+			[[self.contentView.subviews objectAtIndex:1] removeFromSuperview];
+		}
+	}
 }
 
 - (void)updateEVTotalViews
