@@ -29,6 +29,9 @@
 	EVStyleSheet *styles = [[EVStyleSheet alloc] init];
 	[TTStyleSheet setGlobalStyleSheet:styles];
 	
+	NSDictionary *defaultsDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:UseModernBerryMechanics];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
+	
 	BOOL importedData = [PokemonDataImport importPokemonData:[self managedObjectContext]];
 	DLog(@"Imported data: %@", importedData ? @"YES" : @"NO");
 	

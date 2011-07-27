@@ -54,7 +54,7 @@
 	
 	if ([item isKindOfClass:[BerryItem class]])
 	{
-		if (currentEV > BerryEVCutoffAmount && true) // true = Gen 4/5 berries
+		if (currentEV > BerryEVCutoffAmount && [[NSUserDefaults standardUserDefaults] boolForKey:UseModernBerryMechanics])
 		{
 			NSInteger newValue = BerryEVCutoffAmount;
 			[currentSpread setEffort:newValue forStat:statID];

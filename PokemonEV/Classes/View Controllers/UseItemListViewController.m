@@ -85,6 +85,14 @@
 	items = nil;
 }
 
+#pragma mark - Control handlers
+
+- (void)toggleBerryMechanics:(UISwitch *)control
+{
+	[[NSUserDefaults standardUserDefaults] setBool:control.on forKey:UseModernBerryMechanics];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -151,6 +159,9 @@
 		{
 			[[NSBundle mainBundle] loadNibNamed:@"BerryListFooterView" owner:self options:nil];
 		}
+		
+		UISwitch *berrySwitch = (UISwitch *)[berryFooterView viewWithTag:BerrySwitchTag];
+		[berrySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:UseModernBerryMechanics]];
 		
 		return berryFooterView;
 	}

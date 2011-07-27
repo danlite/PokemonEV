@@ -25,5 +25,6 @@
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 - (id)initWithItemType:(ConsumableItemType)type pokemon:(Pokemon *)aPokemon;
+- (IBAction)toggleBerryMechanics:(UISwitch *)control;
 
 @end

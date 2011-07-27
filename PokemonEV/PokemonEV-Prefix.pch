@@ -21,6 +21,7 @@
 #pragma mark - Defaults
 
 #define SelectedStatFilter @"EV_SelectedStatFilter"
+#define UseModernBerryMechanics @"EV_ModernBerryMechanics"
 
 #pragma mark - Convenience
 
