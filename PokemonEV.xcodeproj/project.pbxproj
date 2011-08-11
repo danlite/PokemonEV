@@ -284,10 +284,10 @@
 		374D13EA13839712004022E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		374D13EE13839712004022E3 /* PokemonEV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PokemonEV-Info.plist"; sourceTree = "<group>"; };
 		374D13F013839712004022E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		374D13F213839712004022E3 /* PokemonEV-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PokemonEV-Prefix.pch"; sourceTree = "<group>"; };
+		374D13F213839712004022E3 /* PokemonEV-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "PokemonEV-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		374D13F313839712004022E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		374D13F513839712004022E3 /* PokemonEVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokemonEVAppDelegate.h; sourceTree = "<group>"; };
-		374D13F613839712004022E3 /* PokemonEVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokemonEVAppDelegate.m; sourceTree = "<group>"; };
+		374D13F613839712004022E3 /* PokemonEVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PokemonEVAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		374D13F913839712004022E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		374D13FC13839712004022E3 /* PokemonEV.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonEV.xcdatamodel; sourceTree = "<group>"; };
 		374D140313839713004022E3 /* PokemonEVTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonEVTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -380,7 +380,7 @@
 		37ECABDB1384783E00C04B45 /* StatFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatFilterButton.h; sourceTree = "<group>"; };
 		37ECABDC1384783E00C04B45 /* StatFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatFilterButton.m; sourceTree = "<group>"; };
 		37F32EC413D0E07E00F369C7 /* UseItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseItemListViewController.h; sourceTree = "<group>"; };
-		37F32EC513D0E07E00F369C7 /* UseItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseItemListViewController.m; sourceTree = "<group>"; };
+		37F32EC513D0E07E00F369C7 /* UseItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UseItemListViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

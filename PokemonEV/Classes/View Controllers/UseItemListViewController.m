@@ -97,7 +97,7 @@
 
 - (void)toggleBerryMechanics:(UISwitch *)control
 {
-	[[NSUserDefaults standardUserDefaults] setBool:control.on forKey:UseModernBerryMechanics];
+	[[NSUserDefaults standardUserDefaults] setBool:control.on forKey:UseGen4BerryMechanics];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -182,7 +182,7 @@
 		}
 		
 		UISwitch *berrySwitch = (UISwitch *)[berryFooterView viewWithTag:BerrySwitchTag];
-		[berrySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:UseModernBerryMechanics]];
+		[berrySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:UseGen4BerryMechanics]];
 		
 		return berryFooterView;
 	}

@@ -54,7 +54,7 @@
 	
 	if ([item isKindOfClass:[BerryItem class]])
 	{
-		if (currentEV > BerryEVCutoffAmount && [[NSUserDefaults standardUserDefaults] boolForKey:UseModernBerryMechanics])
+		if (currentEV > BerryEVCutoffAmount && [[NSUserDefaults standardUserDefaults] boolForKey:UseGen4BerryMechanics])
 		{
 			NSInteger newValue = BerryEVCutoffAmount;
 			[currentSpread setEffort:newValue forStat:statID];
