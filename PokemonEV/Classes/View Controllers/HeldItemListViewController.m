@@ -13,6 +13,7 @@
 @implementation HeldItemListViewController
 
 @synthesize delegate;
+@synthesize initialHeldItem;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -72,13 +73,15 @@
     cell.textLabel.text = item.name;
     NSInteger statID = item.trainingStatValue;
     cell.detailTextLabel.text = (statID == -1) ?
-    @"x2 EVs" : [NSString stringWithFormat:@"+4 %@ EVs", [PokemonStats nameForStat:statID length:15]];
+			@"x2 EVs" : [NSString stringWithFormat:@"+4 %@ EVs", [PokemonStats nameForStat:statID length:15]];
+		cell.accessoryType = (initialHeldItem == item) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
   }
   else if (indexPath.section == 1)
   {
     cell.textLabel.text = @"No held item";
     cell.detailTextLabel.text = @"";
     cell.imageView.image = nil;
+		cell.accessoryType = (initialHeldItem == nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
   }
   
   return cell;
@@ -100,6 +103,7 @@
 
 - (void)dealloc
 {
+	[initialHeldItem release];
   [managedObjectContext release];
   [allItems release];
   [super dealloc];

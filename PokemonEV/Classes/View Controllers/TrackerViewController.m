@@ -310,6 +310,7 @@ NSInteger const UseItemActionSheetTag = 102;
 {
   HeldItemListViewController *listVC = [[HeldItemListViewController alloc] initWithManagedObjectContext:managedObjectContext];
   listVC.delegate = self;
+	listVC.initialHeldItem = pokemon.heldItem;
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
   [self.navigationController presentModalViewController:navController animated:YES];
   [navController release];
