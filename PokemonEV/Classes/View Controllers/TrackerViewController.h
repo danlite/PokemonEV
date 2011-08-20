@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MessageUI/MessageUI.h>
 #import "SpeciesListDelegate.h"
 #import "HeldItemListDelegate.h"
 #import "PokemonListDelegate.h"
@@ -17,7 +16,7 @@
 @class EVSpread;
 @class UseItemListViewController;
 
-@interface TrackerViewController : UITableViewController <PokemonListDelegate, SpeciesListDelegate, HeldItemListDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+@interface TrackerViewController : UITableViewController <PokemonListDelegate, SpeciesListDelegate, HeldItemListDelegate, UIActionSheetDelegate>
 {
 	NSManagedObjectContext *managedObjectContext;
 	

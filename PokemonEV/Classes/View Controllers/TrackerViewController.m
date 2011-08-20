@@ -22,6 +22,7 @@
 #import "PokemonSpeciesCell.h"
 #import "PokemonListViewController.h"
 #import "UseItemListViewController.h"
+#import "InfoViewController.h"
 #import "Appirater.h"
 
 NSInteger const PokerusActionSheetTag = 101;
@@ -82,7 +83,13 @@ NSInteger const UseItemActionSheetTag = 102;
 	}
 	
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-list"] style:UIBarButtonItemStyleBordered target:self action:@selector(listTapped)] autorelease];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-envelope"] style:UIBarButtonItemStyleBordered target:self action:@selector(emailTapped)] autorelease];
+	
+	UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+	[infoButton addTarget:self action:@selector(infoTapped) forControlEvents:UIControlEventTouchUpInside];
+	UIView *infoButtonContainer = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, infoButton.frame.size.width * 1.5, infoButton.frame.size.height)] autorelease];
+	[infoButtonContainer addSubview:infoButton];
+	
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButtonContainer] autorelease];
   
   [self refreshView];
 }
@@ -278,6 +285,13 @@ NSInteger const UseItemActionSheetTag = 102;
 }
 
 #pragma mark - Event handlers
+
+- (void)infoTapped
+{
+	InfoViewController *infoVC = [[InfoViewController alloc] init];
+	[self.navigationController pushViewController:infoVC animated:YES];
+	[infoVC release];
+}
 
 - (void)listTapped
 {
@@ -718,35 +732,6 @@ NSInteger const UseItemActionSheetTag = 102;
       [managedObjectContext rollback];
     }
 	}
-}
-
-#pragma mark - Email
-
-- (void)emailTapped
-{
-	if (![MFMailComposeViewController canSendMail])
-	{
-		[[[[UIAlertView alloc] initWithTitle:@"Cannot Send Email" message:@"Email is not set up on this device." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
-		return;
-	}
-	
-	MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
-	[composer setMailComposeDelegate:self];
-	
-	[composer setSubject:[NSString stringWithFormat:@"%@ Feedback", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey]]];
-	[composer setToRecipients:[NSArray arrayWithObject:@"dan@appsbydan.com"]];
-	
-	[self.navigationController presentModalViewController:composer animated:YES];
-}
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
-	if (result == MFMailComposeResultFailed)
-	{
-		[[[[UIAlertView alloc] initWithTitle:@"Email Failed" message:@"There was an error sending your email. Please try again later." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
-	}
-	
-	[self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - Memory management
