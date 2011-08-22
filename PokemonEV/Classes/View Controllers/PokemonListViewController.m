@@ -138,6 +138,7 @@ NSString * const CacheName = @"PokemonList";
 	Pokemon *pokemon = (Pokemon *)[fetchedResults objectAtIndexPath:indexPath];
 	
 	cell.textLabel.text = pokemon.species.name;
+	cell.imageView.image = [UIImage imageNamed:pokemon.species.iconFilename];
 	
 	NSMutableArray *effortValues = [NSMutableArray array];
 	EVSpread *spreadToShow = (showGoalEVs) ? pokemon.goalSpread : pokemon.currentSpread;

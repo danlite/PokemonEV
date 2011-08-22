@@ -137,7 +137,7 @@ NSInteger const UseItemActionSheetTag = 102;
 
 - (void)refreshView
 {
-	self.navigationItem.title = @"";
+	self.navigationItem.titleView = nil;
 	
 	if (LaunchImage)
 	{
@@ -145,7 +145,20 @@ NSInteger const UseItemActionSheetTag = 102;
 	}
 	else if (pokemon)
 	{
-		self.navigationItem.title = pokemon.species.name;
+		UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		titleButton.frame = CGRectMake(0, 0, 160, 40);
+		titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 8, 8);
+		
+		titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+		titleButton.titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+		titleButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+		titleButton.titleLabel.textColor = [UIColor whiteColor];
+		titleButton.titleLabel.highlightedTextColor = [UIColor darkGrayColor];
+		titleButton.reversesTitleShadowWhenHighlighted = YES;
+		
+		[titleButton setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
+		[titleButton setTitle:pokemon.species.name forState:UIControlStateNormal];
+		self.navigationItem.titleView = titleButton;
 	}
 	else
 	{
@@ -160,6 +173,7 @@ NSInteger const UseItemActionSheetTag = 102;
 	
 	if (item)
 	{
+		[heldItemButton setImage:[NSString stringWithFormat:@"bundle://%@.png", item.identifier] forState:UIControlStateNormal];
 		[heldItemButton setTitle:item.name forState:UIControlStateNormal];
 	}
 	else
@@ -740,7 +754,7 @@ NSInteger const UseItemActionSheetTag = 102;
 {
 	// Releases the view if it doesn't have a superview.
 	[super didReceiveMemoryWarning];
-
+	
 	// Release any cached data, images, etc. that aren't in use.
 }
 
