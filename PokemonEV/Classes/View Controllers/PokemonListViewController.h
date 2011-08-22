@@ -19,9 +19,7 @@
 	NSFetchedResultsController *fetchedResults;
 	
 	Pokemon *currentPokemon;
-	
-	BOOL showGoalEVs;
-	
+		
 	id<PokemonListDelegate> delegate;
 }
 

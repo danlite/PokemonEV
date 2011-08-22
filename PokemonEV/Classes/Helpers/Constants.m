@@ -17,6 +17,8 @@ NSInteger const VitaminEVChange = 10;
 NSInteger const WingEVChange = 1;
 NSInteger const BerryEVChange = 10;
 NSInteger const BerryEVCutoffAmount = 100;
+NSInteger const ShowGoalEVs = 0;
+NSInteger const ShowCurrentEVs = 1;
 
 @implementation Constants
 

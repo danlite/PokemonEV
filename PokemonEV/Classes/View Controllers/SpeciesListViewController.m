@@ -45,11 +45,14 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+- (BOOL)hidesBottomBarWhenPushed
+{
+	return !showEVYield;
+}
+
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	
-	self.navigationController.toolbarHidden = !showEVYield;
   
 	self.title = @"Select a Pokémon";
 	self.navigationItem.prompt = changeSpecies ? @"Change the species of the current Pokémon" :
@@ -60,24 +63,27 @@
 		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closeTapped)] autorelease];
 	}
 	
-	NSMutableArray *toolbarItems = [NSMutableArray arrayWithObject:FlexibleSpace];
-	NSMutableArray *buttons = [NSMutableArray array];
-  for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
-  {
-		StatFilterButton *button = [[StatFilterButton alloc] initWithStat:i];
-		[buttons addObject:button];
+	if (showEVYield)
+	{
+		NSMutableArray *toolbarItems = [NSMutableArray arrayWithObject:FlexibleSpace];
+		NSMutableArray *buttons = [NSMutableArray array];
+		for (int i = PokemonStatFirst; i <= PokemonStatLast; i++)
+		{
+			StatFilterButton *button = [[StatFilterButton alloc] initWithStat:i];
+			[buttons addObject:button];
+			
+			if (filterByStat && [selectedStatFilter intValue] == i)
+				button.selected = YES;
+			
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statButtonSelection:) name:StatFilterButtonSelected object:button];
+			
+			[toolbarItems addObject:[[[UIBarButtonItem alloc] initWithCustomView:button] autorelease]];
+			[toolbarItems addObject:FlexibleSpace];
+		}
+		self.statFilterButtons = buttons;
 		
-		if (filterByStat && [selectedStatFilter intValue] == i)
-			button.selected = YES;
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statButtonSelection:) name:StatFilterButtonSelected object:button];
-		
-		[toolbarItems addObject:[[[UIBarButtonItem alloc] initWithCustomView:button] autorelease]];
-		[toolbarItems addObject:FlexibleSpace];
-  }
-	self.statFilterButtons = buttons;
-	
-	self.toolbarItems = toolbarItems;
+		self.toolbarItems = toolbarItems;
+	}
 	
 	[self fetchFilteredResults];
 	
@@ -255,7 +261,8 @@
 
 - (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
 {
-	[self.navigationController setToolbarHidden:YES animated:YES];
+	if (showEVYield)
+		[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
@@ -273,8 +280,8 @@
 	{
 		if ([[[fetchedSearchResults sections] objectAtIndex:0] numberOfObjects] == 1)
 		{
-//			PokemonSpecies *pokemon = [fetchedSearchResults objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-//			DLog(@"%@", [pokemon fullName]);
+			//			PokemonSpecies *pokemon = [fetchedSearchResults objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+			//			DLog(@"%@", [pokemon fullName]);
 		}
 	}
 }
@@ -316,15 +323,15 @@
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc. that aren't in use.
+	// Releases the view if it doesn't have a superview.
+	[super didReceiveMemoryWarning];
+	
+	// Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+	// Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+	// For example: self.myOutlet = nil;
 }
 
 

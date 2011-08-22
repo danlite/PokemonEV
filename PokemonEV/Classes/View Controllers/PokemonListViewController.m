@@ -30,7 +30,6 @@ NSString * const CacheName = @"PokemonList";
 	if ((self = [super initWithStyle:UITableViewStylePlain]))
 	{
 		managedObjectContext = [context retain];
-		showGoalEVs = YES;
 	}
 	return self;
 }
@@ -43,7 +42,7 @@ NSString * const CacheName = @"PokemonList";
 	
 	self.title = @"Your Pokémon";
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closeTapped)] autorelease];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTapped)] autorelease];
+	self.navigationItem.rightBarButtonItem = [self editButtonItem];
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"List" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	
 	NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
@@ -54,6 +53,23 @@ NSString * const CacheName = @"PokemonList";
 	fetchedResults = [[NSFetchedResultsController alloc] initWithFetchRequest:fetch managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:CacheName];
 	
 	[fetch release];
+	
+	UISegmentedControl *segments = [[[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Goal EVs", @"Current EVs", nil]] autorelease];
+	segments.segmentedControlStyle = UISegmentedControlStyleBar;
+	segments.frame = CGRectMake(0, 0, 220, segments.frame.size.height);
+	[segments setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:ShowCurrentOrGoalEVs]];
+	[segments addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
+	
+	UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTapped)] autorelease];
+	addButton.style = UIBarButtonItemStyleBordered;
+	
+	self.toolbarItems = [NSArray arrayWithObjects:
+											 FlexibleSpace,
+											 [[[UIBarButtonItem alloc] initWithCustomView:segments] autorelease],
+											 FlexibleSpace,
+											 addButton,
+											 FlexibleSpace,
+											 nil];
 	
 	[self refreshPokemonList];
 }
@@ -73,6 +89,14 @@ NSString * const CacheName = @"PokemonList";
 }
 
 #pragma mark - Control handlers
+
+- (void)segmentChanged:(UISegmentedControl *)control
+{
+	[[NSUserDefaults standardUserDefaults] setInteger:control.selectedSegmentIndex forKey:ShowCurrentOrGoalEVs];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
+	[self.tableView reloadData];
+}
 
 - (void)closeTapped
 {
@@ -137,8 +161,10 @@ NSString * const CacheName = @"PokemonList";
 	
 	Pokemon *pokemon = (Pokemon *)[fetchedResults objectAtIndexPath:indexPath];
 	
-	cell.textLabel.text = pokemon.name;
+	cell.textLabel.text = pokemon.species.name;
 	cell.imageView.image = [UIImage imageNamed:pokemon.species.iconFilename];
+	
+	BOOL showGoalEVs = [[NSUserDefaults standardUserDefaults] integerForKey:ShowCurrentOrGoalEVs] == ShowGoalEVs;
 	
 	NSMutableArray *effortValues = [NSMutableArray array];
 	EVSpread *spreadToShow = (showGoalEVs) ? pokemon.goalSpread : pokemon.currentSpread;
@@ -146,9 +172,9 @@ NSString * const CacheName = @"PokemonList";
 	{
 		[effortValues addObject:[NSString stringWithFormat:@"%d", [spreadToShow effortForStat:i]]];
 	}
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",
-															 showGoalEVs ? @"Goal" : @"Current",
-															 [effortValues componentsJoinedByString:@"/"]];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@",
+															 [effortValues componentsJoinedByString:@"/"],
+															 pokemon.nickname ? [NSString stringWithFormat:@"(%@)", pokemon.nickname] : @""];
 	
 	return cell;
 }

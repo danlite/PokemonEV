@@ -353,8 +353,11 @@ NSInteger const PokemonNicknameFieldTag = 104;
 	PokemonListViewController *listVC = [[PokemonListViewController alloc] initWithManagedObjectContext:managedObjectContext];
 	listVC.delegate = self;
 	listVC.currentPokemon = pokemon;
+	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
+	navController.toolbarHidden = NO;
 	[self.navigationController presentModalViewController:navController animated:YES];
+	
 	[navController release];
 	[listVC release];
 }

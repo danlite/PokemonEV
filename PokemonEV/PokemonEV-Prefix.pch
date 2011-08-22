@@ -22,6 +22,7 @@
 
 #define SelectedStatFilter @"EV_SelectedStatFilter"
 #define UseGen4BerryMechanics @"EV_Gen4BerryMechanics"
+#define ShowCurrentOrGoalEVs @"EV_ShowCurrentOrGoalEVs"
 
 #pragma mark - Convenience
 

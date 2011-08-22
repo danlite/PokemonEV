@@ -29,7 +29,10 @@
 	EVStyleSheet *styles = [[EVStyleSheet alloc] init];
 	[TTStyleSheet setGlobalStyleSheet:styles];
 	
-	NSDictionary *defaultsDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:UseGen4BerryMechanics];
+	NSDictionary *defaultsDict = [NSDictionary dictionaryWithObjectsAndKeys:
+																[NSNumber numberWithBool:NO], UseGen4BerryMechanics,
+																[NSNumber numberWithInt:ShowGoalEVs], ShowCurrentOrGoalEVs,
+																nil];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
 	
 	BOOL importedData = [PokemonDataImport importPokemonData:[self managedObjectContext]];

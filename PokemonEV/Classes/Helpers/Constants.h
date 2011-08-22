@@ -37,6 +37,8 @@ typedef enum ConsumableItemType
 
 extern NSString * const EVCountInputChanged;
 
+extern NSInteger const ShowCurrentEVs;
+extern NSInteger const ShowGoalEVs;
 extern NSInteger const MaximumStatEVCount;
 extern NSInteger const MaximumTotalEVCount;
 extern NSInteger const PowerItemEVAddition;
