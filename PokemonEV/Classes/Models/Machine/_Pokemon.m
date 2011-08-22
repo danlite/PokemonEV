@@ -62,6 +62,13 @@
 
 
 
+@dynamic nickname;
+
+
+
+
+
+
 @dynamic encounters;
 
 	

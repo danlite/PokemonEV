@@ -21,6 +21,14 @@
 	return p;
 }
 
+- (NSString *)name
+{
+	if (self.nickname)
+		return self.nickname;
+	
+	return self.species.name;
+}
+
 - (BOOL)canConsumeItem:(ConsumableItem *)item
 {
 	PokemonStatID statID = item.statValue;

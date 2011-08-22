@@ -16,7 +16,7 @@
 @class EVSpread;
 @class UseItemListViewController;
 
-@interface TrackerViewController : UITableViewController <PokemonListDelegate, SpeciesListDelegate, HeldItemListDelegate, UIActionSheetDelegate>
+@interface TrackerViewController : UITableViewController <PokemonListDelegate, SpeciesListDelegate, HeldItemListDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 {
 	NSManagedObjectContext *managedObjectContext;
 	
@@ -37,6 +37,8 @@
 	
 	UseItemListViewController *useItemListVC;
 	BOOL changesFromConsumableItem;
+	
+	BOOL showingPokemonNameSection;
 }
 
 @property (nonatomic, retain) Pokemon *pokemon;

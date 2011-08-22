@@ -20,6 +20,7 @@
 
 @implementation SpeciesListViewController
 
+@synthesize changeSpecies;
 @synthesize allowsClose;
 @synthesize fetchedSearchResults;
 @synthesize showEVYield;
@@ -51,7 +52,9 @@
 	self.navigationController.toolbarHidden = !showEVYield;
   
 	self.title = @"Select a Pokémon";
-	self.navigationItem.prompt = showEVYield ? @"Record the EV gain from battling a Pokémon" : @"Begin EV training a new Pokémon";
+	self.navigationItem.prompt = changeSpecies ? @"Change the species of the current Pokémon" :
+	(showEVYield ? @"Record the EV gain from battling a Pokémon" : @"Begin EV training a new Pokémon");
+	
 	if (allowsClose)
 	{
 		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closeTapped)] autorelease];

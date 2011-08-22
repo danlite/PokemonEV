@@ -27,6 +27,8 @@
 
 NSInteger const PokerusActionSheetTag = 101;
 NSInteger const UseItemActionSheetTag = 102;
+NSInteger const PokemonSpeciesButtonTag = 103;
+NSInteger const PokemonNicknameFieldTag = 104;
 
 @interface TrackerViewController()
 
@@ -135,6 +137,27 @@ NSInteger const UseItemActionSheetTag = 102;
   evCountFooterCell.current = [pokemon.currentSpread totalEffort];
 }
 
+- (void)refreshTitleView
+{
+	UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	titleButton.frame = CGRectMake(0, 0, 200, 40);
+	titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 8, 8);
+	
+	titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+	titleButton.titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+	titleButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+	titleButton.titleLabel.textColor = [UIColor whiteColor];
+	titleButton.titleLabel.highlightedTextColor = [UIColor darkGrayColor];
+	titleButton.reversesTitleShadowWhenHighlighted = YES;
+	
+	[titleButton addTarget:self action:@selector(titleTapped) forControlEvents:UIControlEventTouchUpInside];
+	
+	[titleButton setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
+	[titleButton setTitle:pokemon.name forState:UIControlStateNormal];
+	self.navigationItem.titleView = titleButton;
+	
+}
+
 - (void)refreshView
 {
 	self.navigationItem.titleView = nil;
@@ -145,20 +168,7 @@ NSInteger const UseItemActionSheetTag = 102;
 	}
 	else if (pokemon)
 	{
-		UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		titleButton.frame = CGRectMake(0, 0, 160, 40);
-		titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 8, 8);
-		
-		titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-		titleButton.titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
-		titleButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
-		titleButton.titleLabel.textColor = [UIColor whiteColor];
-		titleButton.titleLabel.highlightedTextColor = [UIColor darkGrayColor];
-		titleButton.reversesTitleShadowWhenHighlighted = YES;
-		
-		[titleButton setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
-		[titleButton setTitle:pokemon.species.name forState:UIControlStateNormal];
-		self.navigationItem.titleView = titleButton;
+		[self refreshTitleView];
 	}
 	else
 	{
@@ -300,6 +310,35 @@ NSInteger const UseItemActionSheetTag = 102;
 
 #pragma mark - Event handlers
 
+- (void)speciesTapped
+{
+	SpeciesListViewController *speciesVC = [[SpeciesListViewController alloc] initWithManagedObjectContext:managedObjectContext];
+	speciesVC.delegate = self;
+	speciesVC.changeSpecies = YES;
+	speciesVC.showEVYield = NO;
+	speciesVC.allowsClose = YES;
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:speciesVC];
+	
+	[self presentModalViewController:navController animated:YES];
+	
+	[navController release];
+	[speciesVC release];
+}
+
+- (void)titleTapped
+{
+	showingPokemonNameSection = !showingPokemonNameSection;
+	if (showingPokemonNameSection)
+	{
+		[self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+	}
+	else
+	{
+		[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+	}
+}
+
 - (void)infoTapped
 {
 	InfoViewController *infoVC = [[InfoViewController alloc] init];
@@ -394,17 +433,46 @@ NSInteger const UseItemActionSheetTag = 102;
   [self changeEVMode:EVCountModeEditGoal];
 }
 
+#pragma mark - Text field
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[textField resignFirstResponder];
+	
+	if ([textField.text length])
+		pokemon.nickname = textField.text;
+	else
+		pokemon.nickname = nil;
+	
+	NSError *error;
+	
+	if (![managedObjectContext save:&error])
+	{
+		DLog(@"Unable to change nickname: %@", error);
+		[managedObjectContext rollback];
+	}
+	
+	[self refreshTitleView];
+	
+	return NO;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 2;
+	return showingPokemonNameSection ? 3 : 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+	if (showingPokemonNameSection)
+		section -= 1;
+	
 	switch (section)
 	{
+		case -1:
+			return 1;
 		case 0:
 			return 2;
 		case 1:
@@ -416,7 +484,28 @@ NSInteger const UseItemActionSheetTag = 102;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 0)
+	NSInteger section = indexPath.section;
+	
+	if (showingPokemonNameSection)
+		section -= 1;
+	
+	if (section == -1)
+	{
+		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ModifyPokemonCell" owner:nil options:nil];
+		UITableViewCell *cell = [nib objectAtIndex:0];
+		
+		UITextField *nicknameField = (UITextField *)[cell viewWithTag:PokemonNicknameFieldTag];
+		nicknameField.delegate = self;
+		nicknameField.text = pokemon.nickname;
+		
+		UIButton *speciesButton = (UIButton *)[cell viewWithTag:PokemonSpeciesButtonTag];
+		[speciesButton addTarget:self action:@selector(speciesTapped) forControlEvents:UIControlEventTouchUpInside];
+		[speciesButton setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
+		
+		return cell;
+	}
+	
+	if (section == 0)
 	{
     if (indexPath.row == 0)
     {
@@ -472,7 +561,7 @@ NSInteger const UseItemActionSheetTag = 102;
     }
 	}
 	
-	if (indexPath.section == 1)
+	if (section == 1)
 	{
 		if (indexPath.row == 0)
 		{
@@ -537,11 +626,15 @@ NSInteger const UseItemActionSheetTag = 102;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 1 && indexPath.row == 0)
+	NSInteger section = indexPath.section;
+	if (showingPokemonNameSection)
+		section -= 1;
+	
+	if (section == 1 && indexPath.row == 0)
 	{
 		[self presentPokemonListWithEVs:YES];
 	}
-	else if (indexPath.section == 1)
+	else if (section == 1)
 	{
 		PokemonEncounter *encounter = [recentEncounters objectAtIndex:indexPath.row - 1];
 		[self battledPokemon:encounter.species indexPath:indexPath];
@@ -550,21 +643,36 @@ NSInteger const UseItemActionSheetTag = 102;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 0 && indexPath.row == 0)
+	NSInteger section = indexPath.section;
+	if (showingPokemonNameSection)
+		section -= 1;
+	
+	if (section == 0 && indexPath.row == 0)
 		return 80;
+	
+	if (section == -1)
+		return 37;
 	
 	return 44;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 0)
+	NSInteger section = indexPath.section;
+	if (showingPokemonNameSection)
+		section -= 1;
+	
+	if (section == 0 || section == -1)
 		cell.backgroundView = nil;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 1 && indexPath.row > 0)
+	NSInteger section = indexPath.section;
+	if (showingPokemonNameSection)
+		section -= 1;
+	
+	if (section == 1 && indexPath.row > 0)
 	{
 		return UITableViewCellEditingStyleDelete;
 	}
@@ -604,6 +712,7 @@ NSInteger const UseItemActionSheetTag = 102;
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	
 	self.pokemon = aPokemon;
+	showingPokemonNameSection = NO;
 	[self loadRecentEncounters];
 	[self refreshView];
 	[self.tableView reloadData];
@@ -632,9 +741,13 @@ NSInteger const UseItemActionSheetTag = 102;
 	
 	if (indexPath == nil)
 	{
+		NSInteger section = 1;
+		if (showingPokemonNameSection)
+			section += 1;
+		
 		if (createdEncounter)
 		{
-			indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+			indexPath = [NSIndexPath indexPathForRow:1 inSection:section];
 		}
 		else
 		{
@@ -645,7 +758,7 @@ NSInteger const UseItemActionSheetTag = 102;
 					break;
 				row++;
 			}
-			indexPath = [NSIndexPath indexPathForRow:row inSection:1];
+			indexPath = [NSIndexPath indexPathForRow:row inSection:section];
 		}
 	}
 	
@@ -663,8 +776,12 @@ NSInteger const UseItemActionSheetTag = 102;
 	}
 	else
 	{
+		NSInteger section = indexPath.section;
+		if (showingPokemonNameSection)
+			section += 1;
+		
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-		[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationRight];
+		[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationRight];
 	}
 	[self.tableView endUpdates];
 	
@@ -725,6 +842,30 @@ NSInteger const UseItemActionSheetTag = 102;
 	
 	if (species == nil)
 		return;
+	
+	if (listVC.changeSpecies)
+	{
+		// Changing the species of the current Pokemon
+		pokemon.species = species;
+		
+		NSError *error;
+		if (![managedObjectContext save:&error])
+		{
+			DLog(@"Unable to change species: %@", error);
+			[managedObjectContext rollback];
+		}
+		
+		[self refreshTitleView];
+		
+		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+		if (cell)
+		{
+			UIButton *button = (UIButton *)[cell viewWithTag:PokemonSpeciesButtonTag];
+			[button setImage:[UIImage imageNamed:pokemon.species.iconFilename] forState:UIControlStateNormal];
+		}
+		
+		return;
+	}
 	
 	if (listVC.showEVYield)
 	{

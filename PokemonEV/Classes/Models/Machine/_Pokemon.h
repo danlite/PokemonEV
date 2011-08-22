@@ -13,6 +13,7 @@
 
 
 
+
 @interface PokemonID : NSManagedObjectID {}
 @end
 
@@ -37,6 +38,12 @@
 @property (nonatomic, retain) NSDate *lastModified;
 
 //- (BOOL)validateLastModified:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *nickname;
+
+//- (BOOL)validateNickname:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -88,6 +95,10 @@
 
 - (NSDate*)primitiveLastModified;
 - (void)setPrimitiveLastModified:(NSDate*)value;
+
+
+- (NSString*)primitiveNickname;
+- (void)setPrimitiveNickname:(NSString*)value;
 
 
 

@@ -7,6 +7,8 @@
 
 + (Pokemon *)insertFromSpecies:(PokemonSpecies *)species inManagedObjectContext:(NSManagedObjectContext *)context;
 
+@property (nonatomic, readonly) NSString *name;
+
 - (NSDictionary *)addEffortFromPokemon:(PokemonSpecies *)species;
 - (BOOL)canConsumeItem:(ConsumableItem *)item;
 - (NSInteger)useItem:(ConsumableItem *)item;

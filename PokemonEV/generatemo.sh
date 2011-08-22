@@ -1,1 +1,1 @@
-mogenerator -m "PokemonEV.xcdatamodeld/PokemonEV 3.xcdatamodel/" -M Classes/Models/Machine/ -H Classes/Models/Human/
+mogenerator -m "PokemonEV.xcdatamodeld/PokemonEV 4.xcdatamodel/" -M Classes/Models/Machine/ -H Classes/Models/Human/

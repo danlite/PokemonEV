@@ -697,6 +697,7 @@
 		373A2BEC1402A8A5009C2A0F /* pokemon-icon-97.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A294D1402A8A5009C2A0F /* pokemon-icon-97.png */; };
 		373A2BED1402A8A5009C2A0F /* pokemon-icon-98.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A294E1402A8A5009C2A0F /* pokemon-icon-98.png */; };
 		373A2BEE1402A8A5009C2A0F /* pokemon-icon-99.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A294F1402A8A5009C2A0F /* pokemon-icon-99.png */; };
+		373A2C291402D6C5009C2A0F /* ModifyPokemonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373A2C281402D6C5009C2A0F /* ModifyPokemonCell.xib */; };
 		3745E40A138F042700F31683 /* PokemonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3745E409138F042700F31683 /* PokemonListViewController.m */; };
 		374D13E513839712004022E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E413839712004022E3 /* UIKit.framework */; };
 		374D13E713839712004022E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374D13E613839712004022E3 /* Foundation.framework */; };
@@ -1627,6 +1628,7 @@
 		373A294D1402A8A5009C2A0F /* pokemon-icon-97.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pokemon-icon-97.png"; sourceTree = "<group>"; };
 		373A294E1402A8A5009C2A0F /* pokemon-icon-98.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pokemon-icon-98.png"; sourceTree = "<group>"; };
 		373A294F1402A8A5009C2A0F /* pokemon-icon-99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pokemon-icon-99.png"; sourceTree = "<group>"; };
+		373A2C281402D6C5009C2A0F /* ModifyPokemonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyPokemonCell.xib; sourceTree = "<group>"; };
 		3745E408138F042700F31683 /* PokemonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListViewController.h; sourceTree = "<group>"; };
 		3745E409138F042700F31683 /* PokemonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokemonListViewController.m; sourceTree = "<group>"; };
 		3745E47D138F508400F31683 /* PokemonListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokemonListDelegate.h; sourceTree = "<group>"; };
@@ -1721,6 +1723,7 @@
 		37BA35AD1395D34800F18686 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		37BA35CB1395DD0E00F18686 /* icon-envelope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-envelope.png"; sourceTree = "<group>"; };
 		37BA35CC1395DD0E00F18686 /* icon-envelope@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-envelope@2x.png"; sourceTree = "<group>"; };
+		37C07ECF1402DFBE0053798B /* PokemonEV 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PokemonEV 4.xcdatamodel"; sourceTree = "<group>"; };
 		37CBA4DE13DF21D100CA76A4 /* ConsumableItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsumableItemCell.xib; sourceTree = "<group>"; };
 		37CBA4E013DF510900CA76A4 /* BerryListFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BerryListFooterView.xib; sourceTree = "<group>"; };
 		37CDAF4B13872F6400114493 /* HeldItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeldItemListViewController.h; sourceTree = "<group>"; };
@@ -2785,6 +2788,7 @@
 				37D0666113D8866000BA5676 /* ConsumableItemCell.m */,
 				37CBA4DE13DF21D100CA76A4 /* ConsumableItemCell.xib */,
 				37CBA4E013DF510900CA76A4 /* BerryListFooterView.xib */,
+				373A2C281402D6C5009C2A0F /* ModifyPokemonCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3781,6 +3785,7 @@
 				373A2BEC1402A8A5009C2A0F /* pokemon-icon-97.png in Resources */,
 				373A2BED1402A8A5009C2A0F /* pokemon-icon-98.png in Resources */,
 				373A2BEE1402A8A5009C2A0F /* pokemon-icon-99.png in Resources */,
+				373A2C291402D6C5009C2A0F /* ModifyPokemonCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4229,11 +4234,12 @@
 		374D13FB13839712004022E3 /* PokemonEV.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				37C07ECF1402DFBE0053798B /* PokemonEV 4.xcdatamodel */,
 				378419C613A7EDA300E17956 /* PokemonEV 3.xcdatamodel */,
 				37576CCF1390636500F0603A /* PokemonEV 2.xcdatamodel */,
 				374D13FC13839712004022E3 /* PokemonEV.xcdatamodel */,
 			);
-			currentVersion = 378419C613A7EDA300E17956 /* PokemonEV 3.xcdatamodel */;
+			currentVersion = 37C07ECF1402DFBE0053798B /* PokemonEV 4.xcdatamodel */;
 			path = PokemonEV.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
