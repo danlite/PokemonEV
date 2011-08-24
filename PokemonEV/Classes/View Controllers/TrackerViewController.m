@@ -829,7 +829,7 @@ NSInteger const PokemonNicknameFieldTag = 104;
 	listVC.allowsClose = showEVYield;
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listVC];
-	navController.toolbarHidden = NO;
+	navController.toolbarHidden = !showEVYield;
 	
 	[self.navigationController presentModalViewController:navController animated:YES];
 	
