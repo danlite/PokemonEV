@@ -47,7 +47,7 @@ extern NSInteger const VitaminEVChange;
 extern NSInteger const WingEVChange;
 extern NSInteger const BerryEVChange;
 extern NSInteger const BerryEVCutoffAmount;
-
+extern CGFloat const kRecentTimerAnimationDuration;
 
 @interface Constants : NSObject {
     

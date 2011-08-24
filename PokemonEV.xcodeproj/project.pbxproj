@@ -773,6 +773,7 @@
 		37F5444313FF4A2C00CED8BC /* icon-faq-lit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F5443D13FF4A2C00CED8BC /* icon-faq-lit@2x.png */; };
 		37F5444413FF4A2C00CED8BC /* icon-star-lit.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F5443E13FF4A2C00CED8BC /* icon-star-lit.png */; };
 		37F5444513FF4A2C00CED8BC /* icon-star-lit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F5443F13FF4A2C00CED8BC /* icon-star-lit@2x.png */; };
+		37F65EEB14056FB3008379CF /* blank-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F65EEA14056FB3008379CF /* blank-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1749,6 +1750,7 @@
 		37F5443D13FF4A2C00CED8BC /* icon-faq-lit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-faq-lit@2x.png"; sourceTree = "<group>"; };
 		37F5443E13FF4A2C00CED8BC /* icon-star-lit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star-lit.png"; sourceTree = "<group>"; };
 		37F5443F13FF4A2C00CED8BC /* icon-star-lit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star-lit@2x.png"; sourceTree = "<group>"; };
+		37F65EEA14056FB3008379CF /* blank-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2798,6 +2800,7 @@
 			children = (
 				373A26AF1402A8A4009C2A0F /* item_icons */,
 				373A26BE1402A8A4009C2A0F /* pokemon_icons */,
+				37F65EEA14056FB3008379CF /* blank-icon.png */,
 				37BA35CB1395DD0E00F18686 /* icon-envelope.png */,
 				37BA35CC1395DD0E00F18686 /* icon-envelope@2x.png */,
 				37F5443213FF454700CED8BC /* icon-faq.png */,
@@ -3786,6 +3789,7 @@
 				373A2BED1402A8A5009C2A0F /* pokemon-icon-98.png in Resources */,
 				373A2BEE1402A8A5009C2A0F /* pokemon-icon-99.png in Resources */,
 				373A2C291402D6C5009C2A0F /* ModifyPokemonCell.xib in Resources */,
+				37F65EEB14056FB3008379CF /* blank-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

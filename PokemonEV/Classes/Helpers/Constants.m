@@ -19,6 +19,7 @@ NSInteger const BerryEVChange = 10;
 NSInteger const BerryEVCutoffAmount = 100;
 NSInteger const ShowGoalEVs = 0;
 NSInteger const ShowCurrentEVs = 1;
+CGFloat const kRecentTimerAnimationDuration = 10.0;
 
 @implementation Constants
 

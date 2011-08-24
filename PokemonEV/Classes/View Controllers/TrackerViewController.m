@@ -57,6 +57,8 @@ NSInteger const PokemonNicknameFieldTag = 104;
 		managedObjectContext = [context retain];
     evViewControllers = [[NSMutableDictionary alloc] init];
     evMode = EVCountModeView;
+		
+		veryRecentlyBattledSpecies = [[NSMutableSet alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evCountInputChanged:) name:EVCountInputChanged object:nil];
 	}
@@ -586,6 +588,7 @@ NSInteger const PokemonNicknameFieldTag = 104;
 			{
 				cell = [[[PokemonSpeciesCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SpeciesCellIdentifier] autorelease];
 				cell.showEVYield = YES;
+				cell.inBattledList = YES;
 			}
 			
 			[cell setPokemon:encounter.species filteredStat:nil];
@@ -594,6 +597,12 @@ NSInteger const PokemonNicknameFieldTag = 104;
 			cell.detailTextLabel.text = [NSString stringWithFormat:@"Battled %d time%@",
 																	 encounterCount,
 																	 (encounterCount == 1) ? @"" : @"s"];
+			
+			if ([veryRecentlyBattledSpecies containsObject:encounter.species])
+			{
+				[cell start];
+				[veryRecentlyBattledSpecies removeObject:encounter.species];
+			}
 			
 			return cell;
 		}
@@ -765,6 +774,8 @@ NSInteger const PokemonNicknameFieldTag = 104;
 		}
 	}
 	
+	[veryRecentlyBattledSpecies addObject:encounter.species];
+	
 	[self loadRecentEncounters];
 	
 	[self.tableView beginUpdates];
@@ -914,6 +925,7 @@ NSInteger const PokemonNicknameFieldTag = 104;
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
+	[veryRecentlyBattledSpecies release];
 	[useItemListVC release];
 	[recentEncounters release];
 	[pokerusButton release];

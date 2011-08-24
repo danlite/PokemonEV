@@ -39,6 +39,8 @@
 	BOOL changesFromConsumableItem;
 	
 	BOOL showingPokemonNameSection;
+	
+	NSMutableSet *veryRecentlyBattledSpecies;
 }
 
 @property (nonatomic, retain) Pokemon *pokemon;
