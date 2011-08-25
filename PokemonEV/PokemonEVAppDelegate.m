@@ -61,6 +61,7 @@
   [self.window addSubview:navController.view];
   [trackerVC release];
   
+	self.window.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
   [self.window makeKeyAndVisible];
 	
 	[Appirater appLaunched:YES];

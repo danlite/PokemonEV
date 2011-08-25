@@ -344,8 +344,13 @@ NSInteger const PokemonNicknameFieldTag = 104;
 - (void)infoTapped
 {
 	InfoViewController *infoVC = [[InfoViewController alloc] init];
-	[self.navigationController pushViewController:infoVC animated:YES];
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:infoVC];
 	[infoVC release];
+	navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	
+	[self presentModalViewController:navController animated:YES];
+	[navController release];
 }
 
 - (void)listTapped
