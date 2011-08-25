@@ -156,12 +156,10 @@ NSString * const CacheName = @"PokemonList";
 	if (cell == nil)
 	{
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
 	Pokemon *pokemon = (Pokemon *)[fetchedResults objectAtIndexPath:indexPath];
 	
-	cell.textLabel.text = pokemon.species.name;
 	cell.imageView.image = [UIImage imageNamed:pokemon.species.iconFilename];
 	
 	BOOL showGoalEVs = [[NSUserDefaults standardUserDefaults] integerForKey:ShowCurrentOrGoalEVs] == ShowGoalEVs;
@@ -175,6 +173,20 @@ NSString * const CacheName = @"PokemonList";
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@",
 															 [effortValues componentsJoinedByString:@"/"],
 															 pokemon.nickname ? [NSString stringWithFormat:@"(%@)", pokemon.nickname] : @""];
+	
+	BOOL doneTraining = ([pokemon.goalSpread totalEffort] > 0 && [pokemon.goalSpread matchesSpread:pokemon.currentSpread]);
+	
+	if (doneTraining)
+	{
+		UIImageView *checkmarkView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-green-check"]];
+		cell.accessoryView = checkmarkView;
+		cell.textLabel.text = [NSString stringWithFormat:@"%@ ✓", pokemon.species.name];
+	}
+	else
+	{
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.textLabel.text = pokemon.species.name;
+	}
 	
 	return cell;
 }
