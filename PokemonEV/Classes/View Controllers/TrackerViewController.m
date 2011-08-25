@@ -171,6 +171,7 @@ NSInteger const PokemonNicknameFieldTag = 104;
 	else if (pokemon)
 	{
 		[self refreshTitleView];
+		self.title = pokemon.species.name;
 	}
 	else
 	{
@@ -815,8 +816,8 @@ NSInteger const PokemonNicknameFieldTag = 104;
 	// Save EV change
 	[managedObjectContext save:nil];
 	
-	// If it earned EVs and has either reached the total limit of EVs or reached its EV goals
-	if (([earnedEVs count] > 0) && ([pokemon.currentSpread totalEffort] == MaximumStatEVCount || [pokemon.currentSpread matchesSpread:pokemon.goalSpread]))
+	// If it earned EVs and has either reached the total useful amount of EVs or reached its EV goals
+	if (([earnedEVs count] > 0) && ([pokemon.currentSpread totalEffort] >= MaximumUsefulTotalEVCount || [pokemon.currentSpread matchesSpread:pokemon.goalSpread]))
 	{
 		[self performSelector:@selector(notifySignificantEvent) withObject:nil afterDelay:1];
 	}

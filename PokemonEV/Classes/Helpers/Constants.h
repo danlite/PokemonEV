@@ -41,6 +41,7 @@ extern NSInteger const ShowCurrentEVs;
 extern NSInteger const ShowGoalEVs;
 extern NSInteger const MaximumStatEVCount;
 extern NSInteger const MaximumTotalEVCount;
+extern NSInteger const MaximumUsefulTotalEVCount;
 extern NSInteger const PowerItemEVAddition;
 extern NSInteger const MaximumVitaminEVAllotment;
 extern NSInteger const VitaminEVChange;

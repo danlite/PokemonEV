@@ -180,7 +180,7 @@ NSString * const CacheName = @"PokemonList";
 	{
 		UIImageView *checkmarkView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-green-check"]];
 		cell.accessoryView = checkmarkView;
-		cell.textLabel.text = [NSString stringWithFormat:@"%@ ✓", pokemon.species.name];
+		cell.textLabel.text = [NSString stringWithFormat:@"✓ %@", pokemon.species.name];
 	}
 	else
 	{

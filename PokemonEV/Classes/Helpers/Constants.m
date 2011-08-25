@@ -12,6 +12,7 @@ NSString * const EVCountInputChanged = @"EVCountInputChanged";
 NSInteger const MaximumStatEVCount = 255;
 NSInteger const PowerItemEVAddition = 4;
 NSInteger const MaximumTotalEVCount = 510;
+NSInteger const MaximumUsefulTotalEVCount = 508;
 NSInteger const MaximumVitaminEVAllotment = 100;
 NSInteger const VitaminEVChange = 10;
 NSInteger const WingEVChange = 1;
