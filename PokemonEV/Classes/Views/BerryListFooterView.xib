@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10K540</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -46,7 +46,7 @@
 					<object class="IBUISwitch" id="5416446">
 						<reference key="NSNextResponder" ref="1055519128"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{206, 27}, {94, 27}}</string>
+						<string key="NSFrame">{{206, 30}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="1055519128"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -60,7 +60,7 @@
 					<object class="IBUILabel" id="1027532134">
 						<reference key="NSNextResponder" ref="1055519128"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{18, 27}, {180, 44}}</string>
+						<string key="NSFrame">{{18, 26}, {180, 61}}</string>
 						<reference key="NSSuperview" ref="1055519128"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="5416446"/>
@@ -69,7 +69,8 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">In Diamond, Pearl and Platinum, if EVs are greater than 100, using a berry lowers EVs to 100.</string>
+						<string type="base64-UTF8" key="IBUIText">SW4gRGlhbW9uZCwgUGVhcmwsIFBsYXRpbnVtLCBIZWFydEdvbGQsIGFuZCBTb3VsU2lsdmVyLAppZiBF
+VnMgYXJlIGdyZWF0ZXIgdGhhbiAxMDAsIHVzaW5nIGEgYmVycnkgbG93ZXJzIEVWcyB0byAxMDAuA</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">12</double>
@@ -87,7 +88,7 @@
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUINumberOfLines">3</int>
+						<int key="IBUINumberOfLines">4</int>
 						<int key="IBUILineBreakMode">0</int>
 					</object>
 					<object class="IBUILabel" id="611168316">
@@ -116,7 +117,7 @@
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 80}</string>
+				<string key="NSFrameSize">{320, 88}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="611168316"/>

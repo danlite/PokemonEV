@@ -193,7 +193,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-	return 80;
+	return 88;
 }
 
 #pragma mark - Table view delegate
