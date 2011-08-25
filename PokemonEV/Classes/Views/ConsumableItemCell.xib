@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10K540</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -83,14 +83,13 @@
 								<string key="NSFrame">{{227, 21}, {72, 20}}</string>
 								<reference key="NSSuperview" ref="779801874"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">0 / 0</string>
-								<object class="NSFont" key="IBUIFont" id="586213262">
+								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
@@ -104,7 +103,7 @@
 							<object class="IBUILabel" id="765301323">
 								<reference key="NSNextResponder" ref="779801874"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 11}, {127, 22}}</string>
+								<string key="NSFrame">{{40, 11}, {127, 22}}</string>
 								<reference key="NSSuperview" ref="779801874"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="36743847"/>
@@ -127,7 +126,7 @@
 							<object class="IBUILabel" id="36743847">
 								<reference key="NSNextResponder" ref="779801874"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{161, 11}, {64, 22}}</string>
+								<string key="NSFrame">{{175, 11}, {53, 22}}</string>
 								<reference key="NSSuperview" ref="779801874"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="669922966"/>
@@ -137,11 +136,16 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Used 252</string>
-								<reference key="IBUIFont" ref="586213262"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">12</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<reference key="IBUITextColor" ref="56418782"/>
 								<reference key="IBUIHighlightedColor" ref="186347149"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUITextAlignment">1</int>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 44}</string>

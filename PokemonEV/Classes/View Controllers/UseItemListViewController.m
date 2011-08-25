@@ -149,6 +149,8 @@
 	
 	cell.selectionStyle = valid ? UITableViewCellSelectionStyleBlue : UITableViewCellSelectionStyleNone;
 	
+	cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-icon-%d", NSStringFromClass([item class]), indexPath.row]];
+	
 	for (UILabel *label in [NSArray arrayWithObjects:cell.evLabel, cell.statNameLabel, cell.itemNameLabel, nil])
 	{
 		label.textColor = valid ? [UIColor blackColor] : [UIColor lightGrayColor];
