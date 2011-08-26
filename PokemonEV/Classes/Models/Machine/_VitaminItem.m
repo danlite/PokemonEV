@@ -26,6 +26,13 @@
 	return (VitaminItemID*)[super objectID];
 }
 
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+
+	return keyPaths;
+}
+
 
 
 

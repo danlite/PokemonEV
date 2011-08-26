@@ -19,13 +19,17 @@
 
 
 
+
 @property (nonatomic, retain) NSString *name;
+
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
 
 
+
 @property (nonatomic, retain) NSNumber *stat;
+
 
 @property short statValue;
 - (short)statValue;
@@ -45,8 +49,11 @@
 
 @interface _ConsumableItem (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
 
 
 - (NSNumber*)primitiveStat;
@@ -54,6 +61,7 @@
 
 - (short)primitiveStatValue;
 - (void)setPrimitiveStatValue:(short)value_;
+
 
 
 

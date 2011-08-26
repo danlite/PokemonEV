@@ -26,10 +26,28 @@
 	return (HeldItemID*)[super objectID];
 }
 
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"trainingStatValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"trainingStat"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+
+	return keyPaths;
+}
+
 
 
 
 @dynamic identifier;
+
+
+
+
+
+
+@dynamic name;
 
 
 
@@ -62,19 +80,12 @@
 
 
 
-@dynamic name;
-
-
-
-
-
-
 @dynamic pokemon;
 
 	
 - (NSMutableSet*)pokemonSet {
 	[self willAccessValueForKey:@"pokemon"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"pokemon"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"pokemon"];
 	[self didAccessValueForKey:@"pokemon"];
 	return result;
 }

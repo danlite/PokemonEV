@@ -4,11 +4,11 @@
 #import <CoreData/CoreData.h>
 
 
+@class EVSpread;
 @class PokemonEncounter;
 @class EVSpread;
-@class PokemonSpecies;
-@class EVSpread;
 @class HeldItem;
+@class PokemonSpecies;
 
 
 
@@ -25,7 +25,25 @@
 
 
 
+
+@property (nonatomic, retain) NSDate *lastModified;
+
+
+//- (BOOL)validateLastModified:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) NSString *nickname;
+
+
+//- (BOOL)validateNickname:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, retain) NSNumber *pokerus;
+
 
 @property BOOL pokerusValue;
 - (BOOL)pokerusValue;
@@ -35,41 +53,40 @@
 
 
 
-@property (nonatomic, retain) NSDate *lastModified;
-
-//- (BOOL)validateLastModified:(id*)value_ error:(NSError**)error_;
 
 
+@property (nonatomic, retain) EVSpread* currentSpread;
 
-@property (nonatomic, retain) NSString *nickname;
-
-//- (BOOL)validateNickname:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateCurrentSpread:(id*)value_ error:(NSError**)error_;
 
 
 
 
 @property (nonatomic, retain) NSSet* encounters;
+
 - (NSMutableSet*)encountersSet;
 
 
 
+
 @property (nonatomic, retain) EVSpread* goalSpread;
+
 //- (BOOL)validateGoalSpread:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) PokemonSpecies* species;
-//- (BOOL)validateSpecies:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) EVSpread* currentSpread;
-//- (BOOL)validateCurrentSpread:(id*)value_ error:(NSError**)error_;
-
-
 
 @property (nonatomic, retain) HeldItem* heldItem;
+
 //- (BOOL)validateHeldItem:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) PokemonSpecies* species;
+
+//- (BOOL)validateSpecies:(id*)value_ error:(NSError**)error_;
+
 
 
 
@@ -86,6 +103,19 @@
 
 @interface _Pokemon (CoreDataGeneratedPrimitiveAccessors)
 
+
+- (NSDate*)primitiveLastModified;
+- (void)setPrimitiveLastModified:(NSDate*)value;
+
+
+
+
+- (NSString*)primitiveNickname;
+- (void)setPrimitiveNickname:(NSString*)value;
+
+
+
+
 - (NSNumber*)primitivePokerus;
 - (void)setPrimitivePokerus:(NSNumber*)value;
 
@@ -93,13 +123,11 @@
 - (void)setPrimitivePokerusValue:(BOOL)value_;
 
 
-- (NSDate*)primitiveLastModified;
-- (void)setPrimitiveLastModified:(NSDate*)value;
 
 
-- (NSString*)primitiveNickname;
-- (void)setPrimitiveNickname:(NSString*)value;
 
+- (EVSpread*)primitiveCurrentSpread;
+- (void)setPrimitiveCurrentSpread:(EVSpread*)value;
 
 
 
@@ -113,18 +141,13 @@
 
 
 
-- (PokemonSpecies*)primitiveSpecies;
-- (void)setPrimitiveSpecies:(PokemonSpecies*)value;
-
-
-
-- (EVSpread*)primitiveCurrentSpread;
-- (void)setPrimitiveCurrentSpread:(EVSpread*)value;
-
-
-
 - (HeldItem*)primitiveHeldItem;
 - (void)setPrimitiveHeldItem:(HeldItem*)value;
+
+
+
+- (PokemonSpecies*)primitiveSpecies;
+- (void)setPrimitiveSpecies:(PokemonSpecies*)value;
 
 
 @end

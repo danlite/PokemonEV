@@ -26,6 +26,31 @@
 	return (PokemonID*)[super objectID];
 }
 
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"pokerusValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"pokerus"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+
+	return keyPaths;
+}
+
+
+
+
+@dynamic lastModified;
+
+
+
+
+
+
+@dynamic nickname;
+
+
+
 
 
 
@@ -55,26 +80,16 @@
 
 
 
-@dynamic lastModified;
+@dynamic currentSpread;
 
-
-
-
-
-
-@dynamic nickname;
-
-
-
-
-
+	
 
 @dynamic encounters;
 
 	
 - (NSMutableSet*)encountersSet {
 	[self willAccessValueForKey:@"encounters"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"encounters"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"encounters"];
 	[self didAccessValueForKey:@"encounters"];
 	return result;
 }
@@ -84,17 +99,15 @@
 
 	
 
+@dynamic heldItem;
+
+	
+
 @dynamic species;
 
 	
 
-@dynamic currentSpread;
 
-	
-
-@dynamic heldItem;
-
-	
 
 
 

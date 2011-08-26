@@ -26,26 +26,20 @@
 	return (PokemonSpeciesID*)[super objectID];
 }
 
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"dexNumberValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"dexNumber"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"formOrderValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"formOrder"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
 
-
-
-@dynamic uppercaseNameInitial;
-
-
-
-
-
-
-@dynamic name;
-
-
-
-
-
-
-@dynamic iconFilename;
-
-
+	return keyPaths;
+}
 
 
 
@@ -109,24 +103,45 @@
 
 
 
-@dynamic pokemon;
+@dynamic iconFilename;
 
-	
-- (NSMutableSet*)pokemonSet {
-	[self willAccessValueForKey:@"pokemon"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"pokemon"];
-	[self didAccessValueForKey:@"pokemon"];
-	return result;
-}
-	
+
+
+
+
+
+@dynamic name;
+
+
+
+
+
+
+@dynamic uppercaseNameInitial;
+
+
+
+
+
 
 @dynamic encounters;
 
 	
 - (NSMutableSet*)encountersSet {
 	[self willAccessValueForKey:@"encounters"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"encounters"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"encounters"];
 	[self didAccessValueForKey:@"encounters"];
+	return result;
+}
+	
+
+@dynamic pokemon;
+
+	
+- (NSMutableSet*)pokemonSet {
+	[self willAccessValueForKey:@"pokemon"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"pokemon"];
+	[self didAccessValueForKey:@"pokemon"];
 	return result;
 }
 	

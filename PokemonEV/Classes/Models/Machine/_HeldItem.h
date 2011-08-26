@@ -21,13 +21,25 @@
 
 
 
+
 @property (nonatomic, retain) NSString *identifier;
+
 
 //- (BOOL)validateIdentifier:(id*)value_ error:(NSError**)error_;
 
 
 
+
+@property (nonatomic, retain) NSString *name;
+
+
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, retain) NSNumber *trainingStat;
+
 
 @property short trainingStatValue;
 - (short)trainingStatValue;
@@ -37,14 +49,10 @@
 
 
 
-@property (nonatomic, retain) NSString *name;
-
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-
 
 
 @property (nonatomic, retain) NSSet* pokemon;
+
 - (NSMutableSet*)pokemonSet;
 
 
@@ -63,8 +71,17 @@
 
 @interface _HeldItem (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSString*)primitiveIdentifier;
 - (void)setPrimitiveIdentifier:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
+
+
 
 
 - (NSNumber*)primitiveTrainingStat;
@@ -73,9 +90,6 @@
 - (short)primitiveTrainingStatValue;
 - (void)setPrimitiveTrainingStatValue:(short)value_;
 
-
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
 
 
 

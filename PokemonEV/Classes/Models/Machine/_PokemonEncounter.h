@@ -21,7 +21,9 @@
 
 
 
+
 @property (nonatomic, retain) NSNumber *count;
+
 
 @property short countValue;
 - (short)countValue;
@@ -31,19 +33,25 @@
 
 
 
+
 @property (nonatomic, retain) NSDate *date;
+
 
 //- (BOOL)validateDate:(id*)value_ error:(NSError**)error_;
 
 
 
 
+
 @property (nonatomic, retain) Pokemon* pokemon;
+
 //- (BOOL)validatePokemon:(id*)value_ error:(NSError**)error_;
 
 
 
+
 @property (nonatomic, retain) PokemonSpecies* species;
+
 //- (BOOL)validateSpecies:(id*)value_ error:(NSError**)error_;
 
 
@@ -57,6 +65,7 @@
 
 @interface _PokemonEncounter (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSNumber*)primitiveCount;
 - (void)setPrimitiveCount:(NSNumber*)value;
 
@@ -64,8 +73,11 @@
 - (void)setPrimitiveCountValue:(short)value_;
 
 
+
+
 - (NSDate*)primitiveDate;
 - (void)setPrimitiveDate:(NSDate*)value;
+
 
 
 

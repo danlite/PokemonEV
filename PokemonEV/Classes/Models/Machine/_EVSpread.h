@@ -4,9 +4,9 @@
 #import <CoreData/CoreData.h>
 
 
+@class Pokemon;
+@class Pokemon;
 @class PokemonSpecies;
-@class Pokemon;
-@class Pokemon;
 
 
 
@@ -26,7 +26,9 @@
 
 
 
+
 @property (nonatomic, retain) NSNumber *attack;
+
 
 @property short attackValue;
 - (short)attackValue;
@@ -36,27 +38,9 @@
 
 
 
-@property (nonatomic, retain) NSNumber *hp;
-
-@property short hpValue;
-- (short)hpValue;
-- (void)setHpValue:(short)value_;
-
-//- (BOOL)validateHp:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *spDefense;
-
-@property short spDefenseValue;
-- (short)spDefenseValue;
-- (void)setSpDefenseValue:(short)value_;
-
-//- (BOOL)validateSpDefense:(id*)value_ error:(NSError**)error_;
-
-
 
 @property (nonatomic, retain) NSNumber *defense;
+
 
 @property short defenseValue;
 - (short)defenseValue;
@@ -66,7 +50,21 @@
 
 
 
+
+@property (nonatomic, retain) NSNumber *hp;
+
+
+@property short hpValue;
+- (short)hpValue;
+- (void)setHpValue:(short)value_;
+
+//- (BOOL)validateHp:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, retain) NSNumber *spAttack;
+
 
 @property short spAttackValue;
 - (short)spAttackValue;
@@ -76,7 +74,21 @@
 
 
 
+
+@property (nonatomic, retain) NSNumber *spDefense;
+
+
+@property short spDefenseValue;
+- (short)spDefenseValue;
+- (void)setSpDefenseValue:(short)value_;
+
+//- (BOOL)validateSpDefense:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, retain) NSNumber *speed;
+
 
 @property short speedValue;
 - (short)speedValue;
@@ -87,18 +99,25 @@
 
 
 
-@property (nonatomic, retain) PokemonSpecies* yieldSpecies;
-//- (BOOL)validateYieldSpecies:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, retain) Pokemon* currentPokemon;
+
+//- (BOOL)validateCurrentPokemon:(id*)value_ error:(NSError**)error_;
+
 
 
 
 @property (nonatomic, retain) Pokemon* goalPokemon;
+
 //- (BOOL)validateGoalPokemon:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) Pokemon* currentPokemon;
-//- (BOOL)validateCurrentPokemon:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, retain) PokemonSpecies* yieldSpecies;
+
+//- (BOOL)validateYieldSpecies:(id*)value_ error:(NSError**)error_;
+
 
 
 
@@ -110,6 +129,7 @@
 
 @interface _EVSpread (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSNumber*)primitiveAttack;
 - (void)setPrimitiveAttack:(NSNumber*)value;
 
@@ -117,18 +137,6 @@
 - (void)setPrimitiveAttackValue:(short)value_;
 
 
-- (NSNumber*)primitiveHp;
-- (void)setPrimitiveHp:(NSNumber*)value;
-
-- (short)primitiveHpValue;
-- (void)setPrimitiveHpValue:(short)value_;
-
-
-- (NSNumber*)primitiveSpDefense;
-- (void)setPrimitiveSpDefense:(NSNumber*)value;
-
-- (short)primitiveSpDefenseValue;
-- (void)setPrimitiveSpDefenseValue:(short)value_;
 
 
 - (NSNumber*)primitiveDefense;
@@ -138,11 +146,33 @@
 - (void)setPrimitiveDefenseValue:(short)value_;
 
 
+
+
+- (NSNumber*)primitiveHp;
+- (void)setPrimitiveHp:(NSNumber*)value;
+
+- (short)primitiveHpValue;
+- (void)setPrimitiveHpValue:(short)value_;
+
+
+
+
 - (NSNumber*)primitiveSpAttack;
 - (void)setPrimitiveSpAttack:(NSNumber*)value;
 
 - (short)primitiveSpAttackValue;
 - (void)setPrimitiveSpAttackValue:(short)value_;
+
+
+
+
+- (NSNumber*)primitiveSpDefense;
+- (void)setPrimitiveSpDefense:(NSNumber*)value;
+
+- (short)primitiveSpDefenseValue;
+- (void)setPrimitiveSpDefenseValue:(short)value_;
+
+
 
 
 - (NSNumber*)primitiveSpeed;
@@ -154,8 +184,9 @@
 
 
 
-- (PokemonSpecies*)primitiveYieldSpecies;
-- (void)setPrimitiveYieldSpecies:(PokemonSpecies*)value;
+
+- (Pokemon*)primitiveCurrentPokemon;
+- (void)setPrimitiveCurrentPokemon:(Pokemon*)value;
 
 
 
@@ -164,8 +195,8 @@
 
 
 
-- (Pokemon*)primitiveCurrentPokemon;
-- (void)setPrimitiveCurrentPokemon:(Pokemon*)value;
+- (PokemonSpecies*)primitiveYieldSpecies;
+- (void)setPrimitiveYieldSpecies:(PokemonSpecies*)value;
 
 
 @end
