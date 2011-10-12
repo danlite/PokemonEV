@@ -1,0 +1,9 @@
+License
+=======
+Source code and data are released freely for any use.
+
+iTunes artwork and app icon were created by me, don't go using them without my permission.
+
+Most toolbar/table cell icons derived from [Glyphish Pro](http://glyphish.com) (license required for use).
+
+In-game Pokémon and item sprites taken from [veekun](http://veekun.com).

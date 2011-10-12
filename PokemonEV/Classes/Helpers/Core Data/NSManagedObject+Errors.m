@@ -1,6 +1,6 @@
 //
 //  NSManagedObject+Errors.m
-//  WellpointHealth
+//  PokemonEV
 //
 //  Created by Dan Lichty on 10-11-04.
 //  Copyright 2010 Daniel Lichty. All rights reserved.

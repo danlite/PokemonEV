@@ -1,6 +1,6 @@
 //
 //  UIColor+Hex.h
-//  WellpointHealth
+//  PokemonEV
 //
 //  Created by Dan Lichty on 10-11-25.
 //  Copyright 2010 Daniel Lichty. All rights reserved.
